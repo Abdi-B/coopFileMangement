@@ -1,0 +1,30 @@
+const fs = require('fs');
+const path = require('path');
+
+// Source directory path
+const sourceDir = '/path/to/source/directory';
+
+// Destination directory path
+const destDir = '/path/to/destination/directory';
+
+// Get list of files in source directory
+fs.readdir(sourceDir, (err, files) => {
+  if (err) throw err;
+
+  // Loop through each file
+  files.forEach(file => {
+    // Get the full file path
+    const filePath = path.join(sourceDir, file);
+
+    // Check if the file is a regular file (not a directory)
+    if (fs.statSync(filePath).isFile()) {
+      // Get the destination file path
+      const destFilePath = path.join(destDir, file);
+
+      // Move the file to the destination directory
+      fs.renameSync(filePath, destFilePath);
+
+      console.log(`Moved file ${file} to ${destDir}`);
+    }
+  });
+});
