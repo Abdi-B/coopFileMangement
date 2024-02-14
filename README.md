@@ -1,2 +1,2 @@
 # coopbankFTP
-# It contains both frontend and backend full code
+# It contains both frontend and backend full codes
