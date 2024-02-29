@@ -13,7 +13,7 @@ const getDepartments  = async  (req,res) => {
         return res.status(500).json({ error: 'Internal Server Error' });
       }
 
-      const containsFiles = file1.some(item => fs.statSync(path.join(dirPath, item)).isFile());
+      // const containsFiles = file1.some(item => fs.statSync(path.join(dirPath, item)).isFile());
       const containsDirectories = file1.some(item => fs.statSync(path.join(dirPath, item)).isDirectory());
       
     //   console.log(containsDirectories)
@@ -131,7 +131,6 @@ module.exports = {
     getAnnouncement,
     getAnnouncements,
     postAnnouncement
-    
 }
   
 
