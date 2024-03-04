@@ -110,7 +110,7 @@ function DrawerList() {
 
             <Container className={classes.drawContainer}>
                 <Typography variant='h6' >
-                    List of Departments 
+                    List of Department
                 </Typography>
                 <List >
 
