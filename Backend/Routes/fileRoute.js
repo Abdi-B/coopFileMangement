@@ -3,7 +3,8 @@ const  {
     getDepartments,
     getSubDepartment,
     getFiles,
-    postAnnouncement,getAnnouncements,
+    postAnnouncement,
+    getAnnouncements,
     getAnnouncement
 } = require('./../fileControllers')
 
