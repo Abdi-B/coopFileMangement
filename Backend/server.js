@@ -12,11 +12,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors(
-    {
-        origin: ["https://coopbankfilemangement.vercel.app"],
-        methods: ["POST", "GET"],
-        credentials: true
-    }
+    // {
+    //     origin: ["https://coopbankfilemangement.vercel.app"],
+    //     methods: ["POST", "GET"],
+    //     credentials: true
+    // }
 ));
 
 
