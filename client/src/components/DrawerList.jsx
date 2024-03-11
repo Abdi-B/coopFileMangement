@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: '15px'
     },
     drawContainer: {
-        overflowY: 'auto',
+        // overflowY: 'auto',
         height: drawerHeight,
         // marginTop: 105,
     },
