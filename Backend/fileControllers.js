@@ -24,7 +24,14 @@ const getDepartments  = async  (req,res) => {
             .filter(item => fs.statSync(path.join(dirPath, item)).isDirectory())
             .map(directory => ({ name: directory }));
             
-         return await res.json({ message: 'Contains only directories', directoriesInfo });
+         return await res.status(200).json({ 
+          status: 'true',
+          message: 'Contains only directories', 
+          directoriesInfo 
+          // data1:{
+          //   directoriesInfo: directoriesInfo
+          // }
+        });
           
     } else {
         return res.json({ message: 'Contains files or a mix of files and directories', directoriesInfo: null });
@@ -50,7 +57,7 @@ const getSubDepartment = async (req, res) => {
         
         // console.log(containsDirectories)
 
-        if (containsDirectories ) {
+        if (containsDirectories  ) {
           // If the directory contains only directories
           const directoriesInfo = file1
               .filter(item => fs.statSync(path.join(dirPath, item)).isDirectory())
@@ -59,7 +66,7 @@ const getSubDepartment = async (req, res) => {
           return await res.json({ message: 'Contains only directories', directoriesInfo });
             
       } else {
-          return res.json({ message: 'Contains files or a mix of files and directories', directoriesInfo: null });
+          return res.json({ message: 'Contains files or a mix of files and directories or null', directoriesInfo: null });
       }        
        });
   
