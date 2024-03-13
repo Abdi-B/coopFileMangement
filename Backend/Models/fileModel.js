@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const FileManagementSchema = new Schema({
+// const FileManagementSchema = new Schema({
+const FileManagementSchema =  mongoose.Schema({
     originalName: {
         type: String,
         required: true

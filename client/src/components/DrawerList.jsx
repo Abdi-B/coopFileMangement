@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: '15px'
     },
     drawContainer: {
-        overflowY: 'auto',
+        // overflowY: 'auto',
         height: drawerHeight,
         // marginTop: 105,
     },
@@ -98,9 +98,9 @@ function DrawerList() {
     
   return (
         <Container  className={classes.root} >
-
+            // Navbar
             <Navbar />
-
+                // Drawer part
             <Drawer 
             className={classes.drawer}
             variant = 'permanent'
@@ -110,7 +110,7 @@ function DrawerList() {
 
             <Container className={classes.drawContainer}>
                 <Typography variant='h6' >
-                    List of Departments 
+                    List of Department
                 </Typography>
                 <List >
 

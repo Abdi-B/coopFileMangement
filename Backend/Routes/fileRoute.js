@@ -33,8 +33,4 @@ router.get('/:row', getSubDepartment)
 router.get('/:item/:item2', getFiles)
 
 
-
-
-
-
 module.exports = router

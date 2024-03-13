@@ -53,7 +53,6 @@ export default function AllAnnouncement() {
                 </Typography>
                 <Typography gutterBottom variant="body2" color="text.secondary" align='justify'>
                     {post.content}
-                    {/* Lorem ipsum dolor sit amet. */}
                     
 
                 </Typography>
