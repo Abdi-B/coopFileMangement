@@ -1,4 +1,5 @@
 const express = require('express')
+const app = express();
 const  {
     getDepartments,
     getSubDepartment,
@@ -11,7 +12,10 @@ const  {
 const router = express.Router()
 
 // Get Announcement
-router.get('/getPost', getAnnouncement)
+// router.get('/getPost', getAnnouncement) 
+// another way
+app.route('/getPost')
+    .get(getAnnouncement)
 
 //get all Announcements
 router.get('/getPosts', getAnnouncements)
