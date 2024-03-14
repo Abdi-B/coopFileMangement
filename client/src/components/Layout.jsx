@@ -29,15 +29,7 @@ const useStyles = makeStyles({
 })
 
 function Layout({ children }) { 
-  // const [showDrawerList, setShowDrawerList] = useState(true);
-  // const [showAnnouncement, setShowAnnouncement] = useState(true);
 
-  // const handleNavbarButtonClick = () => {
-  //   // Handle the click event on a button in the Navbar
-  //   // Toggle the visibility of DrawerList and Announcement components
-  //   setShowDrawerList(!showDrawerList);
-  //   setShowAnnouncement(!showAnnouncement);
-  // };
 
   const context = useContext(AppContext);
 

@@ -9,6 +9,10 @@ const  {
     getAnnouncement
 } = require('./../fileControllers')
 
+// Validation
+const validateBody = require('../controllers/validateBody')
+
+
 const router = express.Router()
 
 // Get Announcement
@@ -16,12 +20,13 @@ const router = express.Router()
 // another way
 app.route('/getPost')
     .get(getAnnouncement)
+    
 
 //get all Announcements
 router.get('/getPosts', getAnnouncements)
 
 // Post Announcement
-router.post('/posts', postAnnouncement)
+router.post('/posts', validateBody.validatePost , postAnnouncement)
 
 //GET all Department
 router.get('/', getDepartments)

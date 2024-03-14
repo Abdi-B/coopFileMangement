@@ -11,25 +11,12 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-<<<<<<< HEAD
-app.use(cors());
-// app.use()
-=======
-app.use(cors(
-    // {
-    //     origin: ["https://coopbankfilemangement.vercel.app"],
-    //     methods: ["POST", "GET"],
-    //     credentials: true
-    // }
-));
->>>>>>> 812647e724f2ea994541c05af2cb2a7101cdf6e5
 
+app.use(cors());
+
+// router
 
 app.use('/read', fileRoutes )
-
-// app.listen(process.env.PORT, () => {
-//     console.log('Mongodb connected successfully & listening on the port', process.env.PORT)
-//   })
 
 
 // DB connection
