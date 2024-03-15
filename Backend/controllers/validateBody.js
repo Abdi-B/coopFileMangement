@@ -9,3 +9,5 @@ exports.validatePost = (req, res, next) => {
     }
     next();
 }
+
+
