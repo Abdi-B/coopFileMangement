@@ -35,10 +35,10 @@ const blogPostSchema = new Schema({
   title: String,
   content: String,
   
-  // title: {
-  //   type: String,
-  //   required: true
-  // },
+  title: {
+    type: String,
+    required: true
+  },
   // content: {
   //   type: String,
   //   required: true

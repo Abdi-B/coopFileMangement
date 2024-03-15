@@ -2,6 +2,8 @@ const fs = require('fs')
 const path = require('path')
 const {BlogPost, FileManagement} = require('./Models/fileModel')
 
+
+
 const getDepartments  = async  (req,res) => {
 
         const dirPath = path.join(__dirname, 'Department');
@@ -42,7 +44,7 @@ const getDepartments  = async  (req,res) => {
 //Get Sub Departement
 const getSubDepartment = async (req, res) => {
     const subDepartment = req.params.row
-    // console.log(detail)
+    // console.log(subDepartment)
 
       const dirPath = path.join(__dirname, `Department/${subDepartment}`);
       
