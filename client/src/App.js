@@ -20,6 +20,8 @@ import { useState } from 'react';
 import AllAnnouncement from './components/AllAnnouncement';
 
 
+
+
 function App() {
 
   const [nameContext, SetNameContext] = useState(true);
@@ -37,13 +39,16 @@ function App() {
               <Route path="/create" element={<Create />} />
               <Route path="/one/:item/:item2" element={<Department />} />
               
-              <Route path="/announcement" element={<CreateAnnouncement />} />
               <Route path='/announcements' element={<AllAnnouncement />} />
+              <Route path="/announcement" element={<CreateAnnouncement />} />
+  
             </Routes>
           </Layout>
       
     </Router>
     {/* </div> */}
+    
+
 
      </AppContext.Provider>
   )

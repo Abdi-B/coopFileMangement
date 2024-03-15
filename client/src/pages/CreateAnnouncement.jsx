@@ -23,7 +23,7 @@ const CreateAnnouncement = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}  sx={{width: '100vh', height: '100vh', display: 'flex', justifyContent: 'center'}}>
+    <form onSubmit={handleSubmit}  sx={{width: '100vh', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
       <TextField
         label="Title"
         variant="outlined"

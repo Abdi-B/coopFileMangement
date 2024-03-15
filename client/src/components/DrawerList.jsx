@@ -98,9 +98,9 @@ function DrawerList() {
     
   return (
         <Container  className={classes.root} >
-            // Navbar
+
             <Navbar />
-                // Drawer part
+
             <Drawer 
             className={classes.drawer}
             variant = 'permanent'
