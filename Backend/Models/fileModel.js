@@ -1,7 +1,34 @@
 const mongoose = require('mongoose')
 
-
 const Schema = mongoose.Schema
+
+const UserSchema = mongoose.Schema({
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        unique: true,
+        required: true,
+        trim: true,
+        lowercase: true
+    },
+    password: {
+        type: String,
+        required: true,
+        trim: true,
+        minLength: 8
+    }
+},
+{
+    timestamps: true
+}
+)
 
 // const FileManagementSchema = new Schema({
 const FileManagementSchema =  mongoose.Schema({
@@ -28,33 +55,32 @@ const FileManagementSchema =  mongoose.Schema({
 }, {
     timestamps: true
 })
-// // the first argument is also used to create collection with the same name
-const FileManagement = mongoose.model('File', FileManagementSchema)
 
 const blogPostSchema = new Schema({
-  title: String,
-  content: String,
-  
+
   title: {
     type: String,
     required: true
   },
-  // content: {
-  //   type: String,
-  //   required: true
-  // },
+  content: {
+    type: String,
+    required: true
+  },
 },
 {
     timestamps: true
 }
-
 );
 
+
+const User = mongoose.model('User', UserSchema)
+const FileManagement = mongoose.model('File', FileManagementSchema)
 const BlogPost = mongoose.model('BlogPost', blogPostSchema);
 // module.exports = mongoose.model('BlogPost', blogPostSchema);
 
 
 module.exports = {
+    User,
   FileManagement,
   BlogPost
 }

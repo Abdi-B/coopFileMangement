@@ -17,24 +17,43 @@ import {
   FilledInput,
   InputAdornment,
   IconButton,
+  Stack
 } from "@mui/material";
 
-//imported components
-<<<<<<< HEAD
-
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
+import { makeStyles } from '@material-ui/styles';
 
+const useStyles = makeStyles({ 
+  all: {
+    display: "flex",
+    height: "100vh",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    // backgroundColor: 'green'  
+},
+loginBox: {
+  // backgroundColor: 'grey',
+  width: '35%',
+  boxShadow: '0.3rem 0.3rem 0.6rem grey',
+  borderRadius: 5,
+  padding: '1rem'
+},
+login1: {
+  textAlign: "center",
+  fontSize: '2rem',
+  fontWeight: "bold",
+  backgroundColor: "#78866B",
+  borderRadius: 4,
+  padding: "1rem",
+  // marginBottom: "0.1rem"
+}
+})
 
-
-=======
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import Visibility from "@mui/icons-material/Visibility";
-
->>>>>>> d605fc2ba8f9820bd28da1e0d52295d8f2fda4d4
 const Login = () => {
+  const classes = useStyles();
+
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -44,63 +63,19 @@ const Login = () => {
   };
   return (
     <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        marginTop: "auto",
-        gap: 15,
-      }}
+    className={classes.all}
     >
-<<<<<<< HEAD
-
-=======
-      <Box>
-        <Header />
-      </Box>
->>>>>>> d605fc2ba8f9820bd28da1e0d52295d8f2fda4d4
-
-      <Box
-        sx={{
-          width: "25%",
-          border: "1px solid #fff",
-          borderRadius: "2%",
-          boxShadow: "0.5rem 0.5rem #333333",
-          padding: "5rem",
-          // position: "absolute",
-          // top: "45%",
-          // left: "50%",
-          // transform: "translate(-50%, -50%)",
-          marginX: "auto",
-          display: "flex",
-          flexDirection: "column",
-          gap: 4,
-        }}
-      >
-        <Box>
-          <Typography
-            textAlign={"center"}
-            sx={{
-              fontSize: "2rem",
-              fontWeight: "bold",
-              backgroundColor: "#78866B",
-              borderRadius: "0.5rem",
-              padding: "0.5rem",
-            }}
+        <Stack 
+        gap={2}
+        className={classes.loginBox}
+        > 
+        <Typography
+          className={classes.login1}
           >
             Login
           </Typography>
-        </Box>
-
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 3,
-          }}
-        >
-          <TextField type="email" label="Email" />
-          <FormControl required variant="contained">
+          <TextField required type="email" label="Email" />
+          <FormControl required >
             <InputLabel htmlFor="filled-adornment-password">
               Password
             </InputLabel>
@@ -121,26 +96,14 @@ const Login = () => {
               }
             />
           </FormControl>
-        </Box>
-
-        <Box>
+          <Box>
           <FormControlLabel
             control={<Checkbox />}
             label="Rememeber me for a month"
           />
         </Box>
-
-        <Box>
-          <Button
-            variant="contained"
-            sx={{
-              width: "100%",
-            }}
-          >
-            Login
-          </Button>
-        </Box>
-        <Box
+        <Button variant="contained"> Login </Button>
+          <Box
           sx={{
             display: "flex",
             flexDirection: "row",
@@ -150,19 +113,11 @@ const Login = () => {
           <Button>Forgot Password</Button>
           <Button>Don't have an account?</Button>
         </Box>
+        </Stack>
       </Box>
-<<<<<<< HEAD
 
-    </Box>
-  );
-};
-=======
-      <Box>
-        <Footer />
-      </Box>
-    </Box>
   );
 };
 
->>>>>>> d605fc2ba8f9820bd28da1e0d52295d8f2fda4d4
+ 
 export default Login;

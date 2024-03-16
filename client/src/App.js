@@ -22,33 +22,32 @@ import SignUp from './pages/SignUp';
 
 
 
-
 function App() {
 
   const [nameContext, SetNameContext] = useState(true);
 
   return (
     <AppContext.Provider value={{ nameContext, SetNameContext }} >
-     {/* <div className='App' >  */}
         
     <Router>
-      {/* <Routes>
+      <Routes>
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
 
 
-          <Route  element={<Layout />} >
+          {/* <Route  element={<Layout />} >
               <Route path="/" element={<Home />} />
               <Route path="/one/:item/:item2" element={<Department />} />
-<<<<<<< HEAD
+
               <Route path="/announcement" element={<CreateAnnouncement />} />
               <Route path='/announcements' element={<AllAnnouncement />} />
 
-          </Route>
+          </Route> */}
 
-      </Routes> */}
+      </Routes>
 
-          <Layout >
+
+          {/* <Layout >
              <Routes >
 
                 <Route path="/create" element={<Create />} />
@@ -57,23 +56,10 @@ function App() {
                 <Route path='/announcements' element={<AllAnnouncement />} />
                 <Route path='/login' element={<Login />} />
               </Routes>
-          </Layout>
+          </Layout> */}
       
     </Router>
-=======
-              
-              <Route path='/announcements' element={<AllAnnouncement />} />
-              <Route path="/announcement" element={<CreateAnnouncement />} />
-  
-            </Routes>
-          </Layout>
-      
-    </Router>
-    {/* </div> */}
-    
 
-
->>>>>>> d605fc2ba8f9820bd28da1e0d52295d8f2fda4d4
      </AppContext.Provider>
   )
 }
