@@ -21,6 +21,8 @@ import Login from './pages/Login'
 import SignUp from './pages/SignUp';
 
 
+
+
 function App() {
 
   const [nameContext, SetNameContext] = useState(true);
@@ -38,6 +40,7 @@ function App() {
           <Route  element={<Layout />} >
               <Route path="/" element={<Home />} />
               <Route path="/one/:item/:item2" element={<Department />} />
+<<<<<<< HEAD
               <Route path="/announcement" element={<CreateAnnouncement />} />
               <Route path='/announcements' element={<AllAnnouncement />} />
 
@@ -57,6 +60,20 @@ function App() {
           </Layout>
       
     </Router>
+=======
+              
+              <Route path='/announcements' element={<AllAnnouncement />} />
+              <Route path="/announcement" element={<CreateAnnouncement />} />
+  
+            </Routes>
+          </Layout>
+      
+    </Router>
+    {/* </div> */}
+    
+
+
+>>>>>>> d605fc2ba8f9820bd28da1e0d52295d8f2fda4d4
      </AppContext.Provider>
   )
 }

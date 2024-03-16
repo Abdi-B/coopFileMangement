@@ -20,12 +20,20 @@ import {
 } from "@mui/material";
 
 //imported components
+<<<<<<< HEAD
 
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 
 
 
+=======
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Visibility from "@mui/icons-material/Visibility";
+
+>>>>>>> d605fc2ba8f9820bd28da1e0d52295d8f2fda4d4
 const Login = () => {
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -44,7 +52,13 @@ const Login = () => {
         gap: 15,
       }}
     >
+<<<<<<< HEAD
 
+=======
+      <Box>
+        <Header />
+      </Box>
+>>>>>>> d605fc2ba8f9820bd28da1e0d52295d8f2fda4d4
 
       <Box
         sx={{
@@ -137,8 +151,18 @@ const Login = () => {
           <Button>Don't have an account?</Button>
         </Box>
       </Box>
+<<<<<<< HEAD
 
     </Box>
   );
 };
+=======
+      <Box>
+        <Footer />
+      </Box>
+    </Box>
+  );
+};
+
+>>>>>>> d605fc2ba8f9820bd28da1e0d52295d8f2fda4d4
 export default Login;
