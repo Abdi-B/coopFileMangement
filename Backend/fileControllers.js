@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const {BlogPost, FileManagement} = require('./Models/fileModel')
+const {BlogPost, FileManagement, User} = require('./Models/fileModel')
 
 
 
@@ -133,13 +133,16 @@ const postAnnouncement = async (req, res) => {
     res.status(400).json({error: error.message})
   }
 }
+
+
 module.exports = {
     getDepartments,
     getSubDepartment,
     getFiles,
     getAnnouncement,
     getAnnouncements,
-    postAnnouncement
+    postAnnouncement,
+    
 }
   
 

@@ -6,8 +6,10 @@ const  {
     getFiles,
     postAnnouncement,
     getAnnouncements,
-    getAnnouncement
-} = require('./../fileControllers')
+    getAnnouncement,
+    
+} = require('./../fileControllers');
+const { createUser } = require('./../controllers/userControllers');
 
 // Validation
 const validateBody = require('../controllers/validateBody')
@@ -28,8 +30,7 @@ router.get('/getPosts', getAnnouncements)
 router.post('/posts', validateBody.validatePost , postAnnouncement)
 
 // Create a user
-
-// router.post('/user', validateBody.validateUser )
+router.post('/user', validateBody.validateUser, createUser )
 
 
 //GET all Department
