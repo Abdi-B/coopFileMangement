@@ -49,7 +49,8 @@ login1: {
   padding: "1rem",
   // marginBottom: "0.1rem"
 }
-})
+});
+
 
 const Login = () => {
   const classes = useStyles();
