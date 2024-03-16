@@ -93,8 +93,6 @@ const Department = () => {
       )
       )} 
     </Stack>
-    
-    
   );
 };
 

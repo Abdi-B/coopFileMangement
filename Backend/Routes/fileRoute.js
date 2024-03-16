@@ -16,10 +16,9 @@ const validateBody = require('../controllers/validateBody')
 const router = express.Router()
 
 // Get Announcement
-// router.get('/getPost', getAnnouncement) 
+router.get('/getPost', getAnnouncement) 
 // another way
-app.route('/getPost')
-    .get(getAnnouncement)
+// app.route('/getPost')
     
 
 //get all Announcements

@@ -14,10 +14,11 @@ import Note from './pages/Note';
 import Department from './pages/Department';
 import Announcement from './components/Announcement';
 import CreateAnnouncement from './pages/CreateAnnouncement';
-// import { GlobalStateProvider } from './components/GlobalStateContext';
 import AppContext from './context/AppContext';
 import { useState } from 'react';
 import AllAnnouncement from './components/AllAnnouncement';
+import Login from './pages/Login'
+import SignUp from './pages/SignUp';
 
 
 function App() {
@@ -29,22 +30,33 @@ function App() {
      {/* <div className='App' >  */}
         
     <Router>
+      {/* <Routes>
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
 
-          <Layout >
-            <Routes >
-              {/* <Route exact path="/" element={<DrawerList /> } /> */}
 
-              <Route path="/create" element={<Create />} />
+          <Route  element={<Layout />} >
+              <Route path="/" element={<Home />} />
               <Route path="/one/:item/:item2" element={<Department />} />
-              
               <Route path="/announcement" element={<CreateAnnouncement />} />
               <Route path='/announcements' element={<AllAnnouncement />} />
-            </Routes>
+
+          </Route>
+
+      </Routes> */}
+
+          <Layout >
+             <Routes >
+
+                <Route path="/create" element={<Create />} />
+                <Route path="/one/:item/:item2" element={<Department />} />
+                <Route path="/announcement" element={<CreateAnnouncement />} />
+                <Route path='/announcements' element={<AllAnnouncement />} />
+                <Route path='/login' element={<Login />} />
+              </Routes>
           </Layout>
       
     </Router>
-    {/* </div> */}
-
      </AppContext.Provider>
   )
 }
