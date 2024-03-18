@@ -1,5 +1,5 @@
-import React from "react";
-
+import React, { useState } from "react";
+import axios from 'axios';
 import {
   Box,
   Typography,
@@ -56,12 +56,36 @@ const Login = () => {
   const classes = useStyles();
 
   const [showPassword, setShowPassword] = React.useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  const handleLogin = async (e) => { 
+    e.preventDefault();
+
+    if( 
+        Boolean(email) && 
+        Boolean(password) ) {
+      console.log(email, password)
+      try {
+        const response = await axios.get('http://localhost:3001/read/login', {email, password });
+        console.log('New user is created:', response.data);
+        // You can redirect the user to the newly created post or update the post list
+      } catch (error) {
+        console.error('Error creating a user:', error);
+      }
+    }
+    else{
+      console.log("Error, invalid login data ")
+    }
+  };
+
+
   return (
     <Box
     className={classes.all}
@@ -75,12 +99,14 @@ const Login = () => {
           >
             Login
           </Typography>
-          <TextField required type="email" label="Email" />
+          <TextField required type="email" label="Email" value={email} onChange={(e) => { setEmail(e.target.value) }}/>
           <FormControl required >
             <InputLabel htmlFor="filled-adornment-password">
               Password
             </InputLabel>
             <FilledInput
+              value={password}
+              onChange={(e) => { setPassword(e.target.value) }}
               id="filled-adornment-password"
               type={showPassword ? "text" : "password"}
               endAdornment={
@@ -100,10 +126,10 @@ const Login = () => {
           <Box>
           <FormControlLabel
             control={<Checkbox />}
-            label="Rememeber me for a month"
+            label="Rememeber me"
           />
         </Box>
-        <Button variant="contained"> Login </Button>
+        <Button variant="contained" onClick={handleLogin}> Login </Button>
           <Box
           sx={{
             display: "flex",

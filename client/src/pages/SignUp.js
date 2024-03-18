@@ -46,7 +46,7 @@ const useStyles = makeStyles({
       // marginBottom: "0.1rem"
   }
 
-})
+});
 
 
 const SignUp = () => {
@@ -68,13 +68,15 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if( Boolean(firstName) && 
         Boolean(lastName) && 
         Boolean(email) && 
         Boolean(password) && 
         Boolean(confirmPassword) && 
-        password === confirmPassword ){
-      console.log(firstName,lastName,email, password, confirmPassword)
+        (password.length > 7) && 
+        (password === confirmPassword)  ){
+        console.log(firstName,lastName,email, password, confirmPassword, password.length);
       try {
         const response = await axios.post('http://localhost:3001/read/user', { firstName,lastName,email, password });
         console.log('New user is created:', response.data);
@@ -84,9 +86,11 @@ const SignUp = () => {
       }
     }
     else{
-      console.log("Error, invalid login data ")
+      console.log("Error, invalid signup data ")
     }
   };
+
+  
   return (
     <Box
       className={classes.all}
