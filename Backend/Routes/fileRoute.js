@@ -12,7 +12,7 @@ const  {
 const { createUser } = require('./../controllers/userControllers');
 
 // Validation
-const validateBody = require('../controllers/validateBody')
+const validate = require('../Validation/validate')
 
 
 
@@ -28,10 +28,10 @@ router.get('/getPost', getAnnouncement)
 router.get('/getPosts', getAnnouncements)
 
 // Post Announcement
-router.post('/posts', validateBody.validatePost , postAnnouncement)
+router.post('/posts', validate.validatePost , postAnnouncement)
 
 // Create a user
-router.post('/user', validateBody.validateUser, createUser )
+router.post('/user', validate.validateUser, createUser )
 
 
 //GET all Department
