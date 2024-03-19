@@ -76,8 +76,6 @@ const blogPostSchema = new Schema({
 const User = mongoose.model('User', UserSchema)
 const FileManagement = mongoose.model('File', FileManagementSchema)
 const BlogPost = mongoose.model('BlogPost', blogPostSchema);
-// module.exports = mongoose.model('BlogPost', blogPostSchema);
-
 
 module.exports = {
     User,
