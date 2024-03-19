@@ -142,7 +142,6 @@ module.exports = {
     getAnnouncement,
     getAnnouncements,
     postAnnouncement,
-    
 }
   
 

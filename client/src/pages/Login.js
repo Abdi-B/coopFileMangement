@@ -70,12 +70,12 @@ const Login = () => {
 
     if( 
         Boolean(email) && 
-        Boolean(password) ) {
+        Boolean(password) &&
+        password.length > 7 ) {
       console.log(email, password)
       try {
         const response = await axios.get('http://localhost:3001/read/login', {email, password });
         console.log('New user is created:', response.data);
-        // You can redirect the user to the newly created post or update the post list
       } catch (error) {
         console.error('Error creating a user:', error);
       }
