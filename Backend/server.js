@@ -13,7 +13,6 @@ app.use(cors());
 
 app.use('/read', fileRoutes )
 
-
 // DB connection
 
 mongoose.connect(process.env.MONGO_URI)
