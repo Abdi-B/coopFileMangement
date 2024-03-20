@@ -3,9 +3,9 @@ const cors = require("cors")
 const mongoose = require('mongoose')
 require('dotenv').config()
 
-const fileRoutes = require('./Routes/fileRoute')
-
 const app = express();
+
+const fileRoutes = require('./Routes/fileRoute')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
