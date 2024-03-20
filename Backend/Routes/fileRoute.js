@@ -33,6 +33,8 @@ router.post('/posts', validate.validatePost , postAnnouncement)
 // Create a user
 router.post('/user', validate.validateUser, createUser )
 
+// Login
+
 
 //GET all Department
 router.get('/', getDepartments)
