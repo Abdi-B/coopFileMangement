@@ -30,7 +30,6 @@ const UserSchema = mongoose.Schema({
 }
 )
 
-// const FileManagementSchema = new Schema({
 const FileManagementSchema =  mongoose.Schema({
     originalName: {
         type: String,
