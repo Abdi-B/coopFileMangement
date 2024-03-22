@@ -24,9 +24,9 @@ mongoose.connect(process.env.MONGO_URI)
     })
     .catch((error) => {
         console.log(error)
-    })
+    });
 
 
-    // app.listen(process.env.PORT, () => {
-    //     console.log('Mongodb connected successfully & listening on the port', process.env.PORT)
-    // })
+// app.listen(process.env.PORT, () => {
+//     console.log('Mongodb connected successfully & listening on the port', process.env.PORT);
+// });

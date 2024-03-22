@@ -1,12 +1,11 @@
 
-
 exports.validatePost = (req, res, next) => {
     if(!req.body.title || !req.body.content) {
         return res.status(400).json({
             status: 'fail',
             message: 'Not a valid Post Data'
         });
-    }
+    };
     next();
 };
 
@@ -16,7 +15,7 @@ exports.validateUser = (req, res, next) => {
             status: 'fail',
             message: 'Not a valid signUp Data'
         });
-    }
+    };
     next();
 };
 
@@ -26,6 +25,6 @@ exports.validateLoginUser = (req, res, next) => {
             status: 'fail',
             message: 'Not a valid Login Data'
         });
-    }
+    };
     next();
 };

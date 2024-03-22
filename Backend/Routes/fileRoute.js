@@ -6,44 +6,42 @@ const  {
     getFiles,
     postAnnouncement,
     getAnnouncements,
-    getAnnouncement,
-    
+    getAnnouncement
 } = require('./../fileControllers');
+
+
 const { createUser } = require('./../controllers/userControllers');
 
 // Validation
-const validate = require('../Validation/validate')
+const validate = require('../Validation/validate');
 
-
-
-const router = express.Router()
+const router = express.Router();
 
 // Get Announcement
-router.get('/getPost', getAnnouncement) 
+router.get('/getPost', getAnnouncement); 
 // another way
 // app.route('/getPost')
-    
+
 
 //get all Announcements
-router.get('/getPosts', getAnnouncements)
+router.get('/getPosts', getAnnouncements);
 
 // Post Announcement
-router.post('/posts', validate.validatePost , postAnnouncement)
+router.post('/posts', validate.validatePost , postAnnouncement);
 
 // Create a user
-router.post('/user', validate.validateUser, createUser )
+router.post('/user', validate.validateUser, createUser );
 
-// Login
-
+// Login 
 
 //GET all Department
-router.get('/', getDepartments)
+router.get('/', getDepartments);
 
 //GET all Sub-department
-router.get('/:row', getSubDepartment)
+router.get('/:row', getSubDepartment);
 
 //GET all Files
-router.get('/:item/:item2', getFiles)
+router.get('/:item/:item2', getFiles);
 
 
-module.exports = router
+module.exports = router;
