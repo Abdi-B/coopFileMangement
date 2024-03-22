@@ -134,6 +134,7 @@ const postAnnouncement = async (req, res) => {
   }
 }
 
+
 module.exports = {
     getDepartments,
     getSubDepartment,
@@ -141,6 +142,6 @@ module.exports = {
     getAnnouncement,
     getAnnouncements,
     postAnnouncement,
-}
+};
   
 
