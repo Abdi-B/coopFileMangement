@@ -21,6 +21,7 @@ const router = express.Router();
 router.get('/getPost', getAnnouncement); 
 // another way
 // app.route('/getPost')
+    // .get(getAnnouncement)
 
 
 //get all Announcements

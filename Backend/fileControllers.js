@@ -114,7 +114,12 @@ const getAnnouncements = async (req, res) => {
   try {
     const allAnnouncement = await BlogPost.find().sort({ createdAt: -1 });
     // console.log(allAnnouncement)
-  res.json({allAnnouncement});
+  res.status(200).json({
+    status: 'success',
+    data: {
+      allAnnouncement
+    }
+  });
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
@@ -130,7 +135,10 @@ const postAnnouncement = async (req, res) => {
     const posts = await BlogPost.create({title, content})
     res.status(200).json(posts)
   } catch (error) {
-    res.status(400).json({error: error.message})
+    res.status(400).json({
+      status: 'fail',
+      error: error.message
+    })
   }
 }
 
