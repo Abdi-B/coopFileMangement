@@ -102,7 +102,7 @@ const getAnnouncement = async (req, res) => {
 
   try {
     const latestPost = await BlogPost.findOne().sort({ createdAt: -1 }).limit(1);
-    res.json({ latestPost });
+    res.json({ status: 'true',latestPost });
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
