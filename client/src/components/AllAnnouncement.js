@@ -29,8 +29,8 @@ export default function AllAnnouncement() {
         axios
             .get("http://localhost:3001/read/getPosts")
             .then((res) => {
-                console.log(res.data.allAnnouncement)
-            // setAllPost(res.data.allAnnouncement);
+                // console.log(res.data.allAnnouncement)
+            setAllPost(res.data.allAnnouncement);
             })
             .catch((err) => console.log(err));
             

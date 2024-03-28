@@ -20,6 +20,8 @@ const CreateAnnouncement = () => {
     } catch (error) {
       console.error('Error creating blog post:', error);
     }
+    setTitle('');
+    setContent('');
   };
 
   return (

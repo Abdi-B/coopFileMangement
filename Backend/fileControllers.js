@@ -118,9 +118,7 @@ const getAnnouncements = async (req, res) => {
     // console.log(allAnnouncement)
     res.status(200).json({
       status: 'success',
-      data: {
         allAnnouncement
-      }
     });
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
@@ -134,7 +132,7 @@ const postAnnouncement = async (req, res) => {
   // console.log(title, content)
 
   try {
-    const posts1 = new ApiFeatures(BlogPost.create(), req.body).createPost();
+    const posts1 = new ApiFeatures(BlogPost, req.body).createPost();
     let posts = await posts1.query
     console.log(posts)
     // const posts = await BlogPost.create({title, content})

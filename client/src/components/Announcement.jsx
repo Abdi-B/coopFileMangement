@@ -15,6 +15,7 @@ const useStyles = makeStyles({
   },
   card1: {
     minWidth: "25%",
+    maxWidth: "26%",
       height: "100%",  
       position: 'fixed',
       // zIndex: 1000 ,  
@@ -40,7 +41,7 @@ function Announcement() {
         .get("http://localhost:3001/read/getPost")
         .then((res) => {
           setLatestPost(res.data.latestPost);
-          console.log(latestPost)
+          // console.log(latestPost)
         })
         .catch((err) => console.log(err));
         
@@ -70,11 +71,10 @@ function Announcement() {
           </Typography>
         
            <Typography gutterBottom variant="h6" component="div">
-                 {latestPost.title} Title
+                 {latestPost.title} 
           </Typography>
           <Typography gutterBottom variant="body2" color="text.secondary" align='justify'>
-                 {/* {latestPost.content} */}
-                 Lorem ipsum dolor sit amet.
+                 {latestPost.content}
               
           </Typography>
               

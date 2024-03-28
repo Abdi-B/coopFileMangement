@@ -38,12 +38,12 @@ function Layout({ children }) {
   return (
     <Stack className={classes.page}>
    
-          {/* <Navbar /> */}
+          <Navbar />
         <Box className={classes.layout}>
         {children}
         </Box>
-        {/* { context.nameContext && <DrawerList  /> } */}
-        {/* { context.nameContext && <Announcement  /> } */}
+        { context.nameContext && <DrawerList  /> }
+        { context.nameContext && <Announcement  /> }
 
 
         
