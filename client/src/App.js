@@ -30,9 +30,9 @@ function App() {
     <AppContext.Provider value={{ nameContext, SetNameContext }} >
         
     <Router>
-      <Routes>
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<SignUp />} />
+      {/* <Routes> */}
+        {/* <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} /> */}
 
 
           {/* <Route  element={<Layout />} >
@@ -44,10 +44,10 @@ function App() {
 
           </Route> */}
 
-      </Routes>
+      {/* </Routes> */}
 
 
-          {/* <Layout >
+          <Layout >
              <Routes >
 
                 <Route path="/create" element={<Create />} />
@@ -56,7 +56,7 @@ function App() {
                 <Route path='/announcements' element={<AllAnnouncement />} />
                 <Route path='/login' element={<Login />} />
               </Routes>
-          </Layout> */}
+          </Layout>
       
     </Router>
 

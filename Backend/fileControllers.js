@@ -133,12 +133,12 @@ const postAnnouncement = async (req, res) => {
   const { title, content } = req.body;
   // console.log(title, content)
 
-
-
   try {
-    // const posts = new ApiFeatures(BlogPost.find(), req.query).filter().sort()
-    const posts = await BlogPost.create({title, content})
-    res.status(200).json(posts)
+    const posts1 = new ApiFeatures(BlogPost.create(), req.body).createPost();
+    let posts = await posts1.query
+    console.log(posts)
+    // const posts = await BlogPost.create({title, content})
+    // res.status(200).json(posts)
   } catch (error) {
     res.status(400).json({
       status: 'fail',
