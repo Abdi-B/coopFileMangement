@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
-const {BlogPost, FileManagement, User} = require('./Models/fileModel')
+const {BlogPost, FileManagement, User} = require('./Models/fileModel');
+const ApiFeatures = require('./Utils/ApiFeatures');
 
 
 
@@ -40,6 +41,7 @@ const getDepartments  = async  (req,res) => {
     }        
      });
 }
+
 
 //Get Sub Departement
 const getSubDepartment = async (req, res) => {
@@ -131,7 +133,10 @@ const postAnnouncement = async (req, res) => {
   const { title, content } = req.body;
   // console.log(title, content)
 
+
+
   try {
+    // const posts = new ApiFeatures(BlogPost.find(), req.query).filter().sort()
     const posts = await BlogPost.create({title, content})
     res.status(200).json(posts)
   } catch (error) {
