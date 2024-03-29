@@ -72,6 +72,7 @@ const blogPostSchema = new Schema({
 }
 );
 
+// Document and query middleware of mongoose
 // middleware --- save is for 'save and create '
 // UserSchema.pre('save', function (next) {
 //     this.createdBy = 'Abdi';
@@ -83,6 +84,7 @@ const blogPostSchema = new Schema({
 //   this.find({releaseDate: {lte: Date.now}})
 //   next();
 // });
+
 
 const User = mongoose.model('User', UserSchema)
 const FileManagement = mongoose.model('File', FileManagementSchema)
