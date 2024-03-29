@@ -78,6 +78,11 @@ const blogPostSchema = new Schema({
 
 //     next();  
 // })
+// find and findOne is different so, to handle it use /*find/ --> this mean all which starts with find
+// UserSchema.pre('find', (next) => {
+//   this.find({releaseDate: {lte: Date.now}})
+//   next();
+// });
 
 const User = mongoose.model('User', UserSchema)
 const FileManagement = mongoose.model('File', FileManagementSchema)
