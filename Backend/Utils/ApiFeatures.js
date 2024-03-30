@@ -11,9 +11,13 @@ class ApiFeatures{
         const posts =  this.query.create(this.queryStr)
         // console.log(posts)
         res.status(200).json(posts)
-
         return this;
-    }
+    };
+    findPost(){};
+    
+    updatePost(){};
+
+    deletePost(){};
 }
 
 module.exports = ApiFeatures;
