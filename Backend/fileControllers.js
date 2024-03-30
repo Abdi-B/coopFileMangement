@@ -53,7 +53,9 @@ const getSubDepartment = async (req, res) => {
       fs.readdir(dirPath, async (err,file1) => { 
         if (err) {
           console.error(err);
-          return res.status(500).json({ error: 'Internal Server Error' });
+          return res.status(500).json({ 
+            status: 'fail',
+            error: 'Internal Server Error' });
         }
 
         const containsFiles = file1.some(item => fs.statSync(path.join(dirPath, item)).isFile());
