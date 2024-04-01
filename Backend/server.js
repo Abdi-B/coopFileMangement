@@ -13,7 +13,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-
 app.use('/read', fileRoutes )
 
 // Invalid route --for all mean it include get, post, patch, delete and etc and it should be after routes
