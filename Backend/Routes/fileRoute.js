@@ -44,5 +44,8 @@ router.get('/:row', getSubDepartment);
 //GET all Files
 router.get('/:item/:item2', getFiles);
 
+//admin
+router.get('/admin')
+
 
 module.exports = router;
