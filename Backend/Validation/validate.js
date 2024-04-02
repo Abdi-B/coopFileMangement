@@ -19,6 +19,7 @@ exports.validateUser = (req, res, next) => {
     next();
 };
 
+
 exports.validateLoginUser = (req, res, next) => {
     if(!req.body.email &&  !req.body.password) {
         return res.status(400).json({
@@ -28,3 +29,4 @@ exports.validateLoginUser = (req, res, next) => {
     };
     next();
 };
+
