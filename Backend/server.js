@@ -54,8 +54,6 @@ app.use(globalErrorHandler);
 // });
 
 
-
-
 // DB connection
 
 
