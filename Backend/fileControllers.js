@@ -2,6 +2,8 @@ const fs = require('fs')
 const path = require('path')
 const {BlogPost, FileManagement, User} = require('./Models/fileModel');
 const ApiFeatures = require('./Utils/ApiFeatures');
+const customError = require('./Utils/customError');
+const asyncErrorHandler = require('./Utils/asyncErrorHandler');
 
 
 
@@ -108,24 +110,23 @@ const getAnnouncement = async (req, res) => {
     const latestPost = await BlogPost.findOne().sort({ createdAt: -1 }).limit(1);
     res.json({ status: 'true',latestPost });
   } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
+    // res.status(500).json({ error: 'Internal Server Error' });
   }
 
   
 }
 // get All Announcement
-const getAnnouncements = async (req, res) => {
-  try {
-    const allAnnouncement = await BlogPost.find().sort({ createdAt: -1 });
-    // console.log(allAnnouncement)
-    res.status(200).json({
-      status: 'success',
-        allAnnouncement
-    });
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+const getAnnouncements = asyncErrorHandler(async (req, res) => {
+
+  const allAnnouncement = await BlogPost.find().sort({ createdAt: -1 });
+  // console.log(allAnnouncement)
+  res.status(200).json({
+    status: 'success',
+      allAnnouncement
+  })
 }
+);
+
 
 
 //postAnnouncement
@@ -140,10 +141,12 @@ const postAnnouncement = async (req, res) => {
     // const posts = await BlogPost.create({title, content})
     // res.status(200).json(posts)
   } catch (error) {
-    res.status(400).json({
-      status: 'fail',
-      error: error.message
-    })
+    // res.status(400).json({
+    //   status: 'fail',
+    //   error: error.message
+    // })
+    const err = new customError(error.message, 404 );
+    next(err);
   }
 }
 
