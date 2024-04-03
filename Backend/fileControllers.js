@@ -118,6 +118,7 @@ const getAnnouncement = async (req, res) => {
 // get All Announcement
 const getAnnouncements = asyncErrorHandler(async (req, res) => {
 
+
   const allAnnouncement = await BlogPost.find().sort({ createdAt: -1 });
   // console.log(allAnnouncement)
   res.status(200).json({
@@ -145,6 +146,7 @@ const getAnnouncements = asyncErrorHandler(async (req, res) => {
 const postAnnouncement = async (req, res) => {
   const { title, content } = req.body;
   // console.log(title, content)
+  
 
   try {
     const posts1 = new ApiFeatures(BlogPost, req.body).createPost();

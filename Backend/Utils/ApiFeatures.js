@@ -4,7 +4,7 @@ class ApiFeatures{
         // query and queryStr can only accessible in constructor so we have to use this.parameter
         this.query = query;
         this.queryStr = queryStr;
-
+        
     }
     
     createPost(){

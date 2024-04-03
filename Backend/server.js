@@ -3,6 +3,13 @@ const cors = require("cors")
 const mongoose = require('mongoose')
 require('dotenv').config()
 
+process.on('uncaughtException', (err) => {
+    console.log(err.name, err.message)
+      console.log('uncaughtException occurred! shutting down...')
+        process.exit(1); // 0 for success and 1 for uncaught exception 
+
+  });
+
 const app = express();
 
 const fileRoutes = require('./Routes/fileRoute');
@@ -14,6 +21,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+
+
+const options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  };
 
 app.use('/read', fileRoutes )
 
@@ -40,7 +53,6 @@ app.all('*', (req, res, next) => {
 });
 
 
-
 app.use(globalErrorHandler);
 
 // app.use((error, req, res, next)=>{
@@ -57,17 +69,31 @@ app.use(globalErrorHandler);
 // DB connection
 
 
-mongoose.connect(process.env.MONGO_URI)
+
+mongoose.connect(process.env.MONGO_URI, )
     .then(() => {
         //listen for req
-        app.listen(process.env.PORT, () => {
-            console.log('Mongodb connected successfully & listening on the port', process.env.PORT)
-          })
-    })
-    .catch((error) => {
-        console.log(error)
-    });
+    console.log('Mongodb connected successfully & listening on the port');
 
-// app.listen(process.env.PORT, () => {
-//     console.log('Mongodb connected successfully & listening on the port', process.env.PORT);
-// });
+    })
+
+    // SERVER
+const server = app.listen(process.env.PORT, () => {
+        console.log('Server has started on the port', process.env.PORT);
+        })
+
+
+process.on('unhandledRejection', (err) => {
+  console.log(err.name, err.message)
+    console.log('Unhandled rejection occurred! shutting down...')
+  // before abort it, we have to close a server
+    server.close(() => {
+      process.exit(1); // 0 for success and 1 for uncaught exception 
+    })
+});
+    
+
+
+
+
+ 

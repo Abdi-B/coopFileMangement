@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon server.js"
+    "server": "SET Node_ENVT=development& nodemon server.js",
+    "serverProd": "SET Node_ENVT=production& nodemon server.js"
+
   },
   "author": "abdi",
   "license": "ISC",
