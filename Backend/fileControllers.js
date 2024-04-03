@@ -130,23 +130,37 @@ const getAnnouncements = asyncErrorHandler(async (req, res) => {
 
 
 //postAnnouncement
+
+// const postAnnouncement = asyncErrorHandler(async (req, res) => {
+//     const { title, content } = req.body;
+  
+  
+//       const posts1 = new ApiFeatures(BlogPost, req.body).createPost();
+//       let posts = await posts1.queryStr
+//       console.log(posts)
+//       res.status(200).json({posts})
+//   }
+// );
+
 const postAnnouncement = async (req, res) => {
   const { title, content } = req.body;
   // console.log(title, content)
 
   try {
     const posts1 = new ApiFeatures(BlogPost, req.body).createPost();
-    let posts = await posts1.query
-    console.log(posts)
+    let posts = await posts1.queryStr
+    // console.log(posts)
     // const posts = await BlogPost.create({title, content})
-    // res.status(200).json(posts)
+    res.status(200).json(posts)
   } catch (error) {
-    // res.status(400).json({
-    //   status: 'fail',
-    //   error: error.message
-    // })
-    const err = new customError(error.message, 404 );
-    next(err);
+    res.status(400).json({
+      status: 'failed',
+      error: error.message
+    })
+
+    // Next
+    // const err = new customError(error.message, 404 );
+    // next(err);
   }
 }
 

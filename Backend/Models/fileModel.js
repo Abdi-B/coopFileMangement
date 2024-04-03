@@ -6,7 +6,7 @@ const Schema = mongoose.Schema
 const UserSchema = mongoose.Schema({
     firstName: {
         type: String,
-        required: true
+        required: [true, "please enter firstName"],
     },
     lastName: {
         type: String,
@@ -61,7 +61,7 @@ const blogPostSchema = new Schema({
 
   title: {
     type: String,
-    required: true
+    required: [true, "please enter its Title"]
   },
   content: {
     type: String,

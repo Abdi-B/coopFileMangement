@@ -31,7 +31,8 @@ router.get('/getPosts', getAnnouncements);
 router.post('/posts', validate.validatePost , postAnnouncement);
 
 // Create a user
-router.post('/user', validate.validateUser, createUser );
+// router.post('/user', validate.validateUser, createUser );
+router.post('/user', createUser );
 
 // Login 
 
