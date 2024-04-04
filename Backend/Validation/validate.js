@@ -10,7 +10,12 @@ exports.validatePost = (req, res, next) => {
 };
 
 exports.validateUser = (req, res, next) => {
-    if(!req.body.firstName && !req.body.lastName && !req.body.email && !req.body.password  ) {
+    if(!req.body.firstName && 
+        !req.body.lastName && 
+        !req.body.email && 
+        !req.body.password && 
+        !req.body.confirmPassword && 
+        req.body.password !== req.body.confirmPassword ) {
         return res.status(400).json({
             status: 'fail',
             message: 'Not a valid signUp Data'
