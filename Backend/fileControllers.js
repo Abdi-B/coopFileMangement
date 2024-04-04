@@ -1,6 +1,9 @@
 const fs = require('fs')
 const path = require('path')
-const {BlogPost, FileManagement, User} = require('./Models/fileModel');
+
+const  FileManagement = require('./Models/fileModel');
+const BlogPost = require('./Models/announcementModel');
+
 const ApiFeatures = require('./Utils/ApiFeatures');
 const customError = require('./Utils/customError');
 const asyncErrorHandler = require('./Utils/asyncErrorHandler');
