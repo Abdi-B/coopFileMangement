@@ -14,11 +14,13 @@ const FileManagementSchema =  new mongoose.Schema({
     },
     fileName: {
         type: Number,
-        required: true
+        required: true,
+        trim: true
     },
     path: {
         type: Number,
-        required: true
+        required: true,
+        trim: true
     },
     size: {
         type: Number,
