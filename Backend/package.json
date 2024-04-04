@@ -6,16 +6,17 @@
   "scripts": {
     "server": "SET Node_ENVT=development& nodemon server.js",
     "serverProd": "SET Node_ENVT=production& nodemon server.js"
-
   },
   "author": "abdi",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mongodb": "^6.3.0",
     "mongoose": "^8.1.1",
-    "nodemon": "^3.0.3"
+    "nodemon": "^3.0.3",
+    "validator": "^13.11.0"
   }
 }

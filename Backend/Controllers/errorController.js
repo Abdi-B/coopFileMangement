@@ -4,6 +4,7 @@ const devErrors = (res, error) => {
         status: error.status,
         message: error.message,
         stackTrace: error.stack,
+        // alreadyRegisteredEmail: error.keyValue,
         error: error 
 
     });

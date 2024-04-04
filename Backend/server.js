@@ -3,25 +3,23 @@ const cors = require("cors")
 const mongoose = require('mongoose')
 require('dotenv').config()
 
-process.on('uncaughtException', (err) => {
-    console.log(err.name, err.message)
-      console.log('uncaughtException occurred! shutting down...')
-        process.exit(1); // 0 for success and 1 for uncaught exception 
+// process.on('uncaughtException', (err) => {
+//     console.log(err.name, err.message)
+//       console.log('uncaughtException occurred! shutting down...')
+//         process.exit(1); // 0 for success and 1 for uncaught exception 
 
-  });
+//   });
 
 const app = express();
 
 const fileRoutes = require('./Routes/fileRoute');
+const authRoutes = require('./Routes/authRoute');
 const customError = require('./Utils/customError');
 const globalErrorHandler = require('./controllers/errorController');
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-
-
 
 const options = {
     useNewUrlParser: true,
@@ -29,6 +27,7 @@ const options = {
   };
 
 app.use('/read', fileRoutes )
+app.use('/auth', authRoutes )
 
 // Invalid route --for all mean it include get, post, patch, delete and etc and it should be after routes
 app.all('*', (req, res, next) => {
@@ -73,24 +72,27 @@ app.use(globalErrorHandler);
 mongoose.connect(process.env.MONGO_URI, )
     .then(() => {
         //listen for req
-    console.log('Mongodb connected successfully & listening on the port');
+    // console.log('Mongodb connected successfully & listening on the port');
+    app.listen(process.env.PORT, () => {
+              console.log('Mongodb connected successfully & listening on the port', process.env.PORT);
+              })
 
     })
 
     // SERVER
-const server = app.listen(process.env.PORT, () => {
-        console.log('Server has started on the port', process.env.PORT);
-        })
+// const server = app.listen(process.env.PORT, () => {
+//         console.log('Server has started on the port', process.env.PORT);
+//         })
 
 
-process.on('unhandledRejection', (err) => {
-  console.log(err.name, err.message)
-    console.log('Unhandled rejection occurred! shutting down...')
-  // before abort it, we have to close a server
-    server.close(() => {
-      process.exit(1); // 0 for success and 1 for uncaught exception 
-    })
-});
+// process.on('unhandledRejection', (err) => {
+//   console.log(err.name, err.message)
+//     console.log('Unhandled rejection occurred! shutting down...')
+//   // before abort it, we have to close a server
+//     server.close(() => {
+//       process.exit(1); // 0 for success and 1 for uncaught exception 
+//     })
+// });
     
 
 

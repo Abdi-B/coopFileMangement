@@ -1,36 +1,9 @@
 
 const mongoose = require('mongoose');
+var validator = require('validator');
 
 const Schema = mongoose.Schema
 
-const UserSchema = mongoose.Schema({
-    firstName: {
-        type: String,
-        required: [true, "please enter firstName"],
-    },
-    lastName: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        unique: true,
-        required: true,
-        trim: true,
-        lowercase: true
-    },
-    password: {
-        type: String,
-        required: true,
-        trim: true,
-        minLength: 8,
-        select: false
-    }
-},
-{
-    timestamps: true
-}
-)
 
 const FileManagementSchema =  mongoose.Schema({
     originalName: {
@@ -87,12 +60,11 @@ const blogPostSchema = new Schema({
 // });
 
 
-const User = mongoose.model('User', UserSchema)
+
 const FileManagement = mongoose.model('File', FileManagementSchema)
 const BlogPost = mongoose.model('BlogPost', blogPostSchema);
 
 module.exports = {
-    User,
   FileManagement,
   BlogPost
 }

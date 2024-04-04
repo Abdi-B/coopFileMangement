@@ -78,7 +78,7 @@ const SignUp = () => {
         (password === confirmPassword)  ){
         console.log(firstName,lastName,email, password, confirmPassword, password.length);
       try {
-        const response = await axios.post('http://localhost:3001/read/user', { firstName,lastName,email, password });
+        const response = await axios.post('http://localhost:3001/read/user', { firstName,lastName,email, password, confirmPassword });
         console.log('New user is created:', response.data);
         // You can redirect the user to the newly created post or update the post list
       } catch (error) {

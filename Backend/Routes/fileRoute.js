@@ -18,10 +18,10 @@ const validate = require('../Validation/validate');
 const router = express.Router();
 
 // Get Announcement
-router.get('/getPost', getAnnouncement); 
+// router.get('/getPost', getAnnouncement); 
 // another way
-// app.route('/getPost')
-    // .get(getAnnouncement)
+router.route('/getPost')
+    .get(getAnnouncement)
 
 
 //get all Announcements
@@ -30,11 +30,6 @@ router.get('/getPosts', getAnnouncements);
 // Post Announcement
 router.post('/posts', validate.validatePost , postAnnouncement);
 
-// Create a user
-// router.post('/user', validate.validateUser, createUser );
-router.post('/user', createUser );
-
-// Login 
 
 //GET all Department
 router.get('/', getDepartments);
