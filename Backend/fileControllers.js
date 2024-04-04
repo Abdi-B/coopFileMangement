@@ -8,8 +8,6 @@ const ApiFeatures = require('./Utils/ApiFeatures');
 const customError = require('./Utils/customError');
 const asyncErrorHandler = require('./Utils/asyncErrorHandler');
 
-
-
 const getDepartments  = async  (req,res) => {
 
         const dirPath = path.join(__dirname, 'Department');
@@ -46,7 +44,6 @@ const getDepartments  = async  (req,res) => {
     }        
      });
 }
-
 
 //Get Sub Departement
 const getSubDepartment = async (req, res) => {
