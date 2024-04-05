@@ -5,18 +5,25 @@ const asyncErrorHandler = require('../Utils/asyncErrorHandler');
 const customError = require('../Utils/customError');
 
 
-
+const signToken = _id => {
+  return jwt.sign({id: _id}, process.env.SECRET_STR,
+    { expiresIn: process.env.LOGIN_EXPIRES } // if it not in sec use string //ex. expiresIn: '30d
+    );
+}
 
 // Create a User
 
 const createUser = asyncErrorHandler(async (req, res, next) => {
   // console.log(req.body)
 
+
   const user = await User.create(req.body);
 
-  const token = jwt.sign({id: user._id}, process.env.SECRET_STR,
-     { expiresIn: process.env.LOGIN_EXPIRES } // if it not in sec use string //ex. expiresIn: '30d
-     );
+  // const token = jwt.sign({id: user._id}, process.env.SECRET_STR,
+  //    { expiresIn: process.env.LOGIN_EXPIRES } // if it not in sec use string //ex. expiresIn: '30d
+  //    );
+
+  const token = signToken(user._id)
 
 
   return res.status(200).json({
@@ -27,6 +34,8 @@ const createUser = asyncErrorHandler(async (req, res, next) => {
   })
 });
 
+// LOGIN
+
 const login = asyncErrorHandler(async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -34,11 +43,26 @@ const login = asyncErrorHandler(async (req, res, next) => {
   if(!email || !password){
     const error = new customError('please proved email and password!', 400);
     return next(error);
+  };
+
+  // check if the email exists
+  const user = await User.findOne({email}).select('+password');
+
+
+  // const isMatch = await user.comparePasswordInDb(password, user.password);
+  
+  // check if the user exists & password matches
+  if(!user || !(await user.comparePasswordInDb(password, user.password))){
+    const error = new customError('Incorrect email or password', 404);
+    return next(error);
   }
+
+  const token = signToken(user._id);
 
   res.status(200).json({
     status: 'success',
-    token: ''
+    token,
+    user,
   })
 
 })
