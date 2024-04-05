@@ -56,7 +56,6 @@ const login = asyncErrorHandler(async (req, res, next) => {
     const error = new customError('Incorrect email or password', 404);
     return next(error);
   }
-
   const token = signToken(user._id);
 
   res.status(200).json({
@@ -65,6 +64,12 @@ const login = asyncErrorHandler(async (req, res, next) => {
     user,
   })
 
+})
+
+const protect = asyncErrorHandler(async (req, res, next) => {
+  //check if it is valid
+
+  next();
 })
 
 
