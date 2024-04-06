@@ -88,8 +88,8 @@ const protect = asyncErrorHandler(async (req, res, next) => {
   console.log(decodeToken)
   if(!decodeToken){
     const error = new customError('jwt expired123', 401);
-    console.log(error)
-    return next(error)
+    // console.log(error)
+    // return next(error)
   // }
 
 
