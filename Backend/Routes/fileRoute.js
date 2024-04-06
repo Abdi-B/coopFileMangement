@@ -14,14 +14,15 @@ const { createUser } = require('./../controllers/userControllers');
 
 // Validation
 const validate = require('../Validation/validate');
+const {protect} = require('./../controllers/userControllers');
 
 const router = express.Router();
 
 // Get Announcement
-// router.get('/getPost', getAnnouncement); 
+// router.get('/getPost',protect, getAnnouncement); 
 // another way
 router.route('/getPost')
-    .get(getAnnouncement)
+    .get(  getAnnouncement)
 
 
 //get all Announcements
@@ -32,7 +33,7 @@ router.post('/posts', validate.validatePost , postAnnouncement);
 
 
 //GET all Department
-router.get('/', getDepartments);
+router.get('/', protect, getDepartments);
 
 //GET all Sub-department
 router.get('/:row', getSubDepartment);

@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const util = require('util')
 
 const User = require('../Models/userModel');
 const asyncErrorHandler = require('../Utils/asyncErrorHandler');
@@ -7,7 +8,7 @@ const customError = require('../Utils/customError');
 
 const signToken = _id => {
   return jwt.sign({id: _id}, process.env.SECRET_STR,
-    { expiresIn: process.env.LOGIN_EXPIRES } // if it not in sec use string //ex. expiresIn: '30d
+    { expiresIn: process.env.LOGIN_EXPIRES } // if it not in sec use string //ex. expiresIn: '30d'
     );
 }
 
@@ -41,7 +42,7 @@ const login = asyncErrorHandler(async (req, res, next) => {
   const password = req.body.password;
 
   if(!email || !password){
-    const error = new customError('please proved email and password!', 400);
+    const error = new customError('please provide email and password!', 400);
     return next(error);
   };
 
@@ -67,7 +68,31 @@ const login = asyncErrorHandler(async (req, res, next) => {
 })
 
 const protect = asyncErrorHandler(async (req, res, next) => {
-  //check if it is valid
+  // 1) read the token & check if it exist
+  const testToken = req.headers.authorization
+  // console.log(testToken)
+  let token;
+  if(testToken && testToken.startsWith('bearer')){
+    token = testToken.split(' ')[1];
+
+  }
+  // console.log(token);
+
+  if(!token) {
+    return next(new customError('You are not logged in!', 401))
+  }
+
+  // 2) validate the token
+
+  const decodeToken= await util.promisify(jwt.verify)(token, process.env.SECRET_STR)
+  console.log(decodeToken)
+  // if(!decodeToken){
+  //   const error = new customError('jwt expired123', 401);
+  //   console.log(error)
+  //   next()
+  // }
+
+
 
   next();
 })
@@ -98,5 +123,6 @@ const protect = asyncErrorHandler(async (req, res, next) => {
 
   module.exports = {
     createUser,
-    login
+    login,
+    protect
   }
