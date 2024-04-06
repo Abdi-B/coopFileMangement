@@ -86,10 +86,10 @@ const protect = asyncErrorHandler(async (req, res, next) => {
 
   const decodeToken= await util.promisify(jwt.verify)(token, process.env.SECRET_STR)
   console.log(decodeToken)
-  // if(!decodeToken){
-  //   const error = new customError('jwt expired123', 401);
-  //   console.log(error)
-  //   next()
+  if(!decodeToken){
+    const error = new customError('jwt expired123', 401);
+    console.log(error)
+    return next(error)
   // }
 
 
