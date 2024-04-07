@@ -100,14 +100,14 @@ const protect = asyncErrorHandler(async (req, res, next) => {
 
   // 2) validate the token
 
-  const decodeToken =  await jwt.verify(token, process.env.SECRET_STR, (err, user) => {
-    if(err) return res.sendStatus(403).json({ error: 'Invalid refresh token' })
-    const accessToken = generateAccessToken(user)
-    console.log('access token', accessToken)
-    });
+  // const decodeToken =  await jwt.verify(token, process.env.SECRET_STR, (err, user) => {
+  //   if(err) return res.sendStatus(403).json({ error: 'Invalid refresh token' })
+  //   const accessToken = generateAccessToken(user)
+  //   console.log('access token', accessToken)
+  //   });
 
 
-  // const decodeToken= await util.promisify(jwt.verify)(token, process.env.SECRET_STR)
+  const decodeToken= await util.promisify(jwt.verify)(token, process.env.SECRET_STR)
   console.log(decodeToken) // it contains id, iat, exp  iat=timestamps in ms
 
   // 3)  check If the user exists 
