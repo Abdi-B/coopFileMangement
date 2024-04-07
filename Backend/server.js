@@ -26,7 +26,7 @@ const options = {
     useUnifiedTopology: true,
   };
 
-app.use('/read', fileRoutes )
+app.use('/read', fileRoutes );
 app.use('/auth', authRoutes )
 
 // Invalid route --for all mean it include get, post, patch, delete and etc and it should be after routes

@@ -46,8 +46,14 @@ const UserSchema = new mongoose.Schema({
 UserSchema.pre('save', async function(next){
     if(!this.isModified('password')) return next();
 
+    // add salt before save it. it is used to identify when the password of different user is the same
+    // const salt = await bcrypt.genSalt() // use can use genSalt(10)
+    // console.log(salt)
+
     // encrypt the password before saving it
-    this.password = await bcrypt.hash(this.password, 12);
+    // this.password = await bcrypt.hash(this.password, salt);
+    this.password = await bcrypt.hash(this.password, 12); // bcrypt contains both hash and salt at the same time 
+    console.log(this.password)
 
     this.confirmPassword = undefined;
     next();
