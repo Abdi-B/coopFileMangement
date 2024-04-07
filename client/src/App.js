@@ -46,9 +46,6 @@ function App() {
 
       {/* </Routes> */}
 
-             
-
-
           <Layout >
              <Routes >
 
@@ -59,7 +56,7 @@ function App() {
                 <Route path='/login' element={<Login />} />
               </Routes>
           </Layout>
-      
+          
     </Router>
 
      </AppContext.Provider>

@@ -90,7 +90,6 @@ const protect = asyncErrorHandler(async (req, res, next) => {
 
   if(authHeader && authHeader.startsWith('bearer')){
     token = authHeader.split(' ')[1];
-
   }
   // console.log(token);
 
@@ -105,7 +104,6 @@ const protect = asyncErrorHandler(async (req, res, next) => {
   //   const accessToken = generateAccessToken(user)
   //   console.log('access token', accessToken)
   //   });
-
 
   const decodeToken= await util.promisify(jwt.verify)(token, process.env.SECRET_STR)
   console.log(decodeToken) // it contains id, iat, exp  iat=timestamps in ms

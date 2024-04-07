@@ -62,10 +62,8 @@ UserSchema.pre('save', async function(next){
 
 UserSchema.methods.comparePasswordInDb = async function(pswd, pswdDB){
     return await bcrypt.compare(pswd, pswdDB);
-}
+};
 
 
-
-const User = mongoose.model('User', UserSchema)
-
+const User = mongoose.model('User', UserSchema);
 module.exports = User;

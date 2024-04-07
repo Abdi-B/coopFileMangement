@@ -27,10 +27,12 @@ const options = {
   };
 
 app.use('/read', fileRoutes );
-app.use('/auth', authRoutes )
+app.use('/auth', authRoutes );
+
 
 // Invalid route --for all mean it include get, post, patch, delete and etc and it should be after routes
 app.all('*', (req, res, next) => {
+
     // first Error handling
 
     // res.status(404).json({
@@ -68,21 +70,20 @@ app.use(globalErrorHandler);
 // DB connection
 
 
+// mongoose.connect(process.env.MONGO_URI, )
+//     .then(() => {
+//         //listen for req
+//     // console.log('Mongodb connected successfully & listening on the port');
+//     app.listen(process.env.PORT, () => {
+//               console.log('Mongodb connected successfully & listening on the port', process.env.PORT);
+//               })
+//     })
 
-mongoose.connect(process.env.MONGO_URI, )
-    .then(() => {
-        //listen for req
-    // console.log('Mongodb connected successfully & listening on the port');
-    app.listen(process.env.PORT, () => {
-              console.log('Mongodb connected successfully & listening on the port', process.env.PORT);
-              })
 
-    })
-
-    // SERVER
-// const server = app.listen(process.env.PORT, () => {
-//         console.log('Server has started on the port', process.env.PORT);
-//         })
+// SERVER
+const server = app.listen(process.env.PORT, () => {
+    console.log('Server has started on the port', process.env.PORT);
+});
 
 
 // process.on('unhandledRejection', (err) => {
@@ -93,9 +94,3 @@ mongoose.connect(process.env.MONGO_URI, )
 //       process.exit(1); // 0 for success and 1 for uncaught exception 
 //     })
 // });
-    
-
-
-
-
- 
