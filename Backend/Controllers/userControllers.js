@@ -58,11 +58,12 @@ const login = asyncErrorHandler(async (req, res, next) => {
  
   // check if the email exists
   const user = await User.findOne({email}).select('+password');
+  // console.log(user)
 
-  const isMatch = await user.comparePasswordInDb(password, user.password);
+  // const isMatch = await user.comparePasswordInDb(password, user.password);
   // console.log(isMatch)
 
-  const checkValue = await bcrypt.compare(password, user.password);
+  // const checkValue = await bcrypt.compare(password, user.password);
   // console.log(checkValue);
   
   // check if the user exists & password matches
@@ -112,6 +113,13 @@ const protect = asyncErrorHandler(async (req, res, next) => {
   // may be the token exist but the user not exist. Ex. if admin delete it
 
    const user = await User.findById(decodeToken.id);
+   console.log(user);
+
+   if(!user){
+    const error = new customError('The user with the given token does not exist', 401);
+    next(error);
+
+   }
 
   next();
 })

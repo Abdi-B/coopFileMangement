@@ -5,7 +5,7 @@ class ApiFeatures{
         this.query = query;
         this.queryStr = queryStr; 
     };
-
+    
     createPost(){
         const posts =  this.query.create(this.queryStr)
         // console.log(posts)
