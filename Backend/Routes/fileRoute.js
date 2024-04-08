@@ -33,7 +33,8 @@ router.post('/posts', validate.validatePost , postAnnouncement);
 
 
 //GET all Department
-router.get('/', protect, getDepartments);
+// router.get('/', protect, getDepartments);
+router.get('/', getDepartments);
 
 //GET all Sub-department
 router.get('/:row', getSubDepartment);

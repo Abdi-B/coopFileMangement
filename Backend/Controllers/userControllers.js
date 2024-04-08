@@ -85,6 +85,7 @@ const protect = asyncErrorHandler(async (req, res, next) => {
   // 1) read the token & check if it exist
   // const testToken = req.headers['authorization']
   const authHeader = req.headers.authorization
+  console.log(req.headers)
   // console.log(authHeader)
   let token;
   // token = authHeader && authHeader.split(' ')[1];
