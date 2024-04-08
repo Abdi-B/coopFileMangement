@@ -113,13 +113,21 @@ const protect = asyncErrorHandler(async (req, res, next) => {
   // may be the token exist but the user not exist. Ex. if admin delete it
 
    const user = await User.findById(decodeToken.id);
-   console.log(user);
+  //  console.log(user);
 
    if(!user){
     const error = new customError('The user with the given token does not exist', 401);
     next(error);
-
    }
+   // 4) If the user changed password after token was issued
+      const isPswdChanged = await user.isPasswordChanged(decodeToken.iat); // iat = issued date
+      if(isPswdChanged){  
+        const error = new customError('The password has been changed recently', 401)
+        return next(error)
+      }
+
+   // 5) Allow user to access route
+      req.user = user;
 
   next();
 })
