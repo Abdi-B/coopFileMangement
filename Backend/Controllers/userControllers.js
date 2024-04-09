@@ -85,12 +85,12 @@ const protect = asyncErrorHandler(async (req, res, next) => {
   // 1) read the token & check if it exist
   // const testToken = req.headers['authorization']
   const authHeader = req.headers.authorization
-  console.log(req.headers)
+  // console.log(req.headers)
   // console.log(authHeader)
   let token;
   // token = authHeader && authHeader.split(' ')[1];
 
-  if(authHeader && authHeader.startsWith('bearer')){
+  if(authHeader && authHeader.startsWith('Bearer')){
     token = authHeader.split(' ')[1];
   }
   // console.log(token);
@@ -108,7 +108,7 @@ const protect = asyncErrorHandler(async (req, res, next) => {
   //   });
 
   const decodeToken= await util.promisify(jwt.verify)(token, process.env.SECRET_STR)
-  console.log(decodeToken) // it contains id, iat, exp  iat=timestamps in ms
+  // console.log(decodeToken) // it contains id, iat, exp  iat=timestamps in ms
 
   // 3)  check If the user exists 
   // may be the token exist but the user not exist. Ex. if admin delete it
@@ -128,10 +128,26 @@ const protect = asyncErrorHandler(async (req, res, next) => {
       }
 
    // 5) Allow user to access route
-      req.user = user;
+
+      // console.log(user)
+      req.user = user;  // to use user.role in next middleware
+      
+      // console.log(req.user.email)
 
   next();
 })
+
+const restrict = (role) => {
+  return(req,res,next) => {
+    // console.log(req.user)
+    
+    if(req.user.role === role){
+      const error = new customError('you do not have permission to perform this action', 403);
+      next(error);
+    }
+    next();
+  }
+}
 
 
 // const createUser = async (req, res, next) => {
@@ -160,5 +176,6 @@ const protect = asyncErrorHandler(async (req, res, next) => {
   module.exports = {
     createUser,
     login,
-    protect
+    protect,
+    restrict
   }

@@ -14,7 +14,8 @@ const { createUser } = require('./../controllers/userControllers');
 
 // Validation
 const validate = require('../Validation/validate');
-const {protect} = require('./../controllers/userControllers');
+const {protect , restrict} = require('./../controllers/userControllers');
+
 
 const router = express.Router();
 
@@ -33,8 +34,8 @@ router.post('/posts', validate.validatePost , postAnnouncement);
 
 
 //GET all Department
-// router.get('/', protect, getDepartments);
-router.get('/', getDepartments);
+router.get('/', protect, restrict('user'), getDepartments);
+// router.get('/', getDepartments);
 
 //GET all Sub-department
 router.get('/:row', getSubDepartment);

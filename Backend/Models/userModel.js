@@ -39,7 +39,13 @@ const UserSchema = new mongoose.Schema({
         }
     },
 
-    passwordChangedAt: Date
+    passwordChangedAt: Date,
+
+    role: {
+        type: String,
+        enum: ['admin','user']
+    }
+
 },
 {
     timestamps: true
