@@ -81,6 +81,10 @@ UserSchema.methods.isPasswordChanged = async function(JWTTimestamp){
     }
     return false;
 };
+UserSchema.methods.resetPassword = async function () {
+    
+};
+
 
 
 const User = mongoose.model('User', UserSchema);
