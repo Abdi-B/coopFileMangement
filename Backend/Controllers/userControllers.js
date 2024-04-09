@@ -137,10 +137,13 @@ const protect = asyncErrorHandler(async (req, res, next) => {
   next();
 })
 
-const restrict = (role) => {
+const restrict = (role, role2) => {
+// const restrict = (...role) => { // for multiple role may be array form
   return(req,res,next) => {
     // console.log(req.user)
-    
+    // console.log(role, role2)
+    //  const checkRole = role.includes(req.user.role) // applied for multiple  
+
     if(req.user.role === role){
       const error = new customError('you do not have permission to perform this action', 403);
       next(error);
