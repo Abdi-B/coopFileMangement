@@ -84,6 +84,9 @@ UserSchema.methods.isPasswordChanged = async function(JWTTimestamp){
 UserSchema.methods.resetPassword = async function () {
     
 };
+UserSchema.methods.forgotPassword = async function () {
+    
+};
 
 
 
