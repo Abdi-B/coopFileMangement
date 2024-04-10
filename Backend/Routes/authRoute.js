@@ -1,12 +1,13 @@
 const express = require('express')
 const app = express();
 
-const { createUser, login } = require('./../controllers/userControllers');
+const router = express.Router();
+
+const { createUser, login, forgotPassword } = require('./../controllers/userControllers');
 
 // Validation
 const validate = require('../Validation/validate');
 
-const router = express.Router();
 
 
 // Create a user
@@ -19,5 +20,11 @@ router.route('/user')
 // Login 
 
 router.route('/login').post(login)
+
+// forgotPassword
+router.route('/forgotPassword').post(forgotPassword)
+
+//resetPassword
+// router.route('/resetPassword').post(resetPassword)
 
 module.exports = router;

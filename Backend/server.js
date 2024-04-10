@@ -69,7 +69,6 @@ app.use(globalErrorHandler);
 
 // DB connection
 
-
 mongoose.connect(process.env.MONGO_URI, )
     .then(() => {
         //listen for req
@@ -77,7 +76,7 @@ mongoose.connect(process.env.MONGO_URI, )
     app.listen(process.env.PORT, () => {
               console.log('Mongodb connected successfully & listening on the port', process.env.PORT);
               })
-    })
+    });
 
 
 // SERVER

@@ -135,7 +135,7 @@ const protect = asyncErrorHandler(async (req, res, next) => {
       // console.log(req.user.email)
 
   next();
-})
+});
 
 const restrict = (role, role2) => {
 // const restrict = (...role) => { // for multiple role may be array form
@@ -151,6 +151,23 @@ const restrict = (role, role2) => {
     next();
   }
 }
+
+const forgotPassword = async (req, res, next) => {
+  // 1) GET USER BASED ON POSTED EMAIL
+
+  const user = await User.findOne({email: req.body.email});
+  // console.log(user);
+  if(!user){
+    const error = customError('could not find the user with a given email', 404);
+    next(error);
+  }
+  // 2. GENERATE A RANDOM RESET TOKEN
+   
+  const resetToken =  await user.createResetPasswordToken();
+  // console.log(user);
+  // console.log(resetToken);
+  await user.save({validateBeforeSave: false});
+};
 
 
 // const createUser = async (req, res, next) => {
@@ -176,9 +193,11 @@ const restrict = (role, role2) => {
     
 // })
 
+
   module.exports = {
     createUser,
     login,
     protect,
-    restrict
+    restrict,
+    forgotPassword
   }
