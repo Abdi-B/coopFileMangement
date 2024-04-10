@@ -4,6 +4,17 @@ var validator = require('validator');
 
 
 const FileManagementSchema =  new mongoose.Schema({
+    
+    department: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    subDepartment: {
+        type: String,
+        required: true,
+        trim: true
+    },
     originalName: {
         type: String,
         required: true
@@ -17,18 +28,20 @@ const FileManagementSchema =  new mongoose.Schema({
         required: true,
         trim: true
     },
-    path: {
-        type: Number,
-        required: true,
-        trim: true
-    },
+    // path: {
+    //     type: Number,
+    //     required: true,
+    //     trim: true
+    // },
     size: {
         type: Number,
         required: true
-    }
-}, {
+    },
+}, 
+    {
     timestamps: true
-})
+    }
+)
 
 
 
@@ -39,16 +52,16 @@ const FileManagementSchema =  new mongoose.Schema({
 
 //     next();  
 // })
+
 // find and findOne is different so, to handle it use /*find/ --> this mean all which starts with find
 // UserSchema.pre('find', (next) => {
 //   this.find({releaseDate: {lte: Date.now}})
 //   next();
 // });
 
-
-
-const FileManagement = mongoose.model('File', FileManagementSchema)
-
+const FileManagement = mongoose.model('File', FileManagementSchema);
 
 module.exports = FileManagement;
+
+
 

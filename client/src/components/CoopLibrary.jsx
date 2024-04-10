@@ -75,20 +75,18 @@ const CoopLibrary = () => {
             
                         <CardContent>
                         
-                        <Typography gutterBottom variant="p" component="div">
-                            Title {book.title}
+                            <Typography gutterBottom variant="p" component="div">
+                                 Title : {book.title}
                             </Typography>
                         
-                            <Typography gutterBottom variant="h6" component="div">
-                                Category:{book.category}
+                            <Typography gutterBottom variant="h7" component="div">
+                                Category : {book.category}
                             </Typography>
                             <Typography gutterBottom variant="body2" color="text.secondary" align='justify'>
-                                Author: {book.author}
-                                
+                                Author : {book.author}   
                             </Typography>
                             <Typography gutterBottom variant="body2" color="text.secondary" align='justify'>
-                                invitedBy: {book.invitedByK}
-                                
+                                invitedBy : {book.invitedByK}
                             </Typography>
                                 
                         </CardContent>
