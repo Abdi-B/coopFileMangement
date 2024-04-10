@@ -69,20 +69,20 @@ app.use(globalErrorHandler);
 
 // DB connection
 
-mongoose.connect(process.env.MONGO_URI, )
-    .then(() => {
-        //listen for req
-    // console.log('Mongodb connected successfully & listening on the port');
-    app.listen(process.env.PORT, () => {
-              console.log('Mongodb connected successfully & listening on the port', process.env.PORT);
-              })
-    });
+// mongoose.connect(process.env.MONGO_URI, )
+//     .then(() => {
+//         //listen for req
+//     // console.log('Mongodb connected successfully & listening on the port');
+//     app.listen(process.env.PORT, () => {
+//               console.log('Mongodb connected successfully & listening on the port', process.env.PORT);
+//               })
+//     });
 
 
 // SERVER
-// const server = app.listen(process.env.PORT, () => {
-//     console.log('Server has started on the port', process.env.PORT);
-// });
+const server = app.listen(process.env.PORT, () => {
+    console.log('Server has started on the port', process.env.PORT);
+});
 
 
 // process.on('unhandledRejection', (err) => {

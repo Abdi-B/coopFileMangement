@@ -67,7 +67,7 @@ function Navbar() {
                 <Button 
                   color='inherit' 
                   component={Link} 
-                  to="/announcement" 
+                  to="/coopLibrary" 
                   onClick={() => {
                     context.SetNameContext(false);
                   }}

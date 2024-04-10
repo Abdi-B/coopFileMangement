@@ -19,6 +19,7 @@ import { useState } from 'react';
 import AllAnnouncement from './components/AllAnnouncement';
 import Login from './pages/Login'
 import SignUp from './pages/SignUp';
+import CoopLibrary from './components/CoopLibrary';
 
 
 
@@ -54,6 +55,7 @@ function App() {
                 <Route path="/announcement" element={<CreateAnnouncement />} />
                 <Route path='/announcements' element={<AllAnnouncement />} />
                 <Route path='/login' element={<Login />} />
+                <Route path='/coopLibrary' element={<CoopLibrary />} />
               </Routes>
           </Layout>
           
