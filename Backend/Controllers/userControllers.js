@@ -13,6 +13,17 @@ const generateAccessToken = _id => {
   return jwt.sign({id: _id}, process.env.SECRET_STR,
     { expiresIn: process.env.LOGIN_EXPIRES } // if it not in sec use string //ex. expiresIn: '30d'
     );
+};
+
+const createSendResponse = (user, statusCode, res)=>{
+
+  token = generateAccessToken(user._id);
+  res.status(statusCode).json({
+    status: 'success',
+    token,
+    user
+  })
+
 }
 
 // Create a User
@@ -195,6 +206,65 @@ const forgotPassword = async (req, res, next) => {
   }
 };
 
+const resetPassword = asyncErrorHandler(async ()=> {
+  // 1. IF THE USER EXITS WITH THE GIVEN TOKEN & TOKEN HAS NOT  EXPIRED
+  const token = crypto.createHash('sha256').update(req.params.token).digest('hex');
+  const user = await User.find({passwordResetToken: token, passwordResetTokenExpires: {$gt: Date.now()}});
+
+  if(!user){
+      const error = new customError('Token is invalid or has expired!',400);
+      next(error);
+  }
+
+
+  //2. RESETTING THE USER PASSWORD
+
+  user.password = req.body.password;
+  user.confirmPassword= req.body.confirmPassword;
+  user.passwordResetToken = undefined;
+  user.passwordResetTokenExpires = undefined;
+  user.passwordChangedAt= Date.now();
+
+  user.save();
+
+  //. Login the user
+  const loginToken  = generateAccessToken(user._id);
+
+  res.status(200).json({
+    status: 'success',
+    token: loginToken
+  })
+})
+
+const updatePassword = asyncErrorHandler(async (req,res,next)=>{
+  // GET CURRENT USER DATA FROM DATABASE
+
+  const user = await User.findById(req.user._id).select('+password');
+
+  // CHECK IF THE SUPPLIED CURRENT PASSWORD IS CORRECT
+  if(!(await user.comparePasswordInDb(req.body.currentPassword, user.password))){
+    return next(new customError('The current password you provide is wrong', 401));
+
+  }
+  // IF SUPPLIED PASSWORD IS CORRECT, UPDATE USER PASSWORD WITH NEW VALUE
+  user.password = req.body.password;
+  user.confirmPassword = req.body.confirmPassword;
+  await user.save();
+
+  // LOGIN USER & SEND IT 
+  
+  createSendResponse(user, 200, res);
+
+  // const token = generateAccessToken(user._id);
+  // res.status(200).json({
+  //   status: 'success',
+  //   token,
+  //   user
+  // })
+
+})
+
+
 
 // const createUser = async (req, res, next) => {
 //     const {firstName,lastName,email, password} = req.body;
@@ -225,5 +295,7 @@ const forgotPassword = async (req, res, next) => {
     login,
     protect,
     restrict,
-    forgotPassword
+    forgotPassword,
+    resetPassword,
+    updatePassword
   }

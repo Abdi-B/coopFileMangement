@@ -3,7 +3,7 @@ const app = express();
 
 const router = express.Router();
 
-const { createUser, login, forgotPassword,  } = require('./../controllers/userControllers');
+const { createUser, login, forgotPassword, resetPassword, protect, updatePassword  } = require('./../controllers/userControllers');
 
 // Validation
 const validate = require('../Validation/validate');
@@ -22,9 +22,12 @@ router.route('/user')
 router.route('/login').post(login)
 
 // forgotPassword
-router.route('/forgotPassword').post(forgotPassword)
+// router.route('/forgotPassword').post(forgotPassword)
 
 //resetPassword
 // router.route('/resetPassword/:token').patch(resetPassword)
+
+//Update
+router.route('/updatePassword').patch( protect, updatePassword)
 
 module.exports = router;

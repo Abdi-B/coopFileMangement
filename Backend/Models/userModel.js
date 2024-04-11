@@ -95,9 +95,6 @@ UserSchema.methods.createResetPasswordToken = async function() {
     return resetToken; 
 };
 
-UserSchema.methods.resetPassword = async function() {
-    
-};
 
 
 
