@@ -63,7 +63,7 @@ const books= [
         
         
     },
-]
+];
 
 const CoopLibrary = () => {
     const classes = useStyles();
