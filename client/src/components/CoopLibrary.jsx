@@ -8,8 +8,8 @@ const useStyles = makeStyles({
     box1: {
         marginTop: 103,
         // backgroundColor: 'gray',
-        height: '100%',
-        width: '100%',
+        // height: '100%',
+        // width: '100%',
         // display: 'flex',
         // flexDirection: 'row',
         // flexWrap: 'wrap',
@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     card1: {
         width: '30%',
         margin: 5,
-        backgroundColor: 'gray'
+        backgroundColor: 'green'
     }
 })
 
@@ -65,10 +65,11 @@ const books= [
     },
 ];
 
+
 const CoopLibrary = () => {
     const classes = useStyles();
   return (
-    <Stack className={classes.box1} sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
+    <Stack  className={classes.box1} sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '100%',minWidth: '100%', height: '100%', backgroundColor: 'grey'}}>
         {
                 books.map((book,index)=>(
                     <Card key={index} elevation={3} className={classes.card1} >

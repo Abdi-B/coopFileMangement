@@ -31,9 +31,9 @@ function App() {
     <AppContext.Provider value={{ nameContext, SetNameContext }} >
         
     <Router>
-      {/* <Routes> */}
-        {/* <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<SignUp />} /> */}
+      <Routes>
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
 
 
           {/* <Route  element={<Layout />} >
@@ -45,19 +45,19 @@ function App() {
 
           </Route> */}
 
-      {/* </Routes> */}
+      </Routes>
 
-          <Layout >
+          {/* <Layout >
              <Routes >
-
+                <Route path='/coopLibrary' element={<CoopLibrary />} />
                 <Route path="/create" element={<Create />} />
                 <Route path="/one/:item/:item2" element={<Department />} />
                 <Route path="/announcement" element={<CreateAnnouncement />} />
                 <Route path='/announcements' element={<AllAnnouncement />} />
                 <Route path='/login' element={<Login />} />
-                <Route path='/coopLibrary' element={<CoopLibrary />} />
+                
               </Routes>
-          </Layout>
+          </Layout> */}
           
     </Router>
 

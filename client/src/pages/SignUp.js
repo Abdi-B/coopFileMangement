@@ -31,7 +31,7 @@ const useStyles = makeStyles({
   },
   signupBox: {
     // backgroundColor: 'grey',
-    width: '35%',
+    width: '40%',
     boxShadow: '0.3rem 0.3rem 0.6rem grey',
     borderRadius: 5,
     padding: '1rem'
@@ -44,6 +44,12 @@ const useStyles = makeStyles({
       borderRadius: 4,
       padding: "0.5rem",
       // marginBottom: "0.1rem"
+  },
+  form: {
+    width: '90%',
+    display: 'flex',
+    flexDirection: 'column'
+
   }
 
 });
@@ -78,8 +84,13 @@ const SignUp = () => {
         (password === confirmPassword)  ){
         console.log(firstName,lastName,email, password, confirmPassword, password.length);
       try {
-        const response = await axios.post('http://localhost:3001/read/user', { firstName,lastName,email, password, confirmPassword });
+        const response = await axios.post('http://localhost:3001/auth/user', { firstName,lastName,email, password, confirmPassword });
         console.log('New user is created:', response.data);
+        setfirstName('');
+        setlastName('');
+        setEmail('');
+        setPassword('');
+        setconfirmPassword('');
         // You can redirect the user to the newly created post or update the post list
       } catch (error) {
         console.error('Error creating a user:', error);
@@ -102,71 +113,77 @@ const SignUp = () => {
               >
                 SignUp
               </Typography>
-              <TextField required label="First Name" value={firstName} onChange={(e) => setfirstName(e.target.value)} />
-              <TextField required label="Last Name" value={lastName} onChange={(e) => setlastName(e.target.value)} />
-              <TextField required type="email" label="Email" value={email} onChange={(e) => { setEmail(e.target.value) }}/>
 
-              <FormControl required >
-                <InputLabel htmlFor="filled-adornment-password">
-                  Password
-                </InputLabel>
-                <FilledInput
-                value={password}
-                onChange={(e) => { setPassword(e.target.value) }}
-                  id="filled-adornment-password"
-                  type={showPassword ? "text" : "password"}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
+              <form onSubmit={handleSubmit} className={classes.form} >
+                  <Stack gap={2}>
+                        <TextField required label="First Name" value={firstName} onChange={(e) => setfirstName(e.target.value)} />
+                      <TextField required label="Last Name" value={lastName} onChange={(e) => setlastName(e.target.value)} />
+                      <TextField required type="email" label="Email" value={email} onChange={(e) => { setEmail(e.target.value) }}/>
 
-              <FormControl required >
-                <InputLabel htmlFor="filled-adornment-password">
-                  Confirm Password
-                </InputLabel>
-                <FilledInput
-                  value={confirmPassword}
-                  onChange={(e) => { setconfirmPassword(e.target.value) }}
-                  id="filled-adornment-password"
-                  type={showPassword ? "text" : "password"}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
+                      <FormControl required >
+                        <InputLabel htmlFor="filled-adornment-password">
+                          Password
+                        </InputLabel>
+                        <FilledInput
+                        value={password}
+                        onChange={(e) => { setPassword(e.target.value) }}
+                          id="filled-adornment-password"
+                          type={showPassword ? "text" : "password"}
+                          endAdornment={
+                            <InputAdornment position="end">
+                              <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                                edge="end"
+                              >
+                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                              </IconButton>
+                            </InputAdornment>
+                          }
+                        />
+                      </FormControl>
+
+                      <FormControl required >
+                        <InputLabel htmlFor="filled-adornment-password">
+                          Confirm Password
+                        </InputLabel>
+                        <FilledInput
+                          value={confirmPassword}
+                          onChange={(e) => { setconfirmPassword(e.target.value) }}
+                          id="filled-adornment-password"
+                          type={showPassword ? "text" : "password"}
+                          endAdornment={
+                            <InputAdornment position="end">
+                              <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                                edge="end"
+                              >
+                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                              </IconButton>
+                            </InputAdornment>
+                          
+                          }
+                        />
+                      </FormControl>
+                      <Stack direction={"row"} alignItems={'center'} justifyContent={'space-around'}>
+                      <Button type="submit"
+                        variant="contained"
+                        sx={{ alignItems: "center", width: "50%" }}
+                        // onClick={}
+                        
                       >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  
-                  }
-                />
-              </FormControl>
-              <Stack direction={"row"} alignItems={'center'} justifyContent={'space-around'}>
-              <Button
-                variant="contained"
-                sx={{ alignItems: "center", width: "50%" }}
-                onClick={handleSubmit}
-                
-              >
-                SignUp
-              </Button>
-              <Button  onClick={()=>{}}>
-                HAVE AN ACCOUNT?
-              </Button>
-              </Stack>
+                        SignUp
+                      </Button>
+                      <Button  onClick={()=>{}}>
+                        HAVE AN ACCOUNT?
+                      </Button>
+                      </Stack>
+                  </Stack>
+              </form>
+              
             </Stack>
         {/* </form> */}
     </Box>

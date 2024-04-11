@@ -49,9 +49,11 @@ const UserSchema = new mongoose.Schema({
     passwordResetToken: String,
     passwordResetTokenExpires: Date
 },
-{
-    timestamps: true
-})
+    {
+        timestamps: true
+    },
+);
+
 
 UserSchema.pre('save', async function(next){
     if(!this.isModified('password')) return next();
@@ -95,9 +97,6 @@ UserSchema.methods.createResetPasswordToken = async function() {
     return resetToken; 
 };
 
-
-
-
-
 const User = mongoose.model('User', UserSchema);
+
 module.exports = User;

@@ -9,17 +9,15 @@ const { createUser, login, forgotPassword, resetPassword, protect, updatePasswor
 const validate = require('../Validation/validate');
 
 
-
 // Create a user
 // router.post('/user', validate.validateUser, createUser );
 // router.post('/user', createUser );
 router.route('/user')
     .post(createUser)
 
-
 // Login 
 
-router.route('/login').post(login)
+router.route('/login').post(login);
 
 // forgotPassword
 // router.route('/forgotPassword').post(forgotPassword)
@@ -27,7 +25,8 @@ router.route('/login').post(login)
 //resetPassword
 // router.route('/resetPassword/:token').patch(resetPassword)
 
+
 //Update
-router.route('/updatePassword').patch( protect, updatePassword)
+router.route('/updatePassword').patch( protect, updatePassword );
 
 module.exports = router;

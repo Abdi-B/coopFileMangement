@@ -29,7 +29,7 @@ const createSendResponse = (user, statusCode, res)=>{
 // Create a User
 
 const createUser = asyncErrorHandler(async (req, res, next) => {
-  // console.log(req.body)
+  console.log(req.body)
 
 // use can use bcrypt here but it is more recommended to use UserSchema.pre()
 // const salt = await bcrypt.genSalt() // use can use genSalt(10)
