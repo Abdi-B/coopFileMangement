@@ -243,17 +243,22 @@ const updatePassword = asyncErrorHandler(async (req,res,next)=>{
 
   // CHECK IF THE SUPPLIED CURRENT PASSWORD IS CORRECT
   if(!(await user.comparePasswordInDb(req.body.currentPassword, user.password))){
+    
     return next(new customError('The current password you provide is wrong', 401));
 
   }
   // IF SUPPLIED PASSWORD IS CORRECT, UPDATE USER PASSWORD WITH NEW VALUE
+  
   user.password = req.body.password;
   user.confirmPassword = req.body.confirmPassword;
+
   await user.save();
+  // console.log(user)
 
   // LOGIN USER & SEND IT 
   
-  createSendResponse(user, 200, res);
+
+    createSendResponse(user, 200, res);
 
   // const token = generateAccessToken(user._id);
   // res.status(200).json({
@@ -279,6 +284,7 @@ const updatePassword = asyncErrorHandler(async (req,res,next)=>{
 //           next(err);
 //     }
 //   };
+
 
 // const createUser = asyncErrorHandler(async (req, res) => {
 //   const {firstName,lastName,email, password} = req.body;
