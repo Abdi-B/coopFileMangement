@@ -5,6 +5,8 @@ const bcrypt = require('bcryptjs')
 const User = require('../Models/userModel');
 const asyncErrorHandler = require('../Utils/asyncErrorHandler');
 const customError = require('../Utils/customError');
+const sendEmail  = require('../Utils/email');
+
 
 // use the following cmd on terminal to generate SECRET_STR a) node b)require('crypto').randomBytes(64).toString('hex') 
 const generateAccessToken = _id => {
@@ -167,6 +169,30 @@ const forgotPassword = async (req, res, next) => {
   // console.log(user);
   // console.log(resetToken);
   await user.save({validateBeforeSave: false});
+
+  // 3. SEND TOKEN BACK TO THE USER EMAIL
+
+  const resetUrl = `${req.protocol}://${req.get('host')}/read/resetPassword/${resetToken}`;
+  const message = `We have received a password rest request. Please use th below link to rest your password\n\n${resetUrl}\n\n This rest password link will be valid only for 10 minutes`
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: 'password change request received',
+      message: message
+    });
+
+    res.status(200).json({
+      status: 'success',
+      message: 'password rest link send to the user email'
+    })
+  } catch (err) {
+    user.passwordResetToken = undefined;
+    user.passwordResetTokenExpires = undefined;
+    user.save({validateBeforeSave: false});
+    console.log(err)
+
+    return next(new customError('There was an error sending password reset email. please try again later', 500));
+  }
 };
 
 

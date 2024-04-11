@@ -3,7 +3,7 @@ const app = express();
 
 const router = express.Router();
 
-const { createUser, login, forgotPassword } = require('./../controllers/userControllers');
+const { createUser, login, forgotPassword,  } = require('./../controllers/userControllers');
 
 // Validation
 const validate = require('../Validation/validate');
@@ -25,6 +25,6 @@ router.route('/login').post(login)
 router.route('/forgotPassword').post(forgotPassword)
 
 //resetPassword
-// router.route('/resetPassword').post(resetPassword)
+// router.route('/resetPassword/:token').patch(resetPassword)
 
 module.exports = router;
