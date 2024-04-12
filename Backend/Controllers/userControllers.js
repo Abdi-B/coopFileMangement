@@ -15,6 +15,8 @@ const generateAccessToken = _id => {
     );
 };
 
+// RESPONSE 
+
 const createSendResponse = (user, statusCode, res)=>{
 
   token = generateAccessToken(user._id);
@@ -48,7 +50,6 @@ const createUser = asyncErrorHandler(async (req, res, next) => {
 
   const token = generateAccessToken(user._id)
 
-
   return res.status(200).json({
     status: 'success',
     length: user.length,
@@ -56,6 +57,7 @@ const createUser = asyncErrorHandler(async (req, res, next) => {
     user
   })
 });
+
 
 // LOGIN
 
