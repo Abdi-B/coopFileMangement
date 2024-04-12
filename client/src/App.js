@@ -20,6 +20,7 @@ import AllAnnouncement from './components/AllAnnouncement';
 import Login from './pages/Login'
 import SignUp from './pages/SignUp';
 import CoopLibrary from './components/CoopLibrary';
+import Upload from './pages/Upload';
 
 
 
@@ -34,6 +35,7 @@ function App() {
       <Routes>
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
+        <Route path='/upload' element={<Upload />} />
 
 
           {/* <Route  element={<Layout />} >

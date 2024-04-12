@@ -1,11 +1,9 @@
-
-
 import React, { useState } from 'react';
-import { FormControl, InputLabel, Select, MenuItem, Button } from '@mui/material';
-
+import { Box, FormControl, InputLabel, Select, MenuItem, Button,TextField } from '@mui/material';
 
 const Upload = () => {
   const [selectedOption, setSelectedOption] = useState('');
+  const [file, setFile] = useState('');
 
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
@@ -16,9 +14,9 @@ const Upload = () => {
     // Add your logic here for handling the selected option
   };
 
-  return (
-    <FormControl sx={{ m: 1, minWidth: 120 }}>
-      <InputLabel id="select-label">Select Option</InputLabel>
+  const selectDepartment = () => (
+    <FormControl sx={{ m: 1, minWidth: '40%' }}>
+      <InputLabel id="select-label">Select Department</InputLabel>
       <Select
         labelId="select-label"
         id="select"
@@ -35,6 +33,15 @@ const Upload = () => {
       </Select>
       <Button variant="contained" onClick={handleSubmit}>Submit</Button>
     </FormControl>
+  );
+
+  return (
+    <Box>
+      {selectDepartment()} 
+      {selectDepartment()} 
+      <TextField required type="file"  value={file} onChange={(e) => { setFile(e.target.value) }}/>
+
+    </Box>
   );
 };
 
