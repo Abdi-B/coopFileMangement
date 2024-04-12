@@ -88,58 +88,62 @@ const Login = () => {
 
   return (
     <Box
-    className={classes.all}
+         className={classes.all}
     >
         <Stack 
         gap={2}
         className={classes.loginBox}
         > 
-        <Typography
-          className={classes.login1}
-          >
-            Login
-          </Typography>
-          <TextField required type="email" label="Email" value={email} onChange={(e) => { setEmail(e.target.value) }}/>
-          <FormControl required >
-            <InputLabel htmlFor="filled-adornment-password">
-              Password
-            </InputLabel>
-            <FilledInput
-              value={password}
-              onChange={(e) => { setPassword(e.target.value) }}
-              id="filled-adornment-password"
-              type={showPassword ? "text" : "password"}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
-          </FormControl>
-          <Box>
-          <FormControlLabel
-            control={<Checkbox />}
-            label="Rememeber me"
-          />
-        </Box>
-        <Button variant="contained" onClick={handleLogin}> Login </Button>
-          <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <Button>Forgot Password</Button>
-          <Button>Don't have an account?</Button>
-        </Box>
+        <form onSubmit={handleLogin}>
+            <Stack gap={2}>
+                    <Typography
+                      className={classes.login1}
+                      >
+                    Login
+                  </Typography>
+                  <TextField required type="email" label="Email" value={email} onChange={(e) => { setEmail(e.target.value) }}/>
+                  <FormControl required >
+                    <InputLabel htmlFor="filled-adornment-password">
+                      Password
+                    </InputLabel>
+                    <FilledInput
+                      value={password}
+                      onChange={(e) => { setPassword(e.target.value) }}
+                      id="filled-adornment-password"
+                      type={showPassword ? "text" : "password"}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                          >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                    />
+                  </FormControl>
+                  <Box>
+                  <FormControlLabel
+                    control={<Checkbox />}
+                    label="Remember me"
+                  />
+                </Box>
+                <Button type="submit" variant="contained" > Login </Button>
+                  <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Button>Forgot Password</Button>
+                  <Button>Don't have an account?</Button>
+                </Box>
+            </Stack>
+        </form>
         </Stack>
       </Box>
 
