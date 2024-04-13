@@ -6,4 +6,5 @@ const asyncErrorHandler = (func) => {
     }
   };
 
+  
   module.exports = asyncErrorHandler;
