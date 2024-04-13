@@ -15,7 +15,7 @@ const generateAccessToken = _id => {
     );
 };
 
-// RESPONSE 
+// RESPONSE method
 
 const createSendResponse = (user, statusCode, res)=>{
 
