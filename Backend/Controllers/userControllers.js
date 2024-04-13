@@ -259,7 +259,6 @@ const updatePassword = asyncErrorHandler(async (req,res,next)=>{
 
   // LOGIN USER & SEND IT 
   
-
     createSendResponse(user, 200, res);
 
   // const token = generateAccessToken(user._id);
