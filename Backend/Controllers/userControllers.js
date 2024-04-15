@@ -275,7 +275,11 @@ const updateMe = asyncErrorHandler (async (req,res, next)=> {
   if(!req.body.password || !req.body.confirmPassword){
     return next(new customError('you cannot update your password using this endpoint', 400))
   }
-  
+
+  // UPDATE USER DETAIL
+  const filterObj = filterReqObj(req.body, 'name', 'email')
+  const updateUser = await User.findByIdAndUpdate(req.user._id, req.body, {runValidators: true})
+
 })
 
 
