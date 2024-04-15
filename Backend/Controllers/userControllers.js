@@ -271,6 +271,10 @@ const updatePassword = asyncErrorHandler(async (req,res,next)=>{
 })
 
 const updateMe = asyncErrorHandler (async (req,res, next)=> {
+  // 1. check if request data contain password | confirm password
+  if(!req.body.password || !req.body.confirmPassword){
+    return next(new customError('you cannot update your password using this endpoint', 400))
+  }
   
 })
 
