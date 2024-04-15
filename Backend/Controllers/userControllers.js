@@ -25,7 +25,6 @@ const createSendResponse = (user, statusCode, res)=>{
     token,
     user
   })
-
 }
 
 
@@ -271,6 +270,9 @@ const updatePassword = asyncErrorHandler(async (req,res,next)=>{
 
 })
 
+const updateMe = asyncErrorHandler (async (req,res, next)=> {
+  
+})
 
 
 // const createUser = async (req, res, next) => {
