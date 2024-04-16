@@ -14,12 +14,14 @@ const app = express();
 
 const fileRoutes = require('./Routes/fileRoute');
 const authRoutes = require('./Routes/authRoute');
+const userRoute = require('./Routes/userRoute');
 const customError = require('./Utils/customError');
 const globalErrorHandler = require('./controllers/errorController');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(express.static('./Department'))
 
 const options = {
     useNewUrlParser: true,
@@ -28,6 +30,7 @@ const options = {
 
 app.use('/read', fileRoutes );
 app.use('/auth', authRoutes );
+app.use('/user', userRoute );
 
 
 // Invalid route --for all mean it include get, post, patch, delete and etc and it should be after routes

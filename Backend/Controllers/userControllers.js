@@ -15,6 +15,7 @@ const generateAccessToken = _id => {
     );
 };
 
+
 // RESPONSE method
 
 const createSendResponse = (user, statusCode, res)=>{
@@ -25,8 +26,7 @@ const createSendResponse = (user, statusCode, res)=>{
     token,
     user
   })
-}
-
+};
 
 // Create a User
 
@@ -57,7 +57,6 @@ const createUser = asyncErrorHandler(async (req, res, next) => {
     user
   })
 });
-
 
 // LOGIN
 
@@ -94,7 +93,8 @@ const login = asyncErrorHandler(async (req, res, next) => {
     user,
   })
 
-})
+});
+
 
 const protect = asyncErrorHandler(async (req, res, next) => {
   // 1) read the token & check if it exist
@@ -152,6 +152,7 @@ const protect = asyncErrorHandler(async (req, res, next) => {
   next();
 });
 
+
 const restrict = (role, role2) => {
 // const restrict = (...role) => { // for multiple role may be array form
   return(req,res,next) => {
@@ -165,7 +166,8 @@ const restrict = (role, role2) => {
     }
     next();
   }
-}
+};
+
 
 const forgotPassword = async (req, res, next) => {
   // 1) GET USER BASED ON POSTED EMAIL
@@ -208,6 +210,7 @@ const forgotPassword = async (req, res, next) => {
   }
 };
 
+
 const resetPassword = asyncErrorHandler(async ()=> {
   // 1. IF THE USER EXITS WITH THE GIVEN TOKEN & TOKEN HAS NOT  EXPIRED
   const token = crypto.createHash('sha256').update(req.params.token).digest('hex');
@@ -236,12 +239,14 @@ const resetPassword = asyncErrorHandler(async ()=> {
     status: 'success',
     token: loginToken
   })
-})
+});
+
 
 const updatePassword = asyncErrorHandler(async (req,res,next)=>{
   // GET CURRENT USER DATA FROM DATABASE
 
   const user = await User.findById(req.user._id).select('+password');
+  // console.log(user);
 
   // CHECK IF THE SUPPLIED CURRENT PASSWORD IS CORRECT
   if(!(await user.comparePasswordInDb(req.body.currentPassword, user.password))){
@@ -268,24 +273,34 @@ const updatePassword = asyncErrorHandler(async (req,res,next)=>{
   //   user
   // })
 
-})
+});
+
 
 const updateMe = asyncErrorHandler (async (req,res, next)=> {
-  // 1. check if request data contain password | confirm password
-  if(!req.body.password || !req.body.confirmPassword){
+  // 1. check if request data contain password | confirm password that mean they don't have to included
+  if(req.body.password || req.body.confirmPassword){
     return next(new customError('you cannot update your password using this endpoint', 400))
   }
 
   // UPDATE USER DETAIL
-  const filterObj = filterReqObj(req.body, 'name', 'email')
-  const updateUser = await User.findByIdAndUpdate(req.user._id, req.body, {runValidators: true})
+  // const user = await user.findById(req.user._id);
+  // await user.save();// impossible since password and confirm pass is required
 
-})
+  const filterObj = filterReqObj(req.body, 'name', 'email') // this filter allows users update name and email only
+  const updateUser = await User.findByIdAndUpdate(req.user._id, req.body, {runValidators: true, new: true});
+  console.log(updateUser)
+});
+
+
+
+
 
 
 // const createUser = async (req, res, next) => {
 //     const {firstName,lastName,email, password} = req.body;
+
 //     // console.log(req.body);
+
 //     try {
 //       const user = await User.create({firstName,lastName,email, password})
 //       return res.status(200).json(user)
@@ -297,7 +312,6 @@ const updateMe = asyncErrorHandler (async (req,res, next)=> {
 //     }
 //   };
 
-
 // const createUser = asyncErrorHandler(async (req, res) => {
 //   const {firstName,lastName,email, password} = req.body;
 //   // console.log(req.body);
@@ -305,15 +319,16 @@ const updateMe = asyncErrorHandler (async (req,res, next)=> {
 //     const user = await User.create({firstName,lastName,email, password})
 //     return res.status(200).json(user)
     
-// })
+// });
 
 
-  module.exports = {
+module.exports = {
     createUser,
     login,
     protect,
     restrict,
     forgotPassword,
     resetPassword,
-    updatePassword
-  }
+    updatePassword,
+    updateMe
+  };

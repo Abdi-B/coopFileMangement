@@ -26,7 +26,5 @@ router.route('/login').post(login);
 // router.route('/resetPassword/:token').patch(resetPassword)
 
 
-//Update
-router.route('/updatePassword').patch( protect, updatePassword );
 
 module.exports = router;
