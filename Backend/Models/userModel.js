@@ -49,6 +49,12 @@ const UserSchema = new mongoose.Schema({
         type: String,
         enum: ['admin','user']
     },
+    // to delete user set active to false
+    active: {
+        type: Boolean,
+        default: true,
+        select: false
+    },
     passwordResetToken: String,
     passwordResetTokenExpires: Date
 },
@@ -68,12 +74,18 @@ UserSchema.pre('save', async function(next){
     // encrypt the password before saving it
     // this.password = await bcrypt.hash(this.password, salt);
     this.password = await bcrypt.hash(this.password, 12); // bcrypt contains both hash and salt at the same time 
-    console.log(this.password)
+    // console.log(this.password)
 
     this.confirmPassword = undefined;
     next();
     
 });
+
+UserSchema.pre(/^find/, function (next) { // which starts with find (findById, find etc)
+    // this.find({active: true}); // both equations are different
+    this.find({active: {$ne: false}});
+    next();
+})
 
 UserSchema.methods.comparePasswordInDb = async function(pswd, pswdDB){
     return await bcrypt.compare(pswd, pswdDB);

@@ -28,10 +28,21 @@ const createSendResponse = (user, statusCode, res)=>{
   })
 };
 
+// GET ALL USERS
+const getAllUsers = asyncErrorHandler( async(req, res, next) => {
+  const users = await User.find();
+
+  res.status(200).json({
+    status: 'success',
+    result: users.length,
+    data: users
+  })
+})
+
 // Create a User
 
 const createUser = asyncErrorHandler(async (req, res, next) => {
-  console.log(req.body)
+  // console.log(req.body)
 
 // use can use bcrypt here but it is more recommended to use UserSchema.pre()
 // const salt = await bcrypt.genSalt() // use can use genSalt(10)
@@ -299,9 +310,24 @@ const updateMe = asyncErrorHandler (async (req,res, next)=> {
   // await user.save();// impossible since password and confirm pass is required
 
   const filterObj = filterReqObj(req.body, 'name', 'email') // this filter allows users update name and email only
-  const updateUser = await User.findByIdAndUpdate(req.user._id, req.body, {runValidators: true, new: true});
-  console.log(updateUser)
+  const updateUser = await User.findByIdAndUpdate(req.user._id, filterObj, {runValidators: true, new: true});
+  // console.log(updateUser);
+
+  res.status(200).json({
+    status: "success",
+    data: updateUser
+  })
 });
+
+const deleteMe = asyncErrorHandler (async(req, res, next) => {
+ await User.findByIdAndUpdate(req.user._id, {active: false})
+
+  res.status(204).json({
+    status: "success",
+    data: null
+  })
+
+})
 
 
 
@@ -342,5 +368,7 @@ module.exports = {
     forgotPassword,
     resetPassword,
     updatePassword,
-    updateMe
+    updateMe,
+    deleteMe,
+    getAllUsers
   };
