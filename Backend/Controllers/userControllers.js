@@ -275,6 +275,18 @@ const updatePassword = asyncErrorHandler(async (req,res,next)=>{
 
 });
 
+const filterReqObj = (reqObj, ...allowedFields) => {
+  const newObj = {};
+  // Object.keys(obj)  --- changes object to array by its name
+  Object.keys(reqObj).forEach(prop => {
+    if(allowedFields.includes(prop))
+       newObj.prop =    reqObj.prop
+            //  newObj[prop] =    reqObj[prop]
+
+  })
+  return newObj;
+}
+
 
 const updateMe = asyncErrorHandler (async (req,res, next)=> {
   // 1. check if request data contain password | confirm password that mean they don't have to included
