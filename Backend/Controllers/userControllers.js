@@ -21,6 +21,20 @@ const generateAccessToken = _id => {
 const createSendResponse = (user, statusCode, res)=>{
 
   token = generateAccessToken(user._id);
+
+  const options = {
+    maxAge: 864000000, //10*24*60*60*1000 (10 day) so maxAge is in ms
+    httpOnly: true
+  }
+
+  if(process.env.Node_ENVT === 'production')
+    options.secure = true;
+
+  res.cookie('jwt', token, options);
+
+  user.password = undefined; // this is to remove password from the response not in DB
+
+
   res.status(statusCode).json({
     status: 'success',
     token,
@@ -59,14 +73,16 @@ const createUser = asyncErrorHandler(async (req, res, next) => {
   //    { expiresIn: process.env.LOGIN_EXPIRES } // if it not in sec use string //ex. expiresIn: '30d
   //    );
 
-  const token = generateAccessToken(user._id)
+  const token = generateAccessToken(user._id);
 
-  return res.status(200).json({
-    status: 'success',
-    length: user.length,
-    token,
-    user
-  })
+  createSendResponse(user, 200, res)
+
+  // return res.status(200).json({
+  //   status: 'success',
+  //   length: user.length,
+  //   token,
+  //   user
+  // })
 });
 
 // LOGIN

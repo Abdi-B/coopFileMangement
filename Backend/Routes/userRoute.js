@@ -16,3 +16,5 @@ router.route('/updateMe').patch( protect, updateMe );
 router.route('/deleteMe').delete( protect, deleteMe );
 
 module.exports = router;
+
+                                    
