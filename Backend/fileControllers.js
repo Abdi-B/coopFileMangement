@@ -167,6 +167,7 @@ const postAnnouncement = async (req, res) => {
 }
 
 
+
 module.exports = {
     getDepartments,
     getSubDepartment,
