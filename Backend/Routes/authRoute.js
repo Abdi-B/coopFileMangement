@@ -19,6 +19,7 @@ router.route('/user')
 
 router.route('/login').post(login);
 
+
 // forgotPassword
 // router.route('/forgotPassword').post(forgotPassword)
 
