@@ -81,6 +81,7 @@ UserSchema.pre('save', async function(next){
     
 });
 
+
 UserSchema.pre(/^find/, function (next) { // which starts with find (findById, find etc)
     // this.find({active: true}); // both equations are different
     this.find({active: {$ne: false}});
@@ -111,6 +112,7 @@ UserSchema.methods.createResetPasswordToken = async function() {
     // console.log(resetToken, this.passwordResetToken)
     return resetToken; 
 };
+
 
 const User = mongoose.model('User', UserSchema);
 
