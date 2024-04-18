@@ -44,7 +44,6 @@ app.use(cors());
 app.use(express.static('./Department'));
 
 
-
 const fileRoutes = require('./Routes/fileRoute');
 const authRoutes = require('./Routes/authRoute');
 const userRoute = require('./Routes/userRoute');
