@@ -1,4 +1,5 @@
-const express = require('express')
+const express = require('express');
+
 const app = express();
 const  {
     getDepartments,
@@ -8,7 +9,6 @@ const  {
     getAnnouncements,
     getAnnouncement
 } = require('./../fileControllers');
-
 
 const { createUser } = require('./../controllers/userControllers');
 
@@ -34,8 +34,8 @@ router.post('/posts', validate.validatePost , postAnnouncement);
 
 
 //GET all Department
-router.get('/', protect, restrict('user', 'user2'), getDepartments); // to add role on restrict
-// router.get('/', getDepartments);
+// router.get('/', protect, restrict('user', 'user2'), getDepartments); // to add role on restrict
+router.get('/', getDepartments);
 
 //GET all Sub-department
 router.get('/:row', getSubDepartment);

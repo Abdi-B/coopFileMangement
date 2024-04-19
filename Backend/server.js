@@ -1,10 +1,11 @@
-const express = require("express")
-const rateLimit = require('express-rate-limit'); 
-const helmet = require('helmet');
-const sanitize = require('express-mongo-sanitize');
-const xss = require('xss-clean')
+const express = require("express");
+const cors = require('cors')
+// const rateLimit = require('express-rate-limit'); 
+// const helmet = require('helmet');
+// const sanitize = require('express-mongo-sanitize');
+// const xss = require('xss-clean');
 
-const cors = require("cors")
+
 const mongoose = require('mongoose')
 require('dotenv').config()
 
@@ -18,29 +19,30 @@ require('dotenv').config()
 //   });
 
 const app = express();
+app.use(cors());
 
-app.use(helmet());
+// app.use(helmet());
  
 // use rate limiter after app
 
-const limiter = rateLimit({
-    max: 5,
-    windowMs: 60*60*1000,
-    message: 'We have received too many requests from this IP. Please try after one hour!'
-});
+// const limiter = rateLimit({
+//     max: 5,
+//     windowMs: 60*60*1000,
+//     message: 'We have received too many requests from this IP. Please try after one hour!'
+// });
 
 
-app.use('/', limiter);
+// app.use('/', limiter);
 
-app.use(express.json({limit: '10kb'}));
+// app.use(express.json({limit: '10kb'}));
 
 // after getting a data
-app.use(sanitize());
+// app.use(sanitize());
 
-app.use(xss());
+// app.use(xss());
 
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+// app.use(cors());
 app.use(express.static('./Department'));
 
 

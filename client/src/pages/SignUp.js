@@ -106,7 +106,7 @@ const SignUp = () => {
     <Box
       className={classes.all}
     > 
-        {/* <form onClick={handleSubmit} width='35%'> */}
+
             <Stack gap={2} className={classes.signupBox}>
               <Typography
                 className={classes.signup1}
@@ -185,7 +185,7 @@ const SignUp = () => {
               </form>
               
             </Stack>
-        {/* </form> */}
+
     </Box>
   );
 };
