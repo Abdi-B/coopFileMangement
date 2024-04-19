@@ -32,10 +32,10 @@ function App() {
     <AppContext.Provider value={{ nameContext, SetNameContext }} >
         
     <Router>
-      <Routes>
-        <Route path='/login' element={<Login />} />
+      {/* <Routes> */}
+        {/* <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
-        <Route path='/upload' element={<Upload />} />
+        <Route path='/upload' element={<Upload />} /> */}
 
 
           {/* <Route  element={<Layout />} >
@@ -47,19 +47,22 @@ function App() {
 
           </Route> */}
 
-      </Routes>
+      {/* </Routes> */}
 
-          {/* <Layout >
+          <Layout >
              <Routes >
+                {/* <Route path="/" element={<Home />} /> */}
+                <Route path="/one/:item/:item2" element={<Department />} />
                 <Route path='/coopLibrary' element={<CoopLibrary />} />
                 <Route path="/create" element={<Create />} />
-                <Route path="/one/:item/:item2" element={<Department />} />
+                
                 <Route path="/announcement" element={<CreateAnnouncement />} />
                 <Route path='/announcements' element={<AllAnnouncement />} />
                 <Route path='/login' element={<Login />} />
+                <Route path='/upload' element={<Upload />} /> 
                 
               </Routes>
-          </Layout> */}
+          </Layout>
           
     </Router>
 

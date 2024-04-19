@@ -1,12 +1,12 @@
 import React from 'react'
 import { ThemeProvider, makeStyles } from '@material-ui/styles'
-import { Box, Stack } from '@mui/material';
+import { Box, Select, Stack } from '@mui/material';
 import {Card, CardContent,CardMedia, CardActionArea,CardActions, Button,Typography, Container, List, ListItem, ListItemText } from '@mui/material';
 
 
 const useStyles = makeStyles({
     box1: {
-        marginTop: 103,
+        marginTop: 110,
         // backgroundColor: 'gray',
         // height: '100%',
         // width: '100%',
@@ -70,6 +70,21 @@ const CoopLibrary = () => {
     const classes = useStyles();
   return (
     <Stack  className={classes.box1} sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '100%',minWidth: '100%', height: '100%', backgroundColor: 'grey'}}>
+        <Select
+        label='Filter By'
+        >
+            <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+
+                  {books.map((book, index) => (
+                    <MenuItem key={index} value={book.title}>
+                    {book.title}
+                    </MenuItem>
+                    ))}
+
+        </Select>
+
         {
                 books.map((book,index)=>(
                     <Card key={index} elevation={3} className={classes.card1} >
