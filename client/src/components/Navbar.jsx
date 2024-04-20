@@ -72,14 +72,17 @@ function Navbar() {
                     context.SetNameContext(false);
                   }}
                   >Coop Library</Button>
+
                 <Button color='inherit'>Service</Button>
+
                 <Button color='inherit'
                   component={Link}
                   to='/announcements'
                   onClick={() => {
-                    context.SetNameContext(false);
+                    // context.SetNameContext(false);
                   }}
                 >Announcement</Button>
+
                 <Button color='primary'>Contact Us</Button>
 
             </Stack>

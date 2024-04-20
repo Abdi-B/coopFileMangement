@@ -32,33 +32,18 @@ function App() {
     <AppContext.Provider value={{ nameContext, SetNameContext }} >
         
     <Router>
-      {/* <Routes> */}
-        {/* <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/upload' element={<Upload />} /> */}
-
-
-          {/* <Route  element={<Layout />} >
-              <Route path="/" element={<Home />} />
-              <Route path="/one/:item/:item2" element={<Department />} />
-
-              <Route path="/announcement" element={<CreateAnnouncement />} />
-              <Route path='/announcements' element={<AllAnnouncement />} />
-
-          </Route> */}
-
-      {/* </Routes> */}
 
           <Layout >
              <Routes >
                 {/* <Route path="/" element={<Home />} /> */}
-                <Route path="/one/:item/:item2" element={<Department />} />
-                <Route path='/coopLibrary' element={<CoopLibrary />} />
+                <Route exact path="/one/:item/:item2" element={<Department />} />
+                <Route  path='/coopLibrary' element={<CoopLibrary />} />
                 <Route path="/create" element={<Create />} />
                 
                 <Route path="/announcement" element={<CreateAnnouncement />} />
                 <Route path='/announcements' element={<AllAnnouncement />} />
                 <Route path='/login' element={<Login />} />
+                <Route path='/signup' element={<SignUp />} />
                 <Route path='/upload' element={<Upload />} /> 
                 
               </Routes>
