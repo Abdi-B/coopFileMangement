@@ -1,13 +1,8 @@
 import React, { useEffect, useContext } from 'react'
 import { ThemeProvider, makeStyles } from '@material-ui/styles'
 import { Box, Select, Stack } from '@mui/material';
-<<<<<<< HEAD
-import {Card, CardContent,CardMedia, CardActionArea,CardActions, Button,Typography, Container, List, ListItem, ListItemText, MenuItem} from '@mui/material';
-
-=======
 import {Card, CardContent,CardMedia, CardActionArea,CardActions, Button,Typography, Container, List, ListItem, ListItemText , MenuItem} from '@mui/material';
 import AppContext from '../context/AppContext';
->>>>>>> 5ef7e2389cdd9846fe20a7a30adf90f4486c2ca7
 
 const useStyles = makeStyles({
     box1: {
