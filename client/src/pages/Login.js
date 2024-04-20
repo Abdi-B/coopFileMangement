@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import axios from 'axios';
 import {
   Box,
@@ -23,6 +23,7 @@ import {
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import { makeStyles } from '@material-ui/styles';
+import AppContext from '../context/AppContext';
 
 const useStyles = makeStyles({ 
   all: {
@@ -53,6 +54,7 @@ login1: {
 
 
 const Login = () => {
+  const context = useContext(AppContext);
   const classes = useStyles();
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -64,6 +66,10 @@ const Login = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  useEffect(() => {
+    // context.SetNameContext(false);
+}, []);
 
   const handleLogin = async (e) => { 
     e.preventDefault();
