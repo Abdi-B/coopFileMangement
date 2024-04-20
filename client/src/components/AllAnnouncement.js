@@ -1,8 +1,10 @@
-import {React, useState, useEffect} from 'react'
+import {React, useState, useEffect, useContext} from 'react'
 import axios from 'axios';
 import {Card, CardContent,CardMedia, CardActionArea,CardActions, Button,Typography, Container, List, ListItem, ListItemText } from '@mui/material';
 import { makeStyles } from '@material-ui/styles';
 import Announcement from './Announcement';
+import AppContext from '../context/AppContext';
+
 
 const useStyles = makeStyles({
      container: {
@@ -21,11 +23,12 @@ const useStyles = makeStyles({
 })
 
 export default function AllAnnouncement() {
+    const context = useContext(AppContext);
     const classes = useStyles()
     const [AllPost, setAllPost] = useState([]);
 
     useEffect(() => {
-
+        context.SetNameContext(false);
         axios
             .get("http://localhost:3001/read/getPosts")
             .then((res) => {
@@ -33,6 +36,7 @@ export default function AllAnnouncement() {
             setAllPost(res.data.allAnnouncement);
             })
             .catch((err) => console.log(err));
+
             
     }, []);
 
