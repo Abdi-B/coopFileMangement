@@ -9,3 +9,28 @@ import {
     UPDATE_USER,
     DELETE_USER
 } from './actionTypes'
+
+export const addFile = (department, subDepartment, filename) => ({
+    type: ADD_FILES,
+    payload: { department, subDepartment, filename }
+});
+
+export const getFiles = () => ({
+    type: GET_FILES,
+     
+});
+
+export const updateFile = (id) => ({ 
+    type: UPDATE_FILES,
+    payload: { id }
+ });
+
+ export const deleteFile = ( id ) => ({
+    type: DELETE_FILES,
+    payload: { id }
+ });
+
+
+ // USER RELATED ISSUE
+
+ 
