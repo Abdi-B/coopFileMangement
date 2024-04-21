@@ -37,3 +37,21 @@ export const updateFile = (id) => ({
     type: ADD_USER,
     payload: {firstName, email, password, confirmPassword}
  });
+
+
+
+export const getUsers = () => ({
+ type: GET_USER
+});
+
+
+export const updateUser = ( id ) => ({
+  type: UPDATE_FILES,
+  payload: { id }
+});
+
+export const deleteUser = ( id ) => ({
+    type: DELETE_USER,
+    payload: { id }
+})
+
