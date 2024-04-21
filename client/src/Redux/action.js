@@ -33,4 +33,7 @@ export const updateFile = (id) => ({
 
  // USER RELATED ISSUE
 
- 
+ export const addUser = (firstName, email, password, confirmPassword) => ({
+    type: ADD_USER,
+    payload: {firstName, email, password, confirmPassword}
+ });
