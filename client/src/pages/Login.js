@@ -67,9 +67,9 @@ const Login = () => {
     event.preventDefault();
   };
 
-  useEffect(() => {
-    // context.SetNameContext(false);
-}, []);
+//   useEffect(() => {
+//     // context.SetNameContext(false);
+// }, []);
 
   const handleLogin = async (e) => { 
     e.preventDefault();
@@ -80,7 +80,7 @@ const Login = () => {
         password.length > 7 ) {
       console.log(email, password)
       try {
-        const response = await axios.get('http://localhost:3001/read/login', {email, password });
+        const response = await axios.post('http://localhost:3001/auth/login', {email, password });
         console.log('New user is created:', response.data);
       } catch (error) {
         console.error('Error creating a user:', error);

@@ -92,6 +92,7 @@ const createUser = asyncErrorHandler(async (req, res, next) => {
 const login = asyncErrorHandler(async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
+  console.log(req.body)
 
   if(!email || !password){
     const error = new customError('please provide email and password!', 400);
