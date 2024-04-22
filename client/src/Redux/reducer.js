@@ -12,6 +12,8 @@ import {
 
 const initialState = {
     files: [],
+    filter: 'ALL',
+    search: ''
 
 };
 
@@ -32,9 +34,7 @@ const todoReducer = (state = initialState, action)=> {
             };
         case DELETE_FILES:
             return {
-                files: state.files.map((file, index) => {
-                    file._id === action.payload.id
-                }) // add condition
+                files: state.files.map((file, index) => file._id !== action.payload.id) // add condition
             }
     
         default:
