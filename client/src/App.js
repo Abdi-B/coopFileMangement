@@ -29,10 +29,11 @@ import {AuthContextProvider} from './context/AuthContext'
 function App() {
 
   const [nameContext, SetNameContext] = useState(true);
+  const [navbar, SetNavbar] = useState(true);
 
   return (
  
-          <AppContext.Provider value={{ nameContext, SetNameContext }} >
+          <AppContext.Provider value={{ nameContext, SetNameContext, navbar, SetNavbar }} >
         
         <Router>
     

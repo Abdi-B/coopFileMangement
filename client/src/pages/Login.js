@@ -36,7 +36,7 @@ const useStyles = makeStyles({
 },
 loginBox: {
   // backgroundColor: 'grey',
-  width: '35%',
+  width: '55%',
   boxShadow: '0.3rem 0.3rem 0.6rem grey',
   borderRadius: 5,
   padding: '1rem'
@@ -67,9 +67,10 @@ const Login = () => {
     event.preventDefault();
   };
 
-//   useEffect(() => {
-//     // context.SetNameContext(false);
-// }, []);
+  useEffect(() => {
+    context.SetNavbar(false);
+    context.SetNameContext(false);
+}, []);
 
   const handleLogin = async (e) => { 
     e.preventDefault();
@@ -90,8 +91,7 @@ const Login = () => {
       console.log("Error, invalid login data ")
     }
   };
-
-
+  
   return (
     <Box
          className={classes.all}

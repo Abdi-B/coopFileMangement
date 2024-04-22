@@ -38,7 +38,7 @@ function Layout({ children }) {
   return (
     <Stack className={classes.page}>
    
-          <Navbar />
+         { context.navbar && <Navbar />}
         <Box className={classes.layout}>
         {children}
         </Box>
