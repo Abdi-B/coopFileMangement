@@ -8,7 +8,7 @@ import {
     GET_USER,
     UPDATE_USER,
     DELETE_USER
-} from './actionTypes'
+} from './actionTypes';
 
 export const addFile = (department, subDepartment, filename) => ({
     type: ADD_FILES,
