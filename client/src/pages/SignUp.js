@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect,useContext } from "react";
 
 import {
   Box,
@@ -19,6 +19,8 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import { makeStyles } from '@material-ui/styles';
+import AppContext from '../context/AppContext';
+
 
 const useStyles = makeStyles({
   all: {
@@ -31,7 +33,7 @@ const useStyles = makeStyles({
   },
   signupBox: {
     // backgroundColor: 'grey',
-    width: '40%',
+    width: '60%',
     boxShadow: '0.3rem 0.3rem 0.6rem grey',
     borderRadius: 5,
     padding: '1rem'
@@ -56,6 +58,8 @@ const useStyles = makeStyles({
 
 
 const SignUp = () => {
+  const context = useContext(AppContext);
+
   const classes = useStyles();
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -64,6 +68,11 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setconfirmPassword] = useState('');
+
+  useEffect(() => {
+    context.SetNavbar(false);
+    context.SetNameContext(false);
+}, []);
 
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
