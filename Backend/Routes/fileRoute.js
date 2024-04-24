@@ -19,6 +19,8 @@ const {protect , restrict} = require('./../controllers/userControllers');
 
 const router = express.Router();
 
+router.use(protect); 
+
 // Get Announcement
 // router.get('/getPost',protect, getAnnouncement); 
 // another way
@@ -44,7 +46,7 @@ router.get('/:row', getSubDepartment);
 router.get('/:item/:item2', getFiles);
 
 //admin
-router.get('/admin')
+// router.get('/admin')
 
 
 module.exports = router;

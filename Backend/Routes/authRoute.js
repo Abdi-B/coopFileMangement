@@ -9,6 +9,8 @@ const { createUser, login, forgotPassword, resetPassword, protect, updatePasswor
 const validate = require('../Validation/validate');
 
 
+// router.use(middlewareName) // route it before all
+
 // Create a user
 // router.post('/user', validate.validateUser, createUser );
 // router.post('/user', createUser );

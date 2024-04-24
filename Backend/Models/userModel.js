@@ -96,7 +96,7 @@ UserSchema.methods.isPasswordChanged = async function(JWTTimestamp){
     if(this.passwordChangedAt){
         const passwordChangedAt = parseInt(this.passwordChangedAt.getTime()/1000, 10); // to change date and time to timestamp with base 10
 
-        console.log(passwordChangedAt, JWTTimestamp); // in ms and sec respectively, timestamp is in sec
+        // console.log(passwordChangedAt, JWTTimestamp); // in ms and sec respectively, timestamp is in sec
         return JWTTimestamp < passwordChangedAt
     }
     return false;

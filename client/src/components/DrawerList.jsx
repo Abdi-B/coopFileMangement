@@ -6,6 +6,7 @@ import Home from './Home'
 import axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const drawerHeight = '82vh';
 
@@ -45,6 +46,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function DrawerList() {
+
+    const {token} = useAuthContext();
     const classes = useStyles();
     const location = useLocation();
 
@@ -55,8 +58,12 @@ function DrawerList() {
 
     useEffect(() => {
 
-        axios
-            .get("http://localhost:3001/read")
+        axios.get("http://localhost:3001/read", {
+                headers: {
+                    'Authorization' : `Bearer ${token}`
+                }
+            })
+
             .then((res) => {
                 if(res.data.directoriesInfo) {
                     setFile(res.data.directoriesInfo);
@@ -72,7 +79,10 @@ function DrawerList() {
 
         await axios({
             url: `http://localhost:3001/read/${item.name}`,
-            method: "get"
+            method: "get",
+            headers: {
+                'Authorization' : `Bearer ${token}`
+            }
         })
             .then((res) => {
                 // console.log(res.data.directoriesInfo)

@@ -133,7 +133,7 @@ const protect = asyncErrorHandler(async (req, res, next) => {
   // const testToken = req.headers['authorization']
   const authHeader = req.headers.authorization
   // console.log(req.headers)
-  // console.log(authHeader)
+  // console.log(authHeader);
   let token;
   // token = authHeader && authHeader.split(' ')[1];
 
@@ -154,11 +154,14 @@ const protect = asyncErrorHandler(async (req, res, next) => {
   //   console.log('access token', accessToken)
   //   });
 
+
   const decodeToken= await util.promisify(jwt.verify)(token, process.env.SECRET_STR)
   // console.log(decodeToken) // it contains id, iat, exp  iat=timestamps in ms
 
   // 3)  check If the user exists 
   // may be the token exist but the user not exist. Ex. if admin delete it
+
+  // const {_id} = jwt.verify(token, process.env.SECRET_STR); // check it
 
    const user = await User.findById(decodeToken.id);
   //  console.log(user);
@@ -199,7 +202,6 @@ const restrict = (role, role2) => {
     next();
   }
 };
-
 
 const forgotPassword = async (req, res, next) => {
   // 1) GET USER BASED ON POSTED EMAIL
@@ -280,6 +282,7 @@ const updatePassword = asyncErrorHandler(async (req,res,next)=>{
   const user = await User.findById(req.user._id).select('+password');
   // console.log(user);
 
+
   // CHECK IF THE SUPPLIED CURRENT PASSWORD IS CORRECT
   if(!(await user.comparePasswordInDb(req.body.currentPassword, user.password))){
     
@@ -287,6 +290,7 @@ const updatePassword = asyncErrorHandler(async (req,res,next)=>{
 
   }
   // IF SUPPLIED PASSWORD IS CORRECT, UPDATE USER PASSWORD WITH NEW VALUE
+  
   
   user.password = req.body.password;
   user.confirmPassword = req.body.confirmPassword;

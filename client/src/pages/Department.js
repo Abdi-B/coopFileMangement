@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import {ExpandMore, ExpandLess} from '@mui/icons-material';
 import axios from 'axios';
+import { useAuthContext } from '../hooks/useAuthContext';
+
 
 const useStyles = makeStyles({
   listPage: {
@@ -58,16 +60,21 @@ const useStyles = makeStyles({
 
 const Department = () => {
 
+  const {token } = useAuthContext();
+
   const [file1, setFile1] = useState([]);
   const [expand, setExpand] = useState(-1);
   const { item, item2 } = useParams();
-  const classes = useStyles()
+  const classes = useStyles();
 
   useEffect(() => {
 
     axios({
       url: `http://localhost:3001/read/${item}/${item2}`,
-      method: "get"
+      method: "get",
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
       })
       .then((res) => {
           // console.log(res.data.file1)

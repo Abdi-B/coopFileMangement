@@ -4,6 +4,8 @@ const app = express();
 const router = express.Router();
 const {  protect, updatePassword, updateMe, deleteMe, getAllUsers  } = require('./../controllers/userControllers');
 
+router.use(protect); 
+
 // GET ALL USERS
 
 router.route('/getAllUsers').get(  getAllUsers );

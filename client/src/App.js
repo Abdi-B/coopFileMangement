@@ -57,17 +57,17 @@ function App() {
                     {/* <Route path="/" element={<Home />} /> */}
                     
                     {/* { token !== null && token ? ( */}
-                    { !!token && (
+                    {/* { !!token && ( */}
             <>
-              <Route exact path="/one/:item/:item2" element={<Department />} />
+              <Route exact path="/one/:item/:item2" element={ token ? <Department /> : <Navigate to="/login" />} />
               <Route path="/coopLibrary" element={<CoopLibrary />} />
               <Route path="/create" element={<Create />} />
               <Route path="/announcement" element={<CreateAnnouncement />} />
               <Route path="/announcements" element={<AllAnnouncement />} />
             </>
-                  ) }
+                  {/* ) } */}
               <>
-              <Route path="/login" element={<Login />} />
+              <Route path="/login" element={ !token ? <Login /> : <Navigate to="one/Banking%20Operations/One" />} />
               <Route path="/signup" element={<SignUp />} />
                   </>
                  
