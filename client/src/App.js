@@ -54,35 +54,24 @@ function App() {
     
               <Layout >
                  <Routes >
-                    {/* <Route path="/" element={<Home />} /> */}
-                    
-                    {/* { token !== null && token ? ( */}
-                    {/* { !!token && ( */}
-            <>
-              <Route exact path="/one/:item/:item2" element={ token ? <Department /> : <Navigate to="/login" />} />
-              <Route path="/coopLibrary" element={<CoopLibrary />} />
-              <Route path="/create" element={<Create />} />
-              <Route path="/announcement" element={<CreateAnnouncement />} />
-              <Route path="/announcements" element={<AllAnnouncement />} />
-            </>
-                  {/* ) } */}
-              <>
-              <Route path="/login" element={ !token ? <Login /> : <Navigate to="one/Banking%20Operations/One" />} />
-              <Route path="/signup" element={ !token ? <SignUp /> : <Navigate to="one/Banking%20Operations/One" />} />
-                  </>
+
+                    <Route exact path="/one/:item/:item2" element={ token ? <Department /> : <Navigate to="/login" />} />
+                    <Route path="/coopLibrary" element={<CoopLibrary />} />
+                    <Route path="/create" element={<Create />} />
+                    <Route path="/announcement" element={<CreateAnnouncement />} />
+                    <Route path="/announcements" element={<AllAnnouncement />} />
+
+                    <Route
+                            path="/login"
+                            element={
+                              !!token ? <Navigate to="/one/Banking%20Operations/One" /> : <Login />
+                            }
+                          />                    
+                    <Route path="/signup" element={ !token ? <SignUp /> : <Navigate to="/one/Banking%20Operations/One" />} />
+                  {/* </> */}
                  
                     <Route path='/upload' element={<Upload />} /> 
 
-                    {/* <Route path="/signup">
-                    {isAuthenticated ? <Redirect to="/login"/> : <Redirect to="/signup" />}
-                   </Route> */}
-                   {/* <Route path="/signup" element={<Navigate replace to="/home" /> } /> */}
-
-                   {/* <Route path="/signup">
-                   {isAuthenticated ? <Navigate to="/login" /> : <Navigate to="/signup" />}
-                   </Route> */}
-
-                  {/* {isAuthenticated ? navigate('/login') : navigate('/signup')} */}
                     
                   </Routes>
               </Layout>

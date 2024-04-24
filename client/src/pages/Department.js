@@ -67,9 +67,9 @@ const Department = () => {
   const { item, item2 } = useParams();
   const classes = useStyles();
 
-  useEffect(() => {
+  useEffect(  () => {
 
-    axios({
+     axios({
       url: `http://localhost:3001/read/${item}/${item2}`,
       method: "get",
       headers: {

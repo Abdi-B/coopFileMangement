@@ -4,6 +4,7 @@ import {Card, CardContent,CardMedia, CardActionArea,CardActions, Button,Typograp
 import { makeStyles } from '@material-ui/styles';
 import Announcement from './Announcement';
 import AppContext from '../context/AppContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 
 const useStyles = makeStyles({
@@ -23,6 +24,8 @@ const useStyles = makeStyles({
 })
 
 export default function AllAnnouncement() {
+
+    const {token} = useAuthContext();
     const context = useContext(AppContext);
     const classes = useStyles()
     const [AllPost, setAllPost] = useState([]);
@@ -30,15 +33,19 @@ export default function AllAnnouncement() {
     useEffect(() => {
         context.SetNameContext(false);
         axios
-            .get("http://localhost:3001/read/getPosts")
+            .get("http://localhost:3001/read/getPosts", {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
             .then((res) => {
-                console.log(res.data.allAnnouncement)
+                // console.log(res.data.allAnnouncement)
             setAllPost(res.data.allAnnouncement);
             })
             .catch((err) => console.log(err));
 
             
-    }, []);
+    }, [token]);
 
   return (
     <Container className={classes.container}>

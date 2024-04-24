@@ -4,6 +4,7 @@ import axios from 'axios';
 import {Card, CardContent,CardMedia, CardActionArea,CardActions, Button,Typography, Container, List, ListItem, ListItemText } from '@mui/material';
 import cboLogo from './../assets/cbo.png'
 import { makeStyles } from '@material-ui/styles'
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const useStyles = makeStyles({
   announcement: {
@@ -32,20 +33,33 @@ const useStyles = makeStyles({
 })
 
 function Announcement() {
+  const {token} = useAuthContext();
+
+  console.log("token of announcement", token);
+
   const [latestPost, setLatestPost] = useState({});
   const classes = useStyles()
 
   useEffect(() => {
 
+    // const token2 = localStorage.getItem('token');
+
+
     axios
-        .get("http://localhost:3001/read/getPost")
+        .get("http://localhost:3001/read/getPost", {
+          headers: {
+              'Authorization' : `Bearer ${token}`
+          }
+      })
         .then((res) => {
+          console.log('Response:', res.data);
+
           setLatestPost(res.data.latestPost);
           // console.log(latestPost)
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
         
-}, []);
+}, [token]);
 
 
   return (

@@ -48,6 +48,8 @@ const useStyles = makeStyles((theme) => ({
 function DrawerList() {
 
     const {token} = useAuthContext();
+    console.log("token in drawer", token)
+
     const classes = useStyles();
     const location = useLocation();
 
@@ -56,9 +58,11 @@ function DrawerList() {
     const [file, setFile] = useState([]);
     const [detail, setDetail] = useState([]);
 
-    useEffect(() => {
+    useEffect(  () => {
 
-        axios.get("http://localhost:3001/read", {
+        const token2 = localStorage.getItem('token');
+
+         axios.get("http://localhost:3001/read", {
                 headers: {
                     'Authorization' : `Bearer ${token}`
                 }
@@ -71,11 +75,11 @@ function DrawerList() {
                     setFile(null)
                 }
             })
-            .catch((err) => console.log(err));
-    }, []);
+            .catch((err) => console.error("Error in drawer",err));
+    }, [token]);
     
     const  handleClick = async (item, index) => {
-        console.log(item.name, index)
+        // console.log(item.name, index)
 
         await axios({
             url: `http://localhost:3001/read/${item.name}`,
