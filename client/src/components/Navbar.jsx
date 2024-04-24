@@ -9,6 +9,9 @@ import { makeStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 
+import {useLogout} from '../hooks/useLogout'
+import { useAuthContext } from '../hooks/useAuthContext';
+
 // import { CatchingPokemon } from '@mui/icons-material'
 // import { useNavigate } from 'react-router-dom';
 
@@ -28,13 +31,22 @@ const changeContext = () => {
   // toggleAnnouncement
   // context.SetNameContext(false);
 
-}
+};
+
 
 
 function Navbar() {
   // const {  toggleDrawerList, toggleAnnouncement } = useGlobalState();
 
   const context = useContext(AppContext);
+  const {token } = useAuthContext();
+
+  const { logout} = useLogout();
+
+
+  const handleLogout = () => {
+    logout()
+  }
 
 
     const classes = useStyles();
@@ -57,35 +69,24 @@ function Navbar() {
                 LOGO
             </Typography> */}
             <Stack direction='row' spacing={2}>
-                <Button color='primary' 
-                  component={Link} 
-                  to="one/Banking%20Operations/One" 
-                  onClick={() => {
-                    context.SetNameContext(true);
-                  }}
-                >Home</Button>
-                <Button 
-                  color='inherit' 
-                  component={Link} 
-                  to="/coopLibrary" 
-                  onClick={() => {
-                    context.SetNameContext(false);
-                  }}
-                  >Coop Library</Button>
-
-                <Button color='inherit'>Service</Button>
-
-                <Button color='inherit'
-                  component={Link}
-                  to='/announcements'
-                  onClick={() => {
-                    // context.SetNameContext(false);
-                  }}
-                >Announcement</Button>
-
-                <Button color='primary'>Contact Us</Button>
-
+            
+              <Button color='primary' component={Link} to="one/Banking%20Operations/One" onClick={() => {
+                context.SetNameContext(true);
+              }}>Home</Button>
+              <Button color='inherit' component={Link} to="/coopLibrary" onClick={() => {
+                context.SetNameContext(false);
+              }}>Coop Library</Button>
+              <Button color='inherit'>Service</Button>
+              <Button color='inherit' component={Link} to='/announcements' onClick={() => {
+                // context.SetNameContext(false);
+              }}>Announcement</Button>
+              <Button color='primary'>Contact Us</Button>
+              {token &&  ( <Button color='primary' onClick={handleLogout}>Logout</Button> )}
+            
+                
             </Stack>
+
+            
         </Toolbar>
     </AppBar>
   )

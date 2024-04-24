@@ -29,10 +29,12 @@ const createSendResponse = (user, statusCode, res)=>{
     httpOnly: true
   }
 
-  if(process.env.Node_ENVT === 'production')
-    options.secure = true;
+  // not to store on localStorage
 
-  res.cookie('jwt', token, options);
+  // if(process.env.Node_ENVT === 'production')
+  //   options.secure = true;
+
+  // res.cookie('jwt', token, options);
 
   user.password = undefined; // this is to remove password from the response not in DB
 

@@ -20,6 +20,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import { makeStyles } from '@material-ui/styles';
 import AppContext from '../context/AppContext';
+import { useAuthContext } from './../hooks/useAuthContext';
 
 
 const useStyles = makeStyles({
@@ -60,6 +61,9 @@ const useStyles = makeStyles({
 const SignUp = () => {
   const context = useContext(AppContext);
 
+  const {dispatch} = useAuthContext();
+
+
   const classes = useStyles();
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -95,6 +99,16 @@ const SignUp = () => {
       try {
         const response = await axios.post('http://localhost:3001/auth/user', { firstName,lastName,email, password, confirmPassword });
         console.log('New user is created:', response.data);
+        
+        const token = response.data.token;
+
+        // Store the token in localStorage or sessionStorage
+        localStorage.setItem('token', token);
+
+        // update the auth context
+        dispatch({type: 'LOGIN', payload: token})
+
+
         setfirstName('');
         setlastName('');
         setEmail('');
@@ -102,7 +116,7 @@ const SignUp = () => {
         setconfirmPassword('');
         // You can redirect the user to the newly created post or update the post list
       } catch (error) {
-        console.error('Error creating a user:', error);
+        console.error('Error creating a user:', error.response.data.message);
       }
     }
     else{

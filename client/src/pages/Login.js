@@ -24,6 +24,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import { makeStyles } from '@material-ui/styles';
 import AppContext from '../context/AppContext';
+import { useAuthContext } from './../hooks/useAuthContext';
 
 const useStyles = makeStyles({ 
   all: {
@@ -55,6 +56,8 @@ login1: {
 
 const Login = () => {
   const context = useContext(AppContext);
+  const { dispatch} = useAuthContext();
+
   const classes = useStyles();
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -72,6 +75,8 @@ const Login = () => {
     context.SetNameContext(false);
 }, []);
 
+
+
   const handleLogin = async (e) => { 
     e.preventDefault();
 
@@ -79,10 +84,20 @@ const Login = () => {
         Boolean(email) && 
         Boolean(password) &&
         password.length > 7 ) {
-      console.log(email, password)
+      // console.log(email, password)
       try {
         const response = await axios.post('http://localhost:3001/auth/login', {email, password });
-        console.log('New user is created:', response.data);
+        // console.log('New user is created:', response.data);
+
+        const token = response.data.token;
+
+         // Store the token in localStorage or sessionStorage
+         localStorage.setItem('token', token);
+
+         // update the auth context
+         dispatch({type: 'LOGIN', payload: token})
+
+
       } catch (error) {
         console.error('Error creating a user:', error);
       }

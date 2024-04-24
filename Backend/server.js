@@ -23,7 +23,7 @@ app.use(helmet());
 // use rate limiter after app
 
 const limiter = rateLimit({
-    max: 50,
+    max: 500,
     windowMs: 60*60*1000,
     message: 'We have received too many requests from this IP. Please try after one hour!'
 });
@@ -97,20 +97,20 @@ app.use(globalErrorHandler);
 
 // DB connection
 
-// mongoose.connect(process.env.MONGO_URI, )
-//     .then(() => {
-//         //listen for req
-//     // console.log('Mongodb connected successfully & listening on the port');
-//     app.listen(process.env.PORT, () => {
-//               console.log('Mongodb connected successfully & listening on the port', process.env.PORT);
-//               })
-//     });
+mongoose.connect(process.env.MONGO_URI, )
+    .then(() => {
+        //listen for req
+    // console.log('Mongodb connected successfully & listening on the port');
+    app.listen(process.env.PORT, () => {
+              console.log('Mongodb connected successfully & listening on the port', process.env.PORT);
+              })
+    });
 
 
 // SERVER
-const server = app.listen(process.env.PORT, () => {
-    console.log('Server has started on the port', process.env.PORT);
-});
+// const server = app.listen(process.env.PORT, () => {
+//     console.log('Server has started on the port', process.env.PORT);
+// });
 
 
 // process.on('unhandledRejection', (err) => {
