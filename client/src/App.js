@@ -37,7 +37,7 @@ function App() {
   // const navigate = useNavigate();
 
   const {token } = useAuthContext();
-  console.log('token', token)
+  // console.log('token', token)
 
 
   const isAuthenticated = !!localStorage.getItem('token');

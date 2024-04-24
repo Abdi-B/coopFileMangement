@@ -81,7 +81,7 @@ function Navbar() {
                 // context.SetNameContext(false);
               }}>Announcement</Button>
               <Button color='primary'>Contact Us</Button>
-              {token &&  ( <Button color='primary' onClick={handleLogout}>Logout</Button> )}
+              { !!token &&  ( <Button color='primary' onClick={handleLogout}>Logout</Button> )}
             
                 
             </Stack>

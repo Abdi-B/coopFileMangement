@@ -1,7 +1,7 @@
 import { createContext, useEffect, useReducer } from "react";
 
 
-export const AuthContext = createContext()
+export const AuthContext = createContext();
 
 export const authReducer = (state, action) => {
     switch(action.type) {
@@ -18,7 +18,7 @@ export const authReducer = (state, action) => {
 export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, {
     token: null
-  })
+  });
 
   useEffect(() => {
     const token = localStorage.getItem('token')
