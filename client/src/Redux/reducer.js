@@ -7,7 +7,12 @@ import {
     ADD_USER,
     GET_USER,
     UPDATE_USER,
-    DELETE_USER
+    DELETE_USER,
+
+    FILTER_TERM,
+    SEARCH_TERM
+
+    
 } from './actionTypes';
 
 const initialState = {
@@ -36,6 +41,18 @@ const todoReducer = (state = initialState, action)=> {
             return {
                 files: state.files.map((file, index) => file._id !== action.payload.id) // add condition
             };
+        case FILTER_TERM:
+            return {
+                files: state.files,
+                filter: action.payload.id,
+                search: state.search
+            };
+        case SEARCH_TERM: 
+            return {
+                files: state.files,
+                filter: state.filter,
+                search: action.payload.text
+            }
         default:
             return state;
     }
