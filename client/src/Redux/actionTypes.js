@@ -14,3 +14,7 @@ export const GET_USER = "GET_USER";
 export const UPDATE_USER = "UPDATE_USER";
 export const DELETE_USER = "DELETE_USER";
 
+// FILTER AND SEARCH
+
+export const SEARCH_TERM = 'SEARCH_TERM';
+export const FILTER_TERM = 'FILTER_TERM';

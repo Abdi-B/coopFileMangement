@@ -7,7 +7,10 @@ import {
     ADD_USER,
     GET_USER,
     UPDATE_USER,
-    DELETE_USER
+    DELETE_USER,
+
+    SEARCH_TERM,
+    FILTER_TERM
 } from './actionTypes';
 
 export const addFile = (department, subDepartment, filename) => ({
@@ -55,3 +58,13 @@ export const deleteUser = ( id ) => ({
     payload: { id }
 })
 
+
+export const filterTerm = (id) => ({
+    type: FILTER_TERM,
+    payload: {id}
+})
+
+export const searchTerm= (text) => ({
+    type: SEARCH_TERM,
+    payload: {text}
+})
