@@ -70,6 +70,7 @@ function App() {
                     <Route path="/signup" element={ !token ? <SignUp /> : <Navigate to="/one/Banking%20Operations/One" />} />
                   {/* </> */}
                  
+                 
                     <Route path='/upload' element={<Upload />} /> 
 
                     
