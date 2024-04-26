@@ -16,7 +16,6 @@ import Home  from './components/Home';
 import Create from './pages/Create';
 import Layout from './components/Layout';
 import DrawerList from './components/DrawerList';
-import Note from './pages/Note';
 import Department from './pages/Department';
 import Announcement from './components/Announcement';
 import CreateAnnouncement from './pages/CreateAnnouncement';
