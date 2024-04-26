@@ -65,9 +65,7 @@ function Navbar() {
                 />
                 
             </Box>
-            {/* <Typography variant='h6' component='div' sx={{flexGrow:1,backgroundColor:''}}>
-                LOGO
-            </Typography> */}
+
             <Stack direction='row' spacing={2}>
             
               <Button color='primary' component={Link} to="one/Banking%20Operations/One" onClick={() => {
