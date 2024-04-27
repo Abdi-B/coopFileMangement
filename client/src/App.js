@@ -25,10 +25,10 @@ import AllAnnouncement from './components/AllAnnouncement';
 import Login from './pages/Login'
 import SignUp from './pages/SignUp';
 import CoopLibrary from './components/CoopLibrary';
-import Upload from './pages/Upload';
 import {AuthContextProvider} from './context/AuthContext'
 import { useAuthContext } from './hooks/useAuthContext';
-
+import UploadFile from './pages/UploadFile';
+import Upload_book from './pages/Upload_book';
 
 
 
@@ -59,6 +59,9 @@ function App() {
                     <Route path="/create" element={<Create />} />
                     <Route path="/announcement" element={<CreateAnnouncement />} />
                     <Route path="/announcements" element={<AllAnnouncement />} />
+                    <Route path='/uploadFile' element={<UploadFile /> } />
+                    <Route path='/uploadbook' element={<Upload_book /> } />
+
 
                     <Route
                             path="/login"
@@ -70,7 +73,7 @@ function App() {
                   {/* </> */}
                  
                  
-                    <Route path='/upload' element={<Upload />} /> 
+                    
 
                     
                   </Routes>
@@ -80,8 +83,6 @@ function App() {
     
          </AppContext.Provider>
    
-
-
   )
 }
 

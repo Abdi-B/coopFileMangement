@@ -19,7 +19,7 @@ const {protect , restrict} = require('./../controllers/userControllers');
 
 const router = express.Router();
 
-router.use(protect); 
+// router.use(protect); 
 
 // Get Announcement
 // router.get('/getPost',protect, getAnnouncement); 

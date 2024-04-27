@@ -45,7 +45,7 @@ const books= [
 var dep = 'Department';
 var subdep = 'subDepartment'
 
-const Upload = () => {
+const UploadFile = () => {
   const [selectedOption1, setSelectedOption1] = useState('');
   const [selectedOption2, setSelectedOption2] = useState('');
   const [file, setFile] = useState('');
@@ -105,4 +105,4 @@ const Upload = () => {
   );
 };
 
-export default Upload;
+export default UploadFile;

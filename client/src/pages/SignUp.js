@@ -139,7 +139,7 @@ const SignUp = () => {
 
               <form onSubmit={handleSubmit} className={classes.form} >
                   <Stack gap={2}>
-                        <TextField required label="First Name" value={firstName} onChange={(e) => setfirstName(e.target.value)} />
+                      <TextField required label="First Name" value={firstName} onChange={(e) => setfirstName(e.target.value)} />
                       <TextField required label="Last Name" value={lastName} onChange={(e) => setlastName(e.target.value)} />
                       <TextField required type="email" label="Email" value={email} onChange={(e) => { setEmail(e.target.value) }}/>
 

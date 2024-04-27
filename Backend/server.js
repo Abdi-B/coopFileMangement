@@ -44,6 +44,8 @@ app.use(express.static('./Department'));
 const fileRoutes = require('./Routes/fileRoute');
 const authRoutes = require('./Routes/authRoute');
 const userRoute = require('./Routes/userRoute');
+const bookRoute = require('./Routes/bookRoute');
+
 const customError = require('./Utils/customError');
 const globalErrorHandler = require('./controllers/errorController');
 
@@ -56,6 +58,7 @@ const options = {
 app.use('/read', fileRoutes );
 app.use('/auth', authRoutes );
 app.use('/user', userRoute );
+app.use('/book', bookRoute );
 
 
 // Invalid route --for all mean it include get, post, patch, delete and etc and it should be after routes
