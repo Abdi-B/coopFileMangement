@@ -19,6 +19,7 @@ const bookSchema = new mongoose.Schema({
     },
     invitedByEmail: {
         type: String,
+        required: true,
         trim: true
     }
 },
