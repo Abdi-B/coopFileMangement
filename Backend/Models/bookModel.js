@@ -30,4 +30,4 @@ const bookSchema = new mongoose.Schema({
 
 const Books = mongoose.Model('Books', bookSchema);
 
-module.exports = Books
+module.exports = Books;
