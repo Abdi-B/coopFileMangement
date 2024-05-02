@@ -38,7 +38,6 @@ const createSendResponse = (user, statusCode, res)=>{
 
   user.password = undefined; // this is to remove password from the response not in DB
 
-
   res.status(statusCode).json({
     status: 'success',
     token,
