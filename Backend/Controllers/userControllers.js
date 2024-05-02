@@ -74,7 +74,7 @@ const createUser = asyncErrorHandler(async (req, res, next) => {
   const user = await User.create(req.body);
 
   // const token = jwt.sign({id: user._id}, process.env.SECRET_STR,
-  //    { expiresIn: process.env.LOGIN_EXPIRES } // if it not in sec use string //ex. expiresIn: '30d
+  //    { expiresIn: process.env.LOGIN_EXPIRES } // if it is not in sec use string //ex. expiresIn: '30d
   //    );
 
   const token = generateAccessToken(user._id);
