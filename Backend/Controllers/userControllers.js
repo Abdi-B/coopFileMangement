@@ -8,7 +8,6 @@ const asyncErrorHandler = require('../Utils/asyncErrorHandler');
 const customError = require('../Utils/customError');
 const sendEmail  = require('../Utils/email');
 
-
 // use the following cmd on terminal to generate SECRET_STR a) node b)require('crypto').randomBytes(64).toString('hex') 
 const generateAccessToken = _id => {
   return jwt.sign({id: _id}, process.env.SECRET_STR,
