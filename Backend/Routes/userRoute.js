@@ -10,6 +10,7 @@ router.use(protect);
 
 router.route('/getAllUsers').get(  getAllUsers );
 
+
 //Update
 router.route('/updatePassword').patch( protect, updatePassword );
 
