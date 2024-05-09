@@ -68,7 +68,7 @@ const createUser = asyncErrorHandler(async (req, res, next) => {
     // req.body.password = await bcrypt.hash(req.body.password, 12); // bcrypt contains both hash and salt at the same time 
     // console.log(req.body.password)
 
-  const user = await User.create(req.body);
+  const user = await User12.create(req.body);
 
   // const token = jwt.sign({id: user._id}, process.env.SECRET_STR,
   //    { expiresIn: process.env.LOGIN_EXPIRES } // if it is not in sec use string //ex. expiresIn: '30d

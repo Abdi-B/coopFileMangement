@@ -1,6 +1,6 @@
-const { Timestamp } = require("mongodb");
 
-const mongoose = req('mongoose');
+
+const mongoose = require('mongoose');
 
 
 const bookSchema = new mongoose.Schema({
@@ -28,6 +28,6 @@ const bookSchema = new mongoose.Schema({
 }
 )
 
-const Books = mongoose.Model('Books', bookSchema);
+const Books = mongoose.model('Books', bookSchema);
 
 module.exports = Books;

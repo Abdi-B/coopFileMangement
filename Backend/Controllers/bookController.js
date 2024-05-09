@@ -19,6 +19,18 @@ const allBooks =  asyncErrorHandler( async (req, res) => {
     
     })
 
+const getBooks = async (req, res) => { 
+      const books = await Books.find();
+
+      console.log(books);
+
+      res.status.json({
+        status: "success",
+        books
+      })
+ }
+
 module.exports = {
-    allBooks
+    allBooks,
+    getBooks
 }
