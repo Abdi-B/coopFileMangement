@@ -8,7 +8,7 @@ const createBooks =  asyncErrorHandler( async (req, res) => {
 
   const book = await Books.create({category, author, title})
 
-    //   console.log(req.body)
+      // so move the book under the category
       
       res.status(200).json({
         status: "success",
