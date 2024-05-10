@@ -1,36 +1,35 @@
+const multer = require('multer');
+
 const Books = require("../Models/bookModel")
 const asyncErrorHandler = require("../Utils/asyncErrorHandler")
 
 
-const createBook =  asyncErrorHandler( async (req, res) => {
 
-  const {category, author, title} = req.body
+// Multer configuration for file uploads
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'Books/'); // Store uploaded files in the 'uploads' directory
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname); // Use the original file name
+    }
+});
 
-  const book = await Books.create({category, author, title})
 
-      // so move the book under the category
-      
-      res.status(200).json({
-        status: "success",
-         category, 
-         author, 
-         title
-      })
-    
-    })
+const upload = multer({ storage });
 
-const getBooks = async (req, res) => { 
-      const books = await Books.find();
+const uploadFile = upload.single('file');
 
-      console.log(books);
+const saveData = async (req, res) => {
+    const { title } = req.body;
+    const file = req.file;
+    console.log(title, file.path);
 
-      res.status.json({
-        status: "success",
-        books
-      })
- }
+    // Save file path and text data to MongoDB
+    // const newBook = new Books({ filePath: file.path, textData });
+    // await newBook.save();
 
-module.exports = {
-  createBook,
-    getBooks
-}
+    res.status(200).json({ message: 'File uploaded and data saved' });
+};
+
+module.exports = { uploadFile, saveData };

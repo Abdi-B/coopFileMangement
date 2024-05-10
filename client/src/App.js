@@ -60,8 +60,7 @@ function App() {
                     <Route path="/announcement" element={<CreateAnnouncement />} />
                     <Route path="/announcements" element={<AllAnnouncement />} />
                     <Route path='/uploadFile' element={<UploadFile /> } />
-                    <Route path='/uploadbook' element={<Upload_book /> } />
-
+                    <Route path='/uploadbook' element={<Upload_book /> } />                    
 
                     <Route
                             path="/login"
@@ -72,10 +71,7 @@ function App() {
                     <Route path="/signup" element={ !token ? <SignUp /> : <Navigate to="/one/Banking%20Operations/One" />} />
                   {/* </> */}
                  
-                 
-                    
-
-                    
+              
                   </Routes>
               </Layout>
               

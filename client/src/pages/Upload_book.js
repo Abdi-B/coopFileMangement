@@ -1,4 +1,4 @@
-
+import FormData from "form-data";
 import React, { useState, useEffect,useContext } from 'react';
 import {
     Box,
@@ -67,54 +67,28 @@ const Upload_book = () => {
         // fetchData(); // Fetch data when component mounts
     }, []);
 
-    const fetchData = async () => {
-        try {
-            const response = await fetch('http://localhost:3001/book/getBooks', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-
-            const data = await response.json();
-            console.log(data); // Log the fetched data
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('title', title);
+        formData.append('category', category);
+        formData.append('author', author);
+        // console.log(file, title);
+
         try {
-            // const response = await fetch('http://localhost:3001/book/createBook', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify({ category, author, title })
-            // });
-
-            // const json = await response.json();
-            // console.log('New book created:', json);
-
-            const response = await axios.post('http://localhost:3001/book/createBook', {
-                category, author, title
-            },
-            {
+            const response = await axios.post('http://localhost:3001/book/createBook', formData, {
                 headers: {
-                    'Content-Type': 'application/json'
-                    // Add any other headers if needed
+                    'Content-Type': 'multipart/form-data'
                 }
-            }
-            );
-            console.log('New user is created:', response.data);
-
-
-
+            });
+            console.log('File uploaded successfully:', response.data);
         } catch (error) {
-            console.error(error);
+            console.error('Error uploading file:', error);
         }
     };
+
     
   return (
     <Box className={classes.all} >
@@ -128,6 +102,7 @@ const Upload_book = () => {
                       <TextField required label="Category" value={category} onChange={(e) => setCategory(e.target.value)} />
                       <TextField required label="Author" value={author} onChange={(e) => setAuthor(e.target.value)} />
                       <TextField required  label="Title" value={title} onChange={(e) => { setTitle(e.target.value) }}/>
+                      <TextField required type="file"   onChange={(e) => { setFile(e.target.files[0]) }}/>
                       <Button type="submit"
                         variant="contained"
                         sx={{ alignItems: "center", width: "100%" }}
