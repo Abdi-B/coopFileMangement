@@ -6,28 +6,29 @@ const asyncErrorHandler = require("../Utils/asyncErrorHandler")
 
 
 // Multer configuration for file uploads
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'Books/'); // Store uploaded files in the 'uploads' directory
+        const {category} = req.body;
+        console.log(category)
+        const uploadPath = `Books/${category}`;
+        // const uploadPath = `Books/`;
+        cb(null, uploadPath);
     },
     filename: (req, file, cb) => {
-        cb(null, file.originalname); // Use the original file name
+        cb(null, file.originalname);
     }
 });
-
 
 const upload = multer({ storage });
 
 const uploadFile = upload.single('file');
 
 const saveData = async (req, res) => {
-    const { title } = req.body;
+    const { title, category, author } = req.body;
     const file = req.file;
-    console.log(title, file.path);
-
-    // Save file path and text data to MongoDB
-    // const newBook = new Books({ filePath: file.path, textData });
-    // await newBook.save();
+    // console.log(title, category, author, + " and file path is : " + file.path);
+    console.log(title, category, author, );
 
     res.status(200).json({ message: 'File uploaded and data saved' });
 };
