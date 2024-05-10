@@ -2,7 +2,7 @@ const Books = require("../Models/bookModel")
 const asyncErrorHandler = require("../Utils/asyncErrorHandler")
 
 
-const createBooks =  asyncErrorHandler( async (req, res) => {
+const createBook =  asyncErrorHandler( async (req, res) => {
 
   const {category, author, title} = req.body
 
@@ -31,6 +31,6 @@ const getBooks = async (req, res) => {
  }
 
 module.exports = {
-  createBooks,
+  createBook,
     getBooks
 }
