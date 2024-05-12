@@ -60,37 +60,36 @@ const Upload_book = () => {
     const [category, setCategory] = useState('')
     const [author, setAuthor] = useState('')
     const [title, setTitle] = useState('')
-    const [file, setFile] = useState('');
+    const [file, setFile] = useState(null);
 
     useEffect(() => {
         context.SetNameContext(false);
         // fetchData(); // Fetch data when component mounts
     }, []);
 
-    const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
         e.preventDefault();
 
   const formData = new FormData();
   formData.append('file', file);
-  formData.append('title', title);
-  formData.append('category', category);
-  formData.append('author', author);
-  console.log(file, category,title, author);
+
+  console.log("category is  " + category)
 
   try {
-    const response = await axios.post('http://localhost:3001/book/createBook', formData, {
+    const response = await axios.post(`http://localhost:3001/book/createBook/${category}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     });
+
     console.log('File uploaded successfully:', response.data);
+    
   } catch (error) {
+
     console.error('Error uploading file:', error);
   }
 };
 
-
-    
   return (
     <Box className={classes.all} >
         <Stack gap={2} className={classes.fileBox}>

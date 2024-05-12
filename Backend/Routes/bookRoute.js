@@ -5,7 +5,9 @@ const router = express.Router();
 const {createBook, getBooks, uploadFile, saveData} = require('./../controllers/bookController');
 
 
-router.post('/createBook', uploadFile, saveData);
+// router.post('/createBook:/category',  saveData);
+router.post('/createBook/:category', saveData);
+
 
 // createBooks
 // router.route('/createBook').post(uploadFile, saveData);
