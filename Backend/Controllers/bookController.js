@@ -10,6 +10,7 @@ const path = require('path');
 
 
 const saveData =  (req, res) => {
+    
     const { category } = req.params;
     // const file = req.file;
     const file = req.file ? req.files.file[0] : null; 
