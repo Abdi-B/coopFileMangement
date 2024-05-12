@@ -59,7 +59,7 @@ const getAllUsers = asyncErrorHandler( async(req, res, next) => {
 const createUser = asyncErrorHandler(async (req, res, next) => {
   // console.log(req.body)
 
-// use can use bcrypt here but it is more recommended to use UserSchema.pre()
+// we can use bcrypt here but it is more recommended to use UserSchema.pre()
 // const salt = await bcrypt.genSalt() // use can use genSalt(10)
     // console.log(salt)
 
@@ -68,7 +68,7 @@ const createUser = asyncErrorHandler(async (req, res, next) => {
     // req.body.password = await bcrypt.hash(req.body.password, 12); // bcrypt contains both hash and salt at the same time 
     // console.log(req.body.password)
 
-  const user = await User12.create(req.body);
+  const user = await User.create(req.body);
 
   // const token = jwt.sign({id: user._id}, process.env.SECRET_STR,
   //    { expiresIn: process.env.LOGIN_EXPIRES } // if it is not in sec use string //ex. expiresIn: '30d

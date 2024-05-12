@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 
 const rateLimit = require('express-rate-limit'); 
@@ -38,6 +39,7 @@ app.use(sanitize());
 
 app.use(xss());
 
+app.use(bodyParser.json()); 
 app.use(express.urlencoded({ extended: true }));
 // app.use(cors());
 app.use(express.static('./Department'));

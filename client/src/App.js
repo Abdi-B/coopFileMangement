@@ -54,7 +54,7 @@ function App() {
               <Layout >
                  <Routes >
 
-                    <Route exact path="/one/:item/:item2" element={ token ? <Department  />: <Navigate to="/login" />} />
+                    <Route exact path="/one/:item/:item2" element={ token ? <Department  /> : <Navigate to="/login" />} />
                     <Route path="/coopLibrary" element={<CoopLibrary />} />
                     <Route path="/create" element={<Create />} />
                     <Route path="/announcement" element={<CreateAnnouncement />} />

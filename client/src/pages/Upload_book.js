@@ -70,24 +70,25 @@ const Upload_book = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('title', title);
-        formData.append('category', category);
-        formData.append('author', author);
-        // console.log(file, title);
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('title', title);
+  formData.append('category', category);
+  formData.append('author', author);
+  console.log(file, category,title, author);
 
-        try {
-            const response = await axios.post('http://localhost:3001/book/createBook', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-            console.log('File uploaded successfully:', response.data);
-        } catch (error) {
-            console.error('Error uploading file:', error);
-        }
-    };
+  try {
+    const response = await axios.post('http://localhost:3001/book/createBook', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    console.log('File uploaded successfully:', response.data);
+  } catch (error) {
+    console.error('Error uploading file:', error);
+  }
+};
+
 
     
   return (
