@@ -78,13 +78,11 @@ function Navbar() {
               <Button color='inherit' component={Link} to='/announcements' onClick={() => {
                 // context.SetNameContext(false);
               }}>Announcement</Button>
-              <Button color='primary'>Contact Us</Button>
+              {/* <Button color='primary'>Contact Us</Button> */}
+              { !!token && ( <Button color='inherit' component={Link}  >Admin</Button>)}
               { !!token &&  ( <Button color='primary' onClick={handleLogout}>Logout</Button> )}
             
-                
             </Stack>
-
-            
         </Toolbar>
     </AppBar>
   )
