@@ -6,7 +6,8 @@ import AppContext from '../context/AppContext';
 
 const useStyles = makeStyles({
     box1: {
-        marginTop: 110,
+        marginTop: 150,
+        color: "blue"
         // backgroundColor: 'gray',
         // height: '100%',
         // width: '100%',
@@ -19,45 +20,57 @@ const useStyles = makeStyles({
         // marginRight: -250
        
     },
+    cardBox:{
+            width: '100%',
+        marginTop: 5,
+        // backgroundColor: 'green',
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap'
+    },
+    
     card1: {
-        width: '30%',
+        width: '32%',
         margin: 5,
-        backgroundColor: 'green'
+        // backgroundColor: 'green',
+        // display: 'flex',
+        // flexDirection: 'row',
+        // flexWrap: 'wrap'
     }
 })
 
 const books= [
     {
-        title:"aa",
+        title:"Title1",
         category: "Tech",
         author: "Abdi",
         invitedByK:"Chali"
         
     },
     {
-        title:"aa",
-        category: "Tech",
+        title:"Title2",
+        category: "Business",
         author: "Abdi",
         invitedByK:"Chali"
         
     },
     {
-        title:"aa",
-        category: "Tech",
+        title:"Title3",
+        category: "Psychology",
         author: "Abdi",
         invitedByK:"Chali"
         
     },
     {
-        title:"aa",
-        category: "Tech",
+        title:"Title4",
+        category: "Marketing",
         author: "Abdi",
         invitedByK:"Chali"
         
     },
     {
-        title:"aa",
-        category: "Tech",
+        title:"Title5",
+        category: "Health",
         author: "Abdi",
         invitedByK:"Chali"
         
@@ -76,28 +89,26 @@ const CoopLibrary = () => {
     }, [])
     
   return (
-    <Stack  className={classes.box1} sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '100%',minWidth: '100%', height: '100%', backgroundColor: 'grey'}}>
+    <Stack  className={classes.box1} sx={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', width: '100%',minWidth: '100%', height: '100%', backgroundColor: ''}}>
         <Select
-        label='Filter By'
+        label='Filter By' placeholder='FilterBy' 
         >
                  <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
 
                   {books.map((book, index) => (
-                    <MenuItem key={index} value={book.title}>
-                    {book.title}
+                    <MenuItem key={index} value={book.category}>
+                    {book.category}
                     </MenuItem>
                     ))}
-
-        </Select>
-        
-        {
+        </Select >
+        <Box  className={classes.cardBox} >
+            {
                 books.map((book,index)=>(
                     <Card key={index} elevation={3} className={classes.card1} >
             
                         <CardContent>
-                        
                             <Typography gutterBottom variant="p" component="div">
                                  Title : {book.title}
                             </Typography>
@@ -115,11 +126,14 @@ const CoopLibrary = () => {
                         </CardContent>
                         <CardActions>
                         
-                            <Button size="small">download</Button>
+                            <Button size="small"  >download</Button>
                         </CardActions>
                     </Card>
                 ))
             }
+        </Box>
+        
+        
         
   
     </Stack>

@@ -7,6 +7,7 @@ import axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import { useAuthContext } from '../hooks/useAuthContext';
+import Department from '../pages/Department';
 
 const drawerHeight = '82vh';
 
@@ -163,6 +164,7 @@ function DrawerList() {
                 </List>
             </Container>
             </Drawer>
+            
         </Container>
   )
 }
