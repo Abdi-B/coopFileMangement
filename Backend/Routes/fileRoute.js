@@ -25,8 +25,8 @@ const router = express.Router();
 // Get Announcement
 // router.get('/getPost',protect, getAnnouncement); 
 // another way
-router.route('/getPost')
-    .get(  getAnnouncement)
+// router.route('/getPost').get(  getAnnouncement)
+router.get('/getPost', getAnnouncement)
 
 
 //get all Announcements

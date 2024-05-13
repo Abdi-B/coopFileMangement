@@ -108,28 +108,9 @@ mongoose.connect(process.env.MONGO_URI )
     .then(() => {
         app.listen(process.env.PORT, () => {
               console.log('Mongodb connected successfully & listening on the port', process.env.PORT);
-    }).
-    catch((error) => {
-        console.log("Mongodb is not connected", error)
     })
     });
-// const { MongoClient } = require('mongodb');
-// const uri = 'mongodb+srv://abdib:abdi1234@clusterfile.btdxx8v.mongodb.net/?retryWrites=true&w=majority';
 
-// async function testConnection() {
-//     const client = new MongoClient(uri, );
-
-//     try {
-//         await client.connect();
-//         console.log('MongoDB connected successfully');
-//     } catch (error) {
-//         console.error('Error connecting to MongoDB:', error);
-//     } finally {
-//         await client.close();
-//     }
-// }
-
-// testConnection();
 
 // SERVER
 // const server = app.listen(process.env.PORT, () => {

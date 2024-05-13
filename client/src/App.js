@@ -29,7 +29,6 @@ import {AuthContextProvider} from './context/AuthContext'
 import { useAuthContext } from './hooks/useAuthContext';
 import UploadFile from './pages/UploadFile';
 import Upload_book from './pages/Upload_book';
-import Admin from './components/Admin';
 
 
 
@@ -54,25 +53,14 @@ function App() {
     
               <Layout >
                  <Routes >
-                    <Route  path="/one/:item/:item2" 
-                    element={
-                      token ? (
-                        <>
-                        <Department />
 
-                        </>
-                      ) : (
-                        <Navigate to="/login" />
-                      )
-                    }
-                    />
+                    <Route exact path="/one/:item/:item2" element={ token ? <Department  /> : <Navigate to="/login" />} />
                     <Route path="/coopLibrary" element={<CoopLibrary />} />
                     <Route path="/create" element={<Create />} />
                     <Route path="/announcement" element={<CreateAnnouncement />} />
                     <Route path="/announcements" element={<AllAnnouncement />} />
                     <Route path='/uploadFile' element={<UploadFile /> } />
-                    <Route path='/uploadbook' element={<Upload_book /> } />    
-                    <Route path='/admin' element={<Admin />} />        
+                    <Route path='/uploadbook' element={<Upload_book /> } />                    
 
                     <Route
                             path="/login"

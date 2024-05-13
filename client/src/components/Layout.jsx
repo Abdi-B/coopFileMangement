@@ -32,6 +32,7 @@ function Layout({ children }) {
 
 
   const context = useContext(AppContext);
+  console.log("context.navbar value is :" + context.navbar )
 
    
     const classes = useStyles()
