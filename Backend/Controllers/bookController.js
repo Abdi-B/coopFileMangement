@@ -19,16 +19,19 @@ const size = req.files.file.size
 const name = req.files.file.name;
 
 const {category, author, title } = req.body 
+   
 
 
   if(file && category && author && title) {
 
     const checkTitle = await Books.findOne({ title });
+    console.log(checkTitle)
         if (checkTitle) {
             return res.status(400).json({ message: 'A book with this title already exists.' });
         }
+      
 
-    const  uploadPath = await path.join(__dirname, '../Books', category);
+    const  uploadPath = path.join(__dirname, '../Books', category);
 
     // // Create the category directory if it doesn't exist
     if (!fs.existsSync(uploadPath)) {

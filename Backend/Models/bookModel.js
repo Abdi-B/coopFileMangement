@@ -18,7 +18,7 @@ const bookSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        unique: [true, 'The title must be unique']
+        unique: [true, "The title must be unique"]
     },
     // invitedByEmail: {
     //     type: String,

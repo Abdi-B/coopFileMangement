@@ -13,11 +13,11 @@ const fileUpload = require('express-fileupload');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-process.on('uncaughtException', (err) => {
-    console.log(err.name, err.message)
-      console.log('uncaughtException occurred! shutting down...')
-        process.exit(1); // 0 for success and 1 for uncaught exception 
-  });
+// process.on('uncaughtException', (err) => {
+//     console.log(err.name, err.message)
+//       console.log('uncaughtException occurred! shutting down...')
+//         process.exit(1); // 0 for success and 1 for uncaught exception 
+//   });
 
 const app = express();
 app.use(cors());
