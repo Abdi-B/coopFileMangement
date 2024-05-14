@@ -21,7 +21,12 @@ const name = req.files.file.name;
 const {category, author, title } = req.body 
 
 
-  if(file && category) {
+  if(file && category && author && title) {
+
+    const checkTitle = await Books.findOne({ title });
+        if (checkTitle) {
+            return res.status(400).json({ message: 'A book with this title already exists.' });
+        }
 
     const  uploadPath = await path.join(__dirname, '../Books', category);
 
@@ -49,7 +54,7 @@ const {category, author, title } = req.body
     })
   });
 } else {
-  res.status(400).send('File or category is missing.');
+  res.status(400).send('File or  category or author or title is missing.');
 }
   
   })
