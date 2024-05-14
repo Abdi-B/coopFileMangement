@@ -1,28 +1,55 @@
-const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
 
 const Books = require("../Models/bookModel")
 const asyncErrorHandler = require("../Utils/asyncErrorHandler")
 
-const path = require('path');
+const uploadBook = (req, res) => { 
 
+  // console.log(req.files.file.name)
+  // console.log(req.files.file.size)
+  // console.log(req.body.category)
 
-// Multer configuration for file uploads
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
+}
 
-const saveData =  (req, res) => {
+const file = req.files.file;
+const category = req.body.category ;
+  if(file && category) {
+    const uploadPath = path.join(__dirname, '../Books', category);
+    console.log('Upload path:', uploadPath);
+    console.log(!fs.existsSync(uploadPath));
 
-    const { category } = req.params;
-    // const file = req.file;
-    const file = req.file ? req.files.file[0] : null; 
-    // console.log(title, category, author, + " and file path is : " + file.path);
-   
-    console.log(`Category is ${category} and file is ${file}`);
+    // // Create the category directory if it doesn't exist
+    if (!fs.existsSync(uploadPath)) {
+      try {
+          fs.mkdirSync(uploadPath, { recursive: true });
+          console.log('Directory created:', uploadPath);
+      } catch (err) {
+          console.error('Error creating directory:', err);
+          return res.status(500).send('Error creating directory.');
+      }
+    }
 
-  if (category) {
-    res.status(200).json({ message: 'File uploaded and data saved' });
-  } else {
-    res.status(400).json({ error: 'Category is required' });
+    // Use the mv() method to place the file in the category folder
+    file.mv(path.join(uploadPath, file.name), (err) => {
+      if (err) {
+          console.error('Error moving file:', err);
+          return res.status(500).send(err);
+      }
+
+      res.send('File uploaded successfully!');
+  });
+} else {
+  res.status(400).send('File or category is missing.');
+}
+  
   }
 
-};
 
-module.exports = { saveData };
+
+module.exports = { 
+  saveData,
+  uploadBook 
+};

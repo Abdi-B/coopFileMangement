@@ -2,11 +2,11 @@ const express = require('express');
 
 const router = express.Router();
 
-const {createBook, getBooks, uploadFile, saveData} = require('./../controllers/bookController');
+const {createBook, getBooks, uploadFile, saveData, uploadBook} = require('./../controllers/bookController');
 
 
 // router.post('/createBook:/category',  saveData);
-router.post('/createBook/:category', saveData);
+router.post('/createBook', uploadBook);
 
 
 // createBooks

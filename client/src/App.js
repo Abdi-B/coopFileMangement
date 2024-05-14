@@ -29,6 +29,7 @@ import {AuthContextProvider} from './context/AuthContext'
 import { useAuthContext } from './hooks/useAuthContext';
 import UploadFile from './pages/UploadFile';
 import Upload_book from './pages/Upload_book';
+import Admin from './components/Admin';
 
 
 
@@ -60,7 +61,9 @@ function App() {
                     <Route path="/announcement" element={<CreateAnnouncement />} />
                     <Route path="/announcements" element={<AllAnnouncement />} />
                     <Route path='/uploadFile' element={<UploadFile /> } />
-                    <Route path='/uploadbook' element={<Upload_book /> } />                    
+                    <Route path='/uploadbook' element={<Upload_book /> } />
+                    <Route path='/admin' element={<Admin /> } />
+
 
                     <Route
                             path="/login"

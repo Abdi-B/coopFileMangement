@@ -67,7 +67,7 @@ const UploadFile = () => {
   const selectDepartment = (books, dep) => (
 
     
-        <FormControl  sx={{ m: 1, width: '40%'}}>
+        <FormControl  sx={{ m: 1, width: '60%'}}>
         <InputLabel id={`select-label-${dep}`}>Select {dep}</InputLabel>
         
                 <Select
@@ -97,9 +97,9 @@ const UploadFile = () => {
     <Stack gap={2} sx={{marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%'}}>
       {selectDepartment(books, dep)} 
       {selectDepartment(books, subdep)} 
-      <TextField sx={{width: '40%'}} required type="file"  value={file} onChange={(e) => { setFile(e.target.value) }}/>
+      <TextField sx={{width: '60%'}} required type="file"  value={file} onChange={(e) => { setFile(e.target.value) }}/>
 
-      <Button sx={{width: '40%'}} variant="contained" onClick={handleSubmit}>Submit</Button>
+      <Button sx={{width: '60%'}} variant="contained" onClick={handleSubmit}>Submit</Button>
 
     </Stack>
   );

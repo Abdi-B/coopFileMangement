@@ -1,4 +1,4 @@
-import FormData from "form-data";
+
 import React, { useState, useEffect,useContext } from 'react';
 import {
     Box,
@@ -72,11 +72,13 @@ const handleSubmit = async (e) => {
 
   const formData = new FormData();
   formData.append('file', file);
+  formData.append('category', category);
 
-  console.log("category is  " + category)
 
   try {
-    const response = await axios.post(`http://localhost:3001/book/createBook/${category}`, formData, {
+    // const response = await axios.post(`http://localhost:3001/book/createBook/${category}`, formData, {
+      
+    const response = await axios.post(`http://localhost:3001/book/createBook`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -108,7 +110,7 @@ const handleSubmit = async (e) => {
                         sx={{ alignItems: "center", width: "100%" }}
                         
                       >
-                        SignUp
+                        Submit
                       </Button>
 
                 </Stack>
