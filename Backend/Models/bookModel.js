@@ -4,23 +4,34 @@ const mongoose = require('mongoose');
 
 
 const bookSchema = new mongoose.Schema({
-    Author: {
-        type: String,
-        required: true,
-        
-    },
     category: {
         type: String,
         required: true
     },
-    Title: {
-        type: String,
-        required: true
-    },
-    invitedByEmail: {
+    name: {
         type: String,
         required: true,
-        trim: true
+        
+    },
+    author: {
+        type: String,
+        required: true,
+        
+    },
+    title: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    // invitedByEmail: {
+    //     type: String,
+    //     required: true,
+    //     trim: true
+    // },
+    size: {
+        type: Number,
+        required: true
+
     }
 },
 {

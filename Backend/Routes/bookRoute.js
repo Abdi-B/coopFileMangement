@@ -2,10 +2,10 @@ const express = require('express');
 
 const router = express.Router();
 
-const {createBook, getBooks, uploadFile, saveData, uploadBook} = require('./../controllers/bookController');
+const {createBook, getBooks, uploadFile, uploadBook} = require('./../controllers/bookController');
 
 
-// router.post('/createBook:/category',  saveData);
+// router.post('/createBook:/category',  uploadBook);
 router.post('/createBook', uploadBook);
 
 

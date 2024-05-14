@@ -73,6 +73,8 @@ const handleSubmit = async (e) => {
   const formData = new FormData();
   formData.append('file', file);
   formData.append('category', category);
+  formData.append('author', author);
+  formData.append('title', title);
 
 
   try {
