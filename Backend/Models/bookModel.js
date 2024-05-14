@@ -1,7 +1,4 @@
-
-
 const mongoose = require('mongoose');
-
 
 const bookSchema = new mongoose.Schema({
     category: {
@@ -21,7 +18,7 @@ const bookSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        unique: true
+        unique: [true, 'The title must be unique']
     },
     // invitedByEmail: {
     //     type: String,
