@@ -1,18 +1,26 @@
 import React, { useState } from 'react';
-import { TextField, Button, Box, Stack, Typography } from '@mui/material';
+import { TextField, Button, Box, Stack, Typography, Container } from '@mui/material';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
-  all: {
+  box: {
           display: 'flex',
           flexDirection: 'column',
           boxSizing: 'border-box',
           width: '100%',
           height: '100vh',
-          // justifyContent: "center",
           alignItems: "center",
-        backgroundColor: 'black'  
+          marginTop: 50,
+        backgroundColor: ''  
+  },
+  all: {
+    width:'60%', 
+    backgroundColor: ''
+  },
+  list: {
+    width: '100%',
+    backgroundColor: ""
   }
 
 })
@@ -39,20 +47,22 @@ const CreateAnnouncement = () => {
   };
 
   return (
-    <Box className={classes.all}>
-        <Typography sx={{backgroundColor: 'goldenrod', width: '100%'}}>
+    <Box className={classes.box}>
+        <Stack className={classes.all}>
+        <Typography variant='h6' sx={{backgroundColor: '', width: '100%'}}>
                     UPLOAD AN ANNOUNCEMENT 
             </Typography>
 
-        <form onSubmit={handleSubmit}  sx={{width: "95%"}}>
-          <Stack gap={2} sx={{width: '100%',  display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: "gray"}}>
+        <form onSubmit={handleSubmit}  >
+          <Stack gap={2} className={classes.list}>
             <TextField label="Title" variant="outlined" value={title} onChange={(e) => setTitle(e.target.value)}/>
-            <TextField label="Content" variant="outlined"  multiline rows={4} value={content} onChange={(e) => setContent(e.target.value)}/>
+            <TextField label="Content" variant="outlined"   multiline rows={4} value={content} onChange={(e) => setContent(e.target.value)}/>
             <Button type="submit" variant="contained" color="primary" >
-              Create Announcement
+              Post Your Announcement
             </Button>
           </Stack>
         </form>
+        </Stack>
     </Box>
   );
 };

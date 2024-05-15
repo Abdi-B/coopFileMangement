@@ -25,7 +25,7 @@ const useStyles = makeStyles({
         margin: 3,
         
     }
-})
+});
 
 export default function AllAnnouncement() {
 

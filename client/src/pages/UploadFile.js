@@ -108,7 +108,7 @@ const UploadFile = () => {
   );
 
   return (
-    <Stack gap={2} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }}>
+    <Stack gap={2} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '', marginTop: 10 }}>
        <Typography >
                     UPLOAD A FILE 
             </Typography>

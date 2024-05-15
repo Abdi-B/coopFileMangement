@@ -25,9 +25,9 @@ const useStyles = makeStyles({
             display: 'flex',
             boxSizing: 'border-box',
             width: '100%',
-            height: '100vh',
+            height: '',
             justifyContent: "center",
-            alignItems: "center",
+            // alignItems: "center",
         //   backgroundColor: 'green'  
     },
     fileBox: {
