@@ -6,13 +6,13 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles({
   all: {
           display: 'flex',
-          // flexDirection: 'column',
+          flexDirection: 'column',
           boxSizing: 'border-box',
           width: '100%',
           height: '100vh',
           justifyContent: "center",
           alignItems: "center",
-      //   backgroundColor: 'green'  
+        backgroundColor: 'green'  
   }
 
 })
@@ -47,8 +47,8 @@ const CreateAnnouncement = () => {
                     UPLOAD AN ANNOUNCEMENT 
             </Typography>
 
-        <form onSubmit={handleSubmit}  sx={{width: '60%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-          <Stack gap={2}>
+        <form onSubmit={handleSubmit}  sx={{width: "75%"}}>
+          <Stack gap={2} sx={{width: '100%',  display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: "gray"}}>
             <TextField label="Title" variant="outlined" value={title} onChange={(e) => setTitle(e.target.value)}/>
             <TextField label="Content" variant="outlined" fullWidth multiline rows={4} value={content} onChange={(e) => setContent(e.target.value)}/>
             <Button type="submit" variant="contained" color="primary" fullWidth>
