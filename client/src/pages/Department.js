@@ -9,7 +9,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 
 
 const useStyles = makeStyles({
-  listPage: {
+  listPage1: {
     // background: 'yellow',
     display: 'flex',
     height: '100%',
@@ -19,6 +19,16 @@ const useStyles = makeStyles({
     alignItems: 'center',
     textAlign: 'center',
     marginTop: 115
+  },
+  listPage2: {
+    // background: 'gray',
+    display: 'flex',
+    width:'60%',
+    // flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    // marginTop: 115
   },
   list1: {
     display:'flex',
@@ -86,20 +96,22 @@ const Department = () => {
 }, [item2]);
 
   return (
-    <Stack className={classes.listPage}>
-      <Typography variant='h4' >{item}</Typography>
-      <Typography variant='h6' >{item2}</Typography>
+    <Box className={classes.listPage1}>
+        <Stack className={classes.listPage2}>
+          <Typography variant='h4' >{item}</Typography>
+          <Typography variant='h6' >{item2}</Typography>
 
-       {file1.map((Item2, index) => (
-        <Card key={index} className={classes.list1} elevation={1}>
-          <ListItem className={classes.lists} >
-            <ListItemText primary={Item2} className={classes.list2} />
-            <ListItemButton className={classes.downloadButton}>Download</ListItemButton>
-          </ListItem>
-        </Card>
-      )
-      )} 
-    </Stack>
+          {file1.map((Item2, index) => (
+            <Card key={index} className={classes.list1} elevation={1}>
+              <ListItem className={classes.lists} >
+                <ListItemText primary={Item2} className={classes.list2} />
+                <ListItemButton className={classes.downloadButton}>Download</ListItemButton>
+              </ListItem>
+            </Card>
+          )
+          )} 
+        </Stack>
+    </Box>
   );
 };
 

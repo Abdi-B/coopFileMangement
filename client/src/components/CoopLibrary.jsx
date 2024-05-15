@@ -89,7 +89,14 @@ const CoopLibrary = () => {
     }, [])
     
   return (
-    <Stack  className={classes.box1} sx={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', width: '100%',minWidth: '100%', height: '100%', backgroundColor: ''}}>
+    <Stack  className={classes.box1} sx={{
+        display: 'flex', 
+        flexDirection: 'column', 
+        flexWrap: 'wrap', 
+        width: '100vw',
+        minWidth: '100vh', 
+        height: '100%', 
+        backgroundColor: ''}}>
         <Select
         label='Filter By' placeholder='FilterBy' 
         >

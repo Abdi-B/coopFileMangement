@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     layout: {
       // background: 'green',
       // height: '100%',
-      width: '60%',
+      width: '100%',
       display: 'flex',
       flexGrow: 1, 
     }

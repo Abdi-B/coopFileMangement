@@ -10,9 +10,9 @@ const useStyles = makeStyles({
           boxSizing: 'border-box',
           width: '100%',
           height: '100vh',
-          justifyContent: "center",
+          // justifyContent: "center",
           alignItems: "center",
-        backgroundColor: 'green'  
+        backgroundColor: 'black'  
   }
 
 })
@@ -26,9 +26,6 @@ const CreateAnnouncement = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(title, content)
-
-    // Send a POST request to create a new blog post
     try {
       const response = await axios.post('http://localhost:3001/read/posts', { title, content });
       
@@ -43,15 +40,15 @@ const CreateAnnouncement = () => {
 
   return (
     <Box className={classes.all}>
-        <Typography >
+        <Typography sx={{backgroundColor: 'goldenrod', width: '100%'}}>
                     UPLOAD AN ANNOUNCEMENT 
             </Typography>
 
-        <form onSubmit={handleSubmit}  sx={{width: "75%"}}>
+        <form onSubmit={handleSubmit}  sx={{width: "95%"}}>
           <Stack gap={2} sx={{width: '100%',  display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: "gray"}}>
             <TextField label="Title" variant="outlined" value={title} onChange={(e) => setTitle(e.target.value)}/>
-            <TextField label="Content" variant="outlined" fullWidth multiline rows={4} value={content} onChange={(e) => setContent(e.target.value)}/>
-            <Button type="submit" variant="contained" color="primary" fullWidth>
+            <TextField label="Content" variant="outlined"  multiline rows={4} value={content} onChange={(e) => setContent(e.target.value)}/>
+            <Button type="submit" variant="contained" color="primary" >
               Create Announcement
             </Button>
           </Stack>
