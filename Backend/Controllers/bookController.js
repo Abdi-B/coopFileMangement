@@ -22,15 +22,13 @@ const {category, author, title } = req.body
    
 
 
-  if(file && category && author && title) {
+  if(file && category && author && title ) {
 
     const checkTitle = await Books.findOne({ title });
-    console.log(checkTitle)
+    // console.log(checkTitle)
         if (checkTitle) {
             return res.status(400).json({ message: 'A book with this title already exists.' });
         }
-      
-
     const  uploadPath = path.join(__dirname, '../Books', category);
 
     // // Create the category directory if it doesn't exist
@@ -47,7 +45,7 @@ const {category, author, title } = req.body
     file.mv(path.join(uploadPath, file.name), async (err) => {
       if (err) {
           console.error('Error moving file:', err);
-          return res.status(500).send(err);
+          return res.status(500).send('Error moving file:',err);
       }
     const book = await Books.create({category,name,  author, title, size})
 

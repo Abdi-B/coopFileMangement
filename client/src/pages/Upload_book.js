@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect,useContext } from 'react';
+import React, { useState, useEffect,useContext, useRef } from 'react';
 import {
     Box,
     Typography,
@@ -50,7 +50,7 @@ const useStyles = makeStyles({
     
       }
 
-})
+});
 
 const Upload_book = () => {
 
@@ -61,6 +61,8 @@ const Upload_book = () => {
     const [author, setAuthor] = useState('')
     const [title, setTitle] = useState('')
     const [file, setFile] = useState(null);
+
+    const fileInputRef = useRef(null);
 
     useEffect(() => {
         context.SetNameContext(false);
@@ -77,9 +79,7 @@ const handleSubmit = async (e) => {
   formData.append('title', title);
 
 
-  try {
-    // const response = await axios.post(`http://localhost:3001/book/createBook/${category}`, formData, {
-      
+  try {   
     const response = await axios.post(`http://localhost:3001/book/createBook`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
@@ -87,6 +87,13 @@ const handleSubmit = async (e) => {
     });
 
     console.log('File uploaded successfully:', response.data);
+      setFile(null);
+      setAuthor('');
+      setCategory('');
+      setTitle('');
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
     
   } catch (error) {
 
@@ -98,7 +105,7 @@ const handleSubmit = async (e) => {
     <Box className={classes.all} >
         <Stack gap={2} className={classes.fileBox}>
             <Typography className={classes.fileTitle}>
-                    FILE UPLOAD 
+                    UPLOAD A BOOK 
             </Typography>
 
             <form  onSubmit={handleSubmit}>
@@ -106,7 +113,7 @@ const handleSubmit = async (e) => {
                       <TextField required label="Category" value={category} onChange={(e) => setCategory(e.target.value)} />
                       <TextField required label="Author" value={author} onChange={(e) => setAuthor(e.target.value)} />
                       <TextField required  label="Title" value={title} onChange={(e) => { setTitle(e.target.value) }}/>
-                      <TextField required type="file"   onChange={(e) => { setFile(e.target.files[0]) }}/>
+                      <TextField required type="file" inputRef={fileInputRef}  onChange={(e) => { setFile(e.target.files[0]) }}/>
                       <Button type="submit"
                         variant="contained"
                         sx={{ alignItems: "center", width: "100%" }}

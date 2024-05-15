@@ -94,7 +94,7 @@ const CoopLibrary = () => {
         label='Filter By' placeholder='FilterBy' 
         >
                  <MenuItem value="">
-                    <em>None</em>
+                    <em>ALL</em>
                   </MenuItem>
 
                   {books.map((book, index) => (

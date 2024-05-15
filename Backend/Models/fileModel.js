@@ -15,24 +15,19 @@ const FileManagementSchema =  new mongoose.Schema({
         required: true,
         trim: true
     },
-    originalName: {
-        type: String,
-        required: true
-    },
-    MimeType: {
-        type: Number,
-        required: true
-    },
+    // originalName: {
+    //     type: String,
+    //     required: true
+    // },
+    // MimeType: {
+    //     type: Number,
+    //     required: true
+    // },
     fileName: {
-        type: Number,
+        type: String,
         required: true,
         trim: true
     },
-    // path: {
-    //     type: Number,
-    //     required: true,
-    //     trim: true
-    // },
     size: {
         type: Number,
         required: true

@@ -2,6 +2,7 @@ const express = require('express');
 
 const app = express();
 const  {
+    createFile,
     getDepartments,
     getSubDepartment,
     getFiles,
@@ -22,6 +23,9 @@ const router = express.Router();
 
 // router.use(protect); 
 
+// Create File
+router.route('/createFile').post( createFile)
+
 // Get Announcement
 // router.get('/getPost',protect, getAnnouncement); 
 // another way
@@ -31,6 +35,8 @@ router.get('/getPost', getAnnouncement)
 
 //get all Announcements
 router.get('/getPosts', getAnnouncements);
+
+
 
 // Post Announcement
 router.post('/posts', validate.validatePost , postAnnouncement);

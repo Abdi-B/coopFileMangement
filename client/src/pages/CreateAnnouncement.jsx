@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, Box, Stack, Typography } from '@mui/material';
 import axios from 'axios';
-import Announcement from '../components/Announcement';
+import { makeStyles } from '@material-ui/styles';
+
+const useStyles = makeStyles({
+  all: {
+          display: 'flex',
+          // flexDirection: 'column',
+          boxSizing: 'border-box',
+          width: '100%',
+          height: '100vh',
+          justifyContent: "center",
+          alignItems: "center",
+      //   backgroundColor: 'green'  
+  }
+
+})
 
 const CreateAnnouncement = () => {
+  const classes = useStyles();
+
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
@@ -26,27 +42,21 @@ const CreateAnnouncement = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}  sx={{width: '100vh', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-      <TextField
-        label="Title"
-        variant="outlined"
-        fullWidth
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <TextField
-        label="Content"
-        variant="outlined"
-        fullWidth
-        multiline
-        rows={4}
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-      />
-      <Button type="submit" variant="contained" color="primary" fullWidth>
-        Create Announcement
-      </Button>
-    </form>
+    <Box className={classes.all}>
+        <Typography >
+                    UPLOAD AN ANNOUNCEMENT 
+            </Typography>
+
+        <form onSubmit={handleSubmit}  sx={{width: '60%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <Stack gap={2}>
+            <TextField label="Title" variant="outlined" value={title} onChange={(e) => setTitle(e.target.value)}/>
+            <TextField label="Content" variant="outlined" fullWidth multiline rows={4} value={content} onChange={(e) => setContent(e.target.value)}/>
+            <Button type="submit" variant="contained" color="primary" fullWidth>
+              Create Announcement
+            </Button>
+          </Stack>
+        </form>
+    </Box>
   );
 };
 

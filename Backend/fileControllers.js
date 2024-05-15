@@ -8,6 +8,69 @@ const ApiFeatures = require('./Utils/ApiFeatures');
 const customError = require('./Utils/customError');
 const asyncErrorHandler = require('./Utils/asyncErrorHandler');
 
+const createFile = async (req, res) => { 
+
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
+}
+  const file = req.files.file
+  const size = req.files.file.size
+  const fileName = req.files.file.name;
+
+  const {department, subDepartment } = req.body 
+
+  // console.log(file)
+  // console.log(department, subDepartment);
+
+  if(file && department && subDepartment  ) {
+    // const checkTitle = await FileManagement.findOne({ title });
+    // console.log(checkTitle)
+    //     if (checkTitle) {
+    //         return res.status(400).json({ message: 'A book with this title already exists.' });
+    //     }
+      
+
+    const  uploadPath = path.join(__dirname, `/Department/${department}/${subDepartment}`);
+    console.log(uploadPath)
+
+    // // Create the category directory if it doesn't exist
+    if (!fs.existsSync(uploadPath)) {
+      try {
+          fs.mkdirSync(uploadPath, { recursive: true });
+          // console.log('Directory created:', uploadPath);
+      } catch (err) {
+          console.error('Error creating directory:', err);
+          return res.status(500).send('Error creating directory.');
+      }
+    };
+    // Use the mv() method to place the file in the category folder
+    file.mv(path.join(uploadPath, file.name), async (err) => {
+      if (err) {
+          console.error('Error moving file:', err);
+          return res.status(500).send('Error moving file:',err);
+      }
+      try {
+        const registeredFile = await FileManagement.create({ department, subDepartment, fileName, size });
+        // console.log(registeredFile);
+
+        res.status(200).json({
+          status: 'success',
+          registeredFile,
+        });
+      } catch (dbErr) {
+        console.error('Error saving file info to database:', dbErr);
+        res.status(500).send('Error saving file info to database.');
+      }
+  });
+} else {
+  res.status(400).send('File or  category or author or title is missing.');
+}
+  
+  }
+
+
+
+
 const getDepartments  = async  (req,res) => {
 
         const dirPath = path.join(__dirname, 'Department');
@@ -169,12 +232,14 @@ const postAnnouncement = async (req, res) => {
 
 
 module.exports = {
+    createFile,
     getDepartments,
     getSubDepartment,
     getFiles,
     getAnnouncement,
     getAnnouncements,
     postAnnouncement,
+
 };
   
 
