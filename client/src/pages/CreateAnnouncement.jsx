@@ -38,7 +38,8 @@ const CreateAnnouncement = () => {
       const response = await axios.post('http://localhost:3001/read/posts', { title, content });
       
       console.log('New blog post created:', response.data);
-      // You can redirect the user to the newly created post or update the post list
+      setTitle('')
+      setContent('')
     } catch (error) {
       console.error('Error creating blog post:', error);
     }
