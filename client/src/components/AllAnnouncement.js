@@ -1,6 +1,6 @@
 import {React, useState, useEffect, useContext} from 'react'
 import axios from 'axios';
-import {Card, CardContent,CardMedia, CardActionArea,CardActions, Button,Typography, Container, List, ListItem, ListItemText } from '@mui/material';
+import {Box,Card, CardContent,CardMedia, CardActionArea,CardActions, Button,Typography, Container, List, ListItem, ListItemText } from '@mui/material';
 import { makeStyles } from '@material-ui/styles';
 import Announcement from './Announcement';
 import AppContext from '../context/AppContext';
@@ -8,18 +8,22 @@ import { useAuthContext } from '../hooks/useAuthContext';
 
 
 const useStyles = makeStyles({
-     container: {
+     box1: {
         height: '100%',
-        width: '100%',
+        width: '100vw',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        // textAlign: 'center',
-        marginTop: 105,
+        marginTop: 110,
         // backgroundColor: 'gray',
     },
+    container: {
+        width: '80%',
+        // backgroundColor: 'red'
+    },
     cards: {
-        margin: 3
+        margin: 3,
+        
     }
 })
 
@@ -48,12 +52,13 @@ export default function AllAnnouncement() {
     }, [token]);
 
   return (
-    <Container className={classes.container}>
+    <Box className={classes.box1}>
+        <Container className={classes.container}>
 
-        <Typography >Announcement</Typography>
-        
+        <Typography variant='h4' >Announcement</Typography>
+
         {AllPost !== null && AllPost.map((post, index) => (
-         <Card key={index} className={classes.cards} elevation={3}>
+        <Card key={index} className={classes.cards} elevation={3}>
             <CardContent>
                 <Typography gutterBottom variant="p" component="div">
                 { post.createdAt && post.createdAt.substring(0, 10)}
@@ -68,10 +73,11 @@ export default function AllAnnouncement() {
 
                 </Typography>
         </CardContent>
-      </Card>
-    )
-    )}
-    </Container>
+        </Card>
+        )
+        )}
+        </Container>
+    </Box>
 
       
     

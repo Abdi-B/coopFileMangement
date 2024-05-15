@@ -7,18 +7,18 @@ import AppContext from '../context/AppContext';
 const useStyles = makeStyles({
     box1: {
         marginTop: 150,
-        color: "blue"
-        // backgroundColor: 'gray',
-        // height: '100%',
-        // width: '100%',
-        // display: 'flex',
-        // flexDirection: 'row',
-        // flexWrap: 'wrap',
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        // marginLeft: -250,
-        // marginRight: -250
+        color: "blue",
+        display: 'flex', 
+        flexWrap: 'wrap', 
+        width: '100vw',
+        height: '100%', 
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '',
        
+    },
+    box2: {
+        width: '80%'
     },
     cardBox:{
             width: '100%',
@@ -89,14 +89,8 @@ const CoopLibrary = () => {
     }, [])
     
   return (
-    <Stack  className={classes.box1} sx={{
-        display: 'flex', 
-        flexDirection: 'column', 
-        flexWrap: 'wrap', 
-        width: '100vw',
-        minWidth: '100vh', 
-        height: '100%', 
-        backgroundColor: ''}}>
+    <Box className={classes.box1} >
+        <Stack  className={classes.box2} >
         <Select
         label='Filter By' placeholder='FilterBy' 
         >
@@ -144,6 +138,7 @@ const CoopLibrary = () => {
         
   
     </Stack>
+    </Box>
   )
 }
 
