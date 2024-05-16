@@ -19,6 +19,7 @@ router.route('/getBooks').get(getBooks);
 // Delete Book
 // router.route('deleteBook/:title').delete(deleteBook)
 
-router.delete('deleteBook/:title', deleteBook)
+router.delete('/deleteBook/:id', deleteBook)
+
 
 module.exports = router;

@@ -68,15 +68,27 @@ const getBooks = asyncErrorHandler(async (req, res) => {
 });
 
 const deleteBook = asyncErrorHandler(async (req, res) => {
-  const {title} = req.params.title;
-  console.log(title)
 
-  const book = await Books.findOne({title})
+    const { id } = req.params;
+    console.log(id);
 
-  res.status(200).json({
-    title,
-    book
-  })
+    const book = await Books.findOne({ _id: id });
+
+    if (!book) {
+      return res.status(404).json({ message: 'Book not found' });
+    }
+
+    // If you want to delete the book, use the following line
+    await Book.deleteOne({ _id: id });
+
+    res.status(200).json({
+      message: 'Book deleted successfully',
+      book,
+    });
+  //  catch (error) {
+  //   console.error('Error deleting book:', error);
+  //   res.status(500).json({ message: 'Server error' });
+  // }
 
 })
 
