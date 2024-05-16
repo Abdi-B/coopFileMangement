@@ -19,8 +19,6 @@ const size = req.files.file.size
 const name = req.files.file.name;
 
 const {category, author, title } = req.body 
-   
-
 
   if(file && category && author && title ) {
 
@@ -57,11 +55,19 @@ const {category, author, title } = req.body
 } else {
   res.status(400).send('File or  category or author or title is missing.');
 }
-  
   })
 
-
+const getBooks = asyncErrorHandler(async (req, res) => {
+  
+  const books = await Books.find().sort({ createdAt: -1 });
+  // console.log(books)
+  res.status(200).json({
+    status: 'success',
+      books
+  })
+})
 
 module.exports = { 
-  uploadBook 
+  uploadBook,
+  getBooks
 };

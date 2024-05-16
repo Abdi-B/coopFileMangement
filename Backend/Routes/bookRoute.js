@@ -13,6 +13,6 @@ router.post('/createBook', uploadBook);
 // router.route('/createBook').post(uploadFile, saveData);
 
 // get all Books
-// router.route('/Books').get(getBooks);
+router.route('/getBooks').get(getBooks);
 
 module.exports = router;
