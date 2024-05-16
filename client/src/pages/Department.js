@@ -1,11 +1,12 @@
 import { Container, ListItemButton, ListItemText, Typography,Box,ListItem, Card, Stack } from '@mui/material';
-import {React, useEffect,useState} from 'react'
+import {React, useEffect,useState, useContext} from 'react'
 import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import {ExpandMore, ExpandLess} from '@mui/icons-material';
 import axios from 'axios';
 import { useAuthContext } from '../hooks/useAuthContext';
+import AppContext from '../context/AppContext';
 
 
 const useStyles = makeStyles({
@@ -71,6 +72,7 @@ const useStyles = makeStyles({
 const Department = () => {
 
   const {token } = useAuthContext();
+  const context = useContext(AppContext);
 
   const [file1, setFile1] = useState([]);
   const [expand, setExpand] = useState(-1);
@@ -91,6 +93,8 @@ const Department = () => {
           // Arr = res.data.details
           setFile1(res.data.file1);
           // console.log(file1)
+          context.SetNameContext(true);
+          context.SetNavbar(true);
       })
       .catch((err) => console.log(err));
 }, [item2]);

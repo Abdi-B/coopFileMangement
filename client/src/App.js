@@ -55,14 +55,15 @@ function App() {
               <Layout >
                  <Routes >
 
-                    <Route exact path="/one/:item/:item2" element={ token ? <Department  /> : <Navigate to="/login" />} />
+                    {/* <Route exact path="/one/:item/:item2" element={ token ? <Department  /> : <Navigate to="/login" />} /> */}
+                    <Route exact path="/one/:item/:item2" element={ <Department  /> } />
                     <Route path="/coopLibrary" element={<CoopLibrary />} />
                     <Route path="/create" element={<Create />} />
                     <Route path="/announcement" element={<CreateAnnouncement />} />
                     <Route path="/announcements" element={<AllAnnouncement />} />
                     <Route path='/uploadFile' element={<UploadFile /> } />
                     <Route path='/uploadbook' element={<Upload_book /> } />
-                    <Route path='/admin' element={<Admin /> } />
+                    <Route path='/admin' element={token ? <Admin  /> : <Navigate to="/login" /> } />
 
 
                     <Route

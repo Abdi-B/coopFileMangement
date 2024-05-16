@@ -1,10 +1,11 @@
 import { makeStyles,useTheme } from '@material-ui/styles'
-import {React, useContext, useState} from 'react'
+import {React, useContext, useState, useEffect} from 'react'
 import { AppBar, Container,Box,Stack,Paper  } from '@mui/material';
 import DrawerList from './DrawerList';
 import Navbar from './Navbar';
 import Announcement from './Announcement';
 import CreateAnnouncement from '../pages/CreateAnnouncement';
+// import { AppContext } from '../context/AppContextNew';
 import AppContext from '../context/AppContext';
 
 const useStyles = makeStyles({
@@ -29,27 +30,19 @@ const useStyles = makeStyles({
 })
 
 function Layout({ children }) { 
+  const { navbar, nameContext } = useContext(AppContext);
+  const classes = useStyles();
 
-
-  const context = useContext(AppContext);
-  console.log("context.navbar value is :" + context.navbar )
-
-   
-    const classes = useStyles()
   return (
     <Stack className={classes.page}>
-   
-         { context.navbar && <Navbar />}
-        <Box className={classes.layout}>
+      {<Navbar />}
+      <Box className={classes.layout}>
         {children}
-        </Box>
-        { context.nameContext && <DrawerList  /> }
-        { context.nameContext && <Announcement  /> }
-
-
-        
+      </Box>
+      {nameContext && <DrawerList />}
+      {nameContext && <Announcement />}
     </Stack>
-  )
+  );
 }
 
 export default Layout

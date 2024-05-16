@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createTheme, ThemeProvider} from "@mui/material";
 import {AuthContextProvider} from './context/AuthContext'
+// import { AppContextProvider } from './context/AppContext';
 
 const theme = createTheme();
 

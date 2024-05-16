@@ -70,7 +70,7 @@ const getBooks = asyncErrorHandler(async (req, res) => {
 const deleteBook = asyncErrorHandler(async (req, res) => {
 
     const { id } = req.params;
-    console.log(id);
+    // console.log(id);
 
     const book = await Books.findOne({ _id: id });
 
