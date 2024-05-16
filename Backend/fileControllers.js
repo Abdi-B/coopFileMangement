@@ -8,6 +8,8 @@ const ApiFeatures = require('./Utils/ApiFeatures');
 const customError = require('./Utils/customError');
 const asyncErrorHandler = require('./Utils/asyncErrorHandler');
 
+
+
 const createFile = async (req, res) => { 
 
   if (!req.files || Object.keys(req.files).length === 0) {
@@ -69,8 +71,6 @@ const createFile = async (req, res) => {
   }
 
 
-
-
 const getDepartments  = async  (req,res) => {
 
         const dirPath = path.join(__dirname, 'Department');
@@ -108,7 +108,7 @@ const getDepartments  = async  (req,res) => {
      });
 }
 
-//Get Sub Departement
+//Get Sub Department
 const getSubDepartment = async (req, res) => {
     const subDepartment = req.params.row
     // console.log(subDepartment)

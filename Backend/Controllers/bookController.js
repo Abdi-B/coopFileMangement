@@ -65,9 +65,23 @@ const getBooks = asyncErrorHandler(async (req, res) => {
     status: 'success',
       books
   })
+});
+
+const deleteBook = asyncErrorHandler(async (req, res) => {
+  const {title} = req.params.title;
+  console.log(title)
+
+  const book = await Books.findOne({title})
+
+  res.status(200).json({
+    title,
+    book
+  })
+
 })
 
 module.exports = { 
   uploadBook,
-  getBooks
+  getBooks,
+  deleteBook
 };

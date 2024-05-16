@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const {createBook, getBooks, uploadFile, uploadBook} = require('./../controllers/bookController');
+const {createBook, getBooks, uploadFile, uploadBook, deleteBook} = require('./../controllers/bookController');
 
 
 // router.post('/createBook:/category',  uploadBook);
@@ -14,5 +14,11 @@ router.post('/createBook', uploadBook);
 
 // get all Books
 router.route('/getBooks').get(getBooks);
+
+
+// Delete Book
+// router.route('deleteBook/:title').delete(deleteBook)
+
+router.delete('deleteBook/:title', deleteBook)
 
 module.exports = router;

@@ -155,9 +155,6 @@ const CoopLibrary = () => {
                     ))}
         </Box>
         
-        
-        
-  
     </Stack>
     </Box>
   )
