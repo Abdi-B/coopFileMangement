@@ -35,11 +35,12 @@ const useStyles = makeStyles((theme) => ({
     // [theme.breakpoints.up('md')]: {
     //   backgroundColor: 'lightcoral', // PC
     // },
+    // display: 'none',
+    backgroundColor: 'gray'
   },
   announcement: {
-    // [theme.breakpoints.between('sm', 'md')]: {
-    //   display: 'none' // Tablet
-    // },
+      display: 'none', 
+      backgroundColor: 'gray'
   }
 }));
 
@@ -67,7 +68,7 @@ function Layout({ children }) {
         {children}
       </Box>
       {nameContext && <DrawerList className={classes.drawer} />}
-      {isPC && nameContext && <Announcement  /> }
+      {nameContext && <Announcement className={classes.announcement} /> }
     </Stack>
   );
 }

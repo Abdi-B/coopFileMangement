@@ -14,4 +14,4 @@ const Admin = () => {
     </Stack>
   )}
 
-export default Admin
+export default Admin;
