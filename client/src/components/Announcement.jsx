@@ -5,14 +5,19 @@ import {Card, CardContent,CardMedia, CardActionArea,CardActions, Button,Typograp
 import cboLogo from './../assets/cbo.png'
 import { makeStyles } from '@material-ui/styles'
 import { useAuthContext } from '../hooks/useAuthContext';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';  
 
-const useStyles = makeStyles({
+
+const useStyles = makeStyles((theme) => ({
   announcement: {
     height: '100%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'gray'
+    // backgroundColor: 'green',
+    
+
   },
   card1: {
     minWidth: "25%",
@@ -30,7 +35,7 @@ const useStyles = makeStyles({
       // backgroundColor: 'yellow'
   }
 
-})
+}))
 
 function Announcement() {
   const {token} = useAuthContext();
@@ -39,6 +44,16 @@ function Announcement() {
 
   const [latestPost, setLatestPost] = useState({});
   const classes = useStyles()
+  const theme = useTheme();
+
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  console.log("useMediaQuery Mobile of announcement " + isMobile);
+
+  // Conditional styles based on 
+  const announcementStyles = {
+    display: isMobile ? 'none' : 'block',
+  };
+
 
   useEffect(() => {
 
@@ -63,7 +78,7 @@ function Announcement() {
 
 
   return (
-    <Container className={classes.announcement} color='primary'>
+    <Container className={classes.announcement} sx={announcementStyles} color='primary'>
       <Card elevation={3} className={classes.card1} >
         <Typography gutterBottom variant="h5" component="div">
                 Announcement
@@ -76,10 +91,7 @@ function Announcement() {
         alt="logo"
         sx={{height:100, width:200}}
         />
-
-        
         <CardContent>
-          
         <Typography gutterBottom variant="p" component="div">
         {latestPost && latestPost.createdAt && latestPost.createdAt.substring(0, 10)}
           </Typography>

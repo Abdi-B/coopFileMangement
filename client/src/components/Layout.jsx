@@ -40,8 +40,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'gray'
   },
   announcement: {
-      display: 'none', 
-      backgroundColor: 'gray'
+      // display: 'none', 
+      backgroundColor: 'gray',
+      height: 'auto'
   }
 }));
 
@@ -56,7 +57,7 @@ function Layout({ children }) {
   const isPC = useMediaQuery(theme.breakpoints.up('md'));
   const aboveMobile = useMediaQuery(theme.breakpoints.up('sm'));
   const notPC = useMediaQuery(theme.breakpoints.down('md'));
-  console.log("useMediaQuery is pc " + isPC);
+  // console.log("useMediaQuery is pc " + isPC);
 
   const announcementStyles = {
     display: isMobile ? 'none' : 'block',
@@ -69,7 +70,7 @@ function Layout({ children }) {
         {children}
       </Box>
       {nameContext && <DrawerList className={classes.drawer} />}
-      {nameContext && <Announcement className={classes.announcement} /> }
+      { nameContext && <Announcement /> }
     </Stack>
   );
 }

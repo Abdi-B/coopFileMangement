@@ -55,7 +55,7 @@ function Navbar() {
       sx={{backgroundColor: '#6495ED'}}>
         <Toolbar sx={{justifyContent: "space-between", display: 'flex', alignItems: 'center', }}>
             <Box  edge='center'  variant="rounded"
-                sx={{ width: 150, height: 80, backgroundColor:'white' ,}}>
+                sx={{ width: 150, height: 80, backgroundColor:'white' }}>
                 {/* <CatchingPokemon></CatchingPokemon> */}
                 {/* <Paper elevation={0} /> */}
                 <CardMedia 
@@ -63,7 +63,6 @@ function Navbar() {
                   image={logo}
                   alt="logo"
                 />
-                
             </Box>
 
             <Stack direction='row' spacing={2}>

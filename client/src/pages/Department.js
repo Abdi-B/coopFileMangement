@@ -11,7 +11,7 @@ import AppContext from '../context/AppContext';
 
 const useStyles = makeStyles({
   listPage1: {
-    // background: 'yellow',
+    background: '',
     display: 'flex',
     height: '100%',
     width:'100%',
