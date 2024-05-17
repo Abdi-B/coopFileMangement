@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
     // [theme.breakpoints.up('md')]: {
     //   backgroundColor: 'lightcoral', // PC
     // },
+    
   },
   layout: {
     width: '100%',
