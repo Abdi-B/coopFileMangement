@@ -65,8 +65,7 @@ function App() {
                     <Route path='/uploadbook' element={<Upload_book /> } />
                     <Route path='/admin' element={token ? <Admin  /> : <Navigate to="/login" /> } />
 
-
-                    <Route
+                    <Route  
                             path="/login"
                             element={
                               !!token ? <Navigate to="/one/Banking%20Operations/One" /> : <Login />

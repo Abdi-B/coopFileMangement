@@ -1,37 +1,64 @@
-import { makeStyles,useTheme } from '@material-ui/styles'
-import {React, useContext, useState, useEffect} from 'react'
-import { AppBar, Container,Box,Stack,Paper  } from '@mui/material';
+import { makeStyles } from '@material-ui/styles';
+import { useTheme } from '@mui/material/styles';  // Use useTheme from @mui/material/styles
+
+import React, { useContext } from 'react';
+import { Box, Stack } from '@mui/material';
 import DrawerList from './DrawerList';
 import Navbar from './Navbar';
 import Announcement from './Announcement';
-import CreateAnnouncement from '../pages/CreateAnnouncement';
-// import { AppContext } from '../context/AppContextNew';
 import AppContext from '../context/AppContext';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-const useStyles = makeStyles({
-    page: {
-        // background: '#E0E1E2',
-        // maxWidth: '55%',
-        width: '100%',
-        // height: 'auto',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    layout: {
-      // background: 'green',
-      // height: '100%',
-      width: '100%',
-      display: 'flex',
-      flexGrow: 1, 
-    }
-    
-})
+const useStyles = makeStyles((theme) => ({
+  page: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // [theme.breakpoints.down('sm')]: {
+    //   backgroundColor: 'lightblue', // Mobile
+    // },
+    // [theme.breakpoints.between('sm', 'md')]: {
+    //   backgroundColor: 'lightgreen', // Tablet
+    // },
+    // [theme.breakpoints.up('md')]: {
+    //   backgroundColor: 'lightcoral', // PC
+    // },
+  },
+  layout: {
+    width: '100%',
+    display: 'flex',
+    flexGrow: 1,
+  },
+  drawer: {
+    // [theme.breakpoints.up('md')]: {
+    //   backgroundColor: 'lightcoral', // PC
+    // },
+  },
+  announcement: {
+    // [theme.breakpoints.between('sm', 'md')]: {
+    //   display: 'none' // Tablet
+    // },
+  }
+}));
 
 function Layout({ children }) { 
   const { navbar, nameContext } = useContext(AppContext);
   const classes = useStyles();
+  const theme = useTheme();
+
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  console.log("isMobile " + isMobile)
+  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  const isPC = useMediaQuery(theme.breakpoints.up('md'));
+  const aboveMobile = useMediaQuery(theme.breakpoints.up('sm'));
+  const notPC = useMediaQuery(theme.breakpoints.down('md'));
+  console.log("useMediaQuery is pc " + isPC);
+
+  const announcementStyles = {
+    display: isMobile ? 'none' : 'block',
+  };
 
   return (
     <Stack className={classes.page}>
@@ -39,10 +66,10 @@ function Layout({ children }) {
       <Box className={classes.layout}>
         {children}
       </Box>
-      {nameContext && <DrawerList />}
-      {nameContext && <Announcement />}
+      {nameContext && <DrawerList className={classes.drawer} />}
+      {isPC && nameContext && <Announcement  /> }
     </Stack>
   );
 }
 
-export default Layout
+export default Layout;
