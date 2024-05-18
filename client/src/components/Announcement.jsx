@@ -40,14 +40,14 @@ const useStyles = makeStyles((theme) => ({
 function Announcement() {
   const {token} = useAuthContext();
 
-  console.log("token of announcement", token);
+  // console.log("token of announcement", token);
 
   const [latestPost, setLatestPost] = useState({});
   const classes = useStyles()
   const theme = useTheme();
 
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  console.log("useMediaQuery Mobile of announcement " + isMobile);
+  // console.log("useMediaQuery Mobile of announcement " + isMobile);
 
   // Conditional styles based on 
   const announcementStyles = {

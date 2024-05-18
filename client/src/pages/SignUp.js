@@ -21,6 +21,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { makeStyles } from '@material-ui/styles';
 import AppContext from '../context/AppContext';
 import { useAuthContext } from './../hooks/useAuthContext';
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles({
@@ -200,7 +201,7 @@ const SignUp = () => {
                       >
                         SignUp
                       </Button>
-                      <Button  onClick={()=>{}}>
+                      <Button  component={Link} to='/login'>
                         HAVE AN ACCOUNT?
                       </Button>
                       </Stack>

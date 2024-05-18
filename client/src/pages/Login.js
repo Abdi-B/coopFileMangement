@@ -25,6 +25,8 @@ import Visibility from "@mui/icons-material/Visibility";
 import { makeStyles } from '@material-ui/styles';
 import AppContext from '../context/AppContext';
 import { useAuthContext } from './../hooks/useAuthContext';
+import { Link } from 'react-router-dom';
+
 
 const useStyles = makeStyles({ 
   all: {
@@ -161,7 +163,9 @@ const Login = () => {
                   }}
                 >
                   <Button>Forgot Password</Button>
-                  <Button>Don't have an account?</Button>
+                  <Button component={Link} to="/signup">
+                      Don't have an account?
+                </Button>
                 </Box>
             </Stack>
         </form>

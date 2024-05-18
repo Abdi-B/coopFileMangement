@@ -84,11 +84,11 @@ const Department = () => {
   const isNotPC = useMediaQuery(theme.breakpoints.down('md'));
 
   const departmentMedia = {
-    // justifyContent: isNotPC ? ('end'): ('center')
-    if(isNotPC) {
-      // justifyContent: 'end',
-      // alignItems: 'end'
-    }
+    justifyContent: isNotPC ? ('end'): ('center')
+    // if(isNotPC) {
+    //   // justifyContent: 'end',
+    //   // alignItems: 'end'
+    // }
   }
 
 
@@ -115,8 +115,8 @@ const Department = () => {
   return (
     <Box className={classes.listPage1} sx={departmentMedia}>
         <Stack className={classes.listPage2}>
-          <Typography variant='h4' >{item}</Typography>
-          <Typography variant='h6' >{item2}</Typography>
+          <Typography variant='h5' >{item}</Typography>
+          <Typography variant='h7' >{item2}</Typography>
 
           {file1.map((Item2, index) => (
             <Card key={index} className={classes.list1} elevation={1}>

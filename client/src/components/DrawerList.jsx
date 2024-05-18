@@ -24,13 +24,22 @@ const useStyles = makeStyles((theme) => ({
         width: '30%',
         // marginTop: '70px',
     },
-    drawerPaper: {
-        // flexShrink: 1,
-        width: '27%',
-        height: drawerHeight,
-        marginTop: '105px',
-        paddingTop: '15px'
-    },
+    // drawerPaper: {
+    //     // flexShrink: 1,
+    //     width: '27%',
+    //     height: drawerHeight,
+    //     marginTop: '105px',
+    //     paddingTop: '15px',
+    // },
+    // drawerPaper: ({ isNotPC }) => ({
+        
+    //     width: isNotPC ? ('40%') : ('30%'),
+    //     height: drawerHeight,
+    //     marginTop: '105px',
+    //     paddingTop: '15px',
+        
+        
+    // }),
     drawContainer: {
         overflowY: 'auto',
         height: drawerHeight,
@@ -51,10 +60,14 @@ const useStyles = makeStyles((theme) => ({
 function DrawerList() {
 
     const {token} = useAuthContext();
-    console.log("token in drawer", token)
-    
-    const theme = useTheme();
+    // console.log("token in drawer", token)
 
+    const theme = useTheme();
+    const isNotPC = useMediaQuery(theme.breakpoints.down('md'));
+    console.log("isNotPC in drawer list " + isNotPC)
+
+
+    // const classes = useStyles({isNotPC});
     const classes = useStyles();
     const location = useLocation();
 
@@ -114,17 +127,33 @@ function DrawerList() {
 
     };
 
+
+    // const isNotPCMedia = {
+    //     width: isNotPC ? '40%' : '30%'
+    // }
+
     
   return (
-        <Container  className={classes.root} >
+        <Container  className={classes.root}  >
 
             <Navbar />
 
             <Drawer 
+            // sx={{ width: isNotPC ? '40%' : '30%' }}
             className={classes.drawer}
             variant = 'permanent'
             anchor='left'
-            classes={{paper: classes.drawerPaper,}}
+            // classes={{paper: classes.drawerPaper}}
+            sx={{
+                // width: isNotPC ? '40%' : '30%',
+                '& .MuiDrawer-paper': {
+                    width: isNotPC ? '45%' : '27%',
+                    height: drawerHeight,
+                    marginTop: '105px',
+                    paddingTop: '15px',
+                }
+            }}
+            
             > 
 
             <Container className={classes.drawContainer}>
@@ -135,7 +164,7 @@ function DrawerList() {
 
                     {file !== null && file.map((item,index) => (
                     <ListItem
-                            sx={{display: 'flex',flexDirection: 'column', alignItems: 'start'}}
+                            sx={{display: 'flex',flexDirection: 'column', alignItems: 'start', width: '100%'}}
                             key={index} 
                             >
                             <ListItemButton sx={{background: '#E9EEF3', width: '90%', borderRadius: 3}}>
@@ -155,7 +184,7 @@ function DrawerList() {
                                                     // onClick={(e) => handleClick2(item,item2, index)}
                                                     // className={location.pathname === `/one/${encodeURIComponent(item)}/${encodeURIComponent(item2)}/${encodeURIComponent(item2)}` ? classes.active: classes.notActive}
                                                 >
-                                                    <ListItemText primary={item2.name}  />
+                                                    <ListItemText primary={item2.name} sx={{background: '', borderRadius: '5px', padding: '3px'}} />
                                                 </ListItem>
                                     )
                                     )}
