@@ -51,7 +51,7 @@ const CreateAnnouncement = () => {
   return (
     <Box className={classes.box}>
         <Stack className={classes.all}>
-        <Typography variant='h6' sx={{backgroundColor: '', width: '100%'}}>
+        <Typography variant='h6' sx={{backgroundColor: '', width: '100%', textAlign: 'center'}}>
                     UPLOAD AN ANNOUNCEMENT 
             </Typography>
 
@@ -59,7 +59,7 @@ const CreateAnnouncement = () => {
           <Stack gap={2} className={classes.list}>
             <TextField label="Title" variant="outlined" value={title} onChange={(e) => setTitle(e.target.value)}/>
             <TextField label="Content" variant="outlined"   multiline rows={4} value={content} onChange={(e) => setContent(e.target.value)}/>
-            <Button type="submit" variant="contained" color="primary" >
+            <Button type="submit" variant="contained" color="primary" sx={{textAlign: '', backgroundColor: ''}} >
               Post Your Announcement
             </Button>
           </Stack>
