@@ -84,7 +84,11 @@ const Department = () => {
   const isNotPC = useMediaQuery(theme.breakpoints.down('md'));
 
   const departmentMedia = {
-    justifyContent: isNotPC ? ('end'): ('center')
+    // justifyContent: isNotPC ? ('end'): ('center')
+    if(isNotPC) {
+      justifyContent: 'end',
+      alignItems: 'end'
+    }
   }
 
 
