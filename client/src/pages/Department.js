@@ -86,8 +86,8 @@ const Department = () => {
   const departmentMedia = {
     // justifyContent: isNotPC ? ('end'): ('center')
     if(isNotPC) {
-      justifyContent: 'end',
-      alignItems: 'end'
+      // justifyContent: 'end',
+      // alignItems: 'end'
     }
   }
 

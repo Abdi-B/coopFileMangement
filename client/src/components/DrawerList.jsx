@@ -8,6 +8,8 @@ import { Link, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import { useAuthContext } from '../hooks/useAuthContext';
 import Department from '../pages/Department';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';  
 
 const drawerHeight = '82vh';
 
@@ -50,6 +52,8 @@ function DrawerList() {
 
     const {token} = useAuthContext();
     console.log("token in drawer", token)
+    
+    const theme = useTheme();
 
     const classes = useStyles();
     const location = useLocation();
