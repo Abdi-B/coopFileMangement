@@ -7,7 +7,8 @@ import {ExpandMore, ExpandLess} from '@mui/icons-material';
 import axios from 'axios';
 import { useAuthContext } from '../hooks/useAuthContext';
 import AppContext from '../context/AppContext';
-
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';  
 
 const useStyles = makeStyles({
   listPage1: {
@@ -70,6 +71,8 @@ const useStyles = makeStyles({
 
 
 const Department = () => {
+  const classes = useStyles();
+  const theme = useTheme();
 
   const {token } = useAuthContext();
   const context = useContext(AppContext);
@@ -77,7 +80,13 @@ const Department = () => {
   const [file1, setFile1] = useState([]);
   const [expand, setExpand] = useState(-1);
   const { item, item2 } = useParams();
-  const classes = useStyles();
+
+  const isNotPC = useMediaQuery(theme.breakpoints.down('md'));
+
+  const departmentMedia = {
+    justifyContent: isNotPC ? ('end'): ('center')
+  }
+
 
   useEffect(  () => {
 
@@ -100,7 +109,7 @@ const Department = () => {
 }, [item2]);
 
   return (
-    <Box className={classes.listPage1}>
+    <Box className={classes.listPage1} sx={departmentMedia}>
         <Stack className={classes.listPage2}>
           <Typography variant='h4' >{item}</Typography>
           <Typography variant='h6' >{item2}</Typography>
