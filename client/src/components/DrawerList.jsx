@@ -155,7 +155,6 @@ function DrawerList() {
                     paddingTop: '15px',
                 }
             }}
-            
             > 
 
             <Container className={classes.drawContainer}>
