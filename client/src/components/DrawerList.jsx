@@ -166,9 +166,15 @@ function DrawerList() {
                 <List >
 
                 {file !== null && file.map((item, index) => {
-                    const itemName = normalizeString(item.name);
-                    const pathName = normalizeString(decodeURIComponent(location.pathname));
+                    const itemName = (item.name);
+                    // console.log("itemName " + itemName);
+                    // console.log(location.pathname)
+                    // const pathName = normalizeString(decodeURIComponent(location.pathname));
+                    const pathName = decodeURIComponent(location.pathname);
+                    // console.log("pathName " + pathName)
+
                     const isSelected = pathName.includes(itemName);
+                    // console.log("isSelected " + isSelected)
 
               return (
                 <ListItem
