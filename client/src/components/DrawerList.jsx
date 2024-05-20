@@ -85,7 +85,6 @@ function DrawerList() {
                     'Authorization' : `Bearer ${token}`
                 }
             })
-
             .then((res) => {
                 if(res.data.directoriesInfo) {
                     setFile(res.data.directoriesInfo);

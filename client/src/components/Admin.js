@@ -3,6 +3,7 @@ import Upload_book from '../pages/Upload_book'
 import UploadFile from '../pages/UploadFile'
 import { Stack } from '@mui/material'
 import CreateAnnouncement from '../pages/CreateAnnouncement'
+import BooksTable from './Admin/BooksTable'
 
 const Admin = () => {
   return (
@@ -10,6 +11,7 @@ const Admin = () => {
         <Upload_book style={{width: '100%'}} />
         <UploadFile style={{width: '100%'}}/>
         <CreateAnnouncement  />
+        <BooksTable />
 
     </Stack>
   )}
