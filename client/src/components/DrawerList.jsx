@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
         transition: '0.05s'
     },
     notActive: {
-        background: 'red'
+        background: 'gray'
     },
  
 }));
@@ -126,6 +126,9 @@ function DrawerList() {
         console.log(item,item2, index)
 
     };
+    const normalizeString = (str) => {
+        return encodeURIComponent(str.trim().toLowerCase());
+  };
 
 
     // const isNotPCMedia = {
@@ -162,38 +165,53 @@ function DrawerList() {
                 </Typography>
                 <List >
 
-                    {file !== null && file.map((item,index) => (
-                    <ListItem
-                            sx={{display: 'flex',flexDirection: 'column', alignItems: 'start', width: '100%'}}
-                            key={index} 
-                            >
-                            <ListItemButton sx={{background: '#E9EEF3', width: '90%', borderRadius: 3}}>
-                                <ListItemText primary={item.name}  onClick={(e) => handleClick(item, index)}/> </ListItemButton>
+                {file !== null && file.map((item, index) => {
+                    const itemName = normalizeString(item.name);
+                    const pathName = normalizeString(decodeURIComponent(location.pathname));
+                    const isSelected = pathName.includes(itemName);
 
-                            <Stack>
-                                <Collapse in={col === index} timeout="auto" unmountOnExit>
-                                    <List >
-                                    {detail !== null && detail.map((item2, index) => (
+              return (
+                <ListItem
+                  sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start', width: '100%' }}
+                  key={index}
+                >
+                  <ListItemButton
+                    sx={{
+                      background: '#E9EEF3',
+                      width: '90%',
+                      borderRadius: 3,
+                      transition: '0.05s',
+                      '&.Mui-selected': {
+                        backgroundColor: '#5DADE2 ',
+                        // color: 'white',
+                      }
+                    }}
+                    selected={isSelected}
+                    onClick={(e) => handleClick(item, index)}
+                  >
+                    <ListItemText primary={item.name} />
+                  </ListItemButton>
 
-                                                <ListItem 
-                                                    key={index} 
-                                                    button
-                                                    component={Link}
-                                                    to={`/one/${item.name}/${item2.name}`}
-                                                    sx={{background: '', width: '100%',ml:3}}
-                                                    // onClick={(e) => handleClick2(item,item2, index)}
-                                                    // className={location.pathname === `/one/${encodeURIComponent(item)}/${encodeURIComponent(item2)}/${encodeURIComponent(item2)}` ? classes.active: classes.notActive}
-                                                >
-                                                    <ListItemText primary={item2.name} sx={{background: '', borderRadius: '5px', padding: '3px'}} />
-                                                </ListItem>
-                                    )
-                                    )}
-                                    </List>
-                                </Collapse>
-                            </Stack>
-                        </ListItem>
-                    )
-                    )}
+                  <Stack>
+                    <Collapse in={col === index} timeout="auto" unmountOnExit>
+                      <List>
+                        {detail !== null && detail.map((item2, index) => (
+                          <ListItem
+                            key={index}
+                            button
+                            component={Link}
+                            to={`/one/${item.name}/${item2.name}`}
+                            sx={{ background: '', width: '100%', ml: 3 }}
+                          >
+                            <ListItemText primary={item2.name} sx={{ background: '', borderRadius: '5px', padding: '3px' }} />
+                          </ListItem>
+                        ))}
+                      </List>
+                    </Collapse>
+                  </Stack>
+                </ListItem>
+              );
+            })}
                 </List>
             </Container>
             </Drawer>
