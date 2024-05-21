@@ -29,7 +29,7 @@ import {AuthContextProvider} from './context/AuthContext'
 import { useAuthContext } from './hooks/useAuthContext';
 import UploadFile from './pages/UploadFile';
 import Upload_book from './pages/Upload_book';
-import Admin from './components/Admin';
+import Admin from './components/Admin/Admin';
 
 
 

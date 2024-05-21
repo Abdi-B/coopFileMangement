@@ -230,6 +230,24 @@ const postAnnouncement = async (req, res) => {
 }
 
 
+const Download = (req, res) => { 
+  const { item, item2, filename } = req.params;
+  // console.log(item, item2, filename)
+
+  const filePath = path.join(__dirname, 'Department', item, item2, filename); // Adjust the path according to your file structure
+
+  // console.log(filePath)
+
+  res.download(filePath, filename, (err) => {
+    if (err) {
+      console.error('Error downloading file:', err);
+      res.status(500).send('Error downloading file');
+    }
+    
+  });
+
+ }
+
 
 module.exports = {
     createFile,
@@ -239,6 +257,7 @@ module.exports = {
     getAnnouncement,
     getAnnouncements,
     postAnnouncement,
+    Download
 
 };
   

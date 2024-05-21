@@ -1,9 +1,9 @@
 import React from 'react'
-import Upload_book from '../pages/Upload_book'
-import UploadFile from '../pages/UploadFile'
+import Upload_book from '../../pages/Upload_book'
+import UploadFile from '../../pages/UploadFile'
 import { Stack } from '@mui/material'
-import CreateAnnouncement from '../pages/CreateAnnouncement'
-import BooksTable from './Admin/BooksTable'
+import CreateAnnouncement from '../../pages/CreateAnnouncement'
+import BooksTable from './BooksTable'
 
 const Admin = () => {
   return (

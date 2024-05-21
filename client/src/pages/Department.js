@@ -60,12 +60,14 @@ const useStyles = makeStyles({
   },
   
   downloadButton: {
-    backgroundColor: "gray", 
-    borderRadius: 3,
-    "&:hover": {
-      backgroundColor: 'red',
-      color: 'Blue'
-      }
+    backgroundColor: 'gray',
+    textAlign: 'center',
+    borderRadius: '5px',
+    padding: '5px',
+    // transition: 'background-color 0.3s ease',
+    '&:hover': {
+      backgroundColor: 'blue', // Change to the desired hover color
+    },
   }
 })
 
@@ -112,6 +114,29 @@ const Department = () => {
       .catch((err) => console.log(err));
 }, [item2]);
 
+const downloadFile = (item, item2, Item2) => {
+  // console.log(item, item2, Item2)
+
+  fetch(`http://localhost:3001/read/download/${encodeURIComponent(item)}/${encodeURIComponent(item2)}/${encodeURIComponent(Item2)}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.blob();
+    })
+    .then(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = Item2;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    })
+    .catch(error => console.error('Error downloading file:', error));
+};
+
+
   return (
     <Box className={classes.listPage1} sx={departmentMedia}>
         <Stack className={classes.listPage2}>
@@ -122,7 +147,11 @@ const Department = () => {
             <Card key={index} className={classes.list1} elevation={1}>
               <ListItem className={classes.lists} >
                 <ListItemText primary={Item2} className={classes.list2} />
-                <ListItemButton className={classes.downloadButton}>Download</ListItemButton>
+                <ListItemButton className={classes.downloadButton} 
+                    onClick={() => downloadFile(item, item2, Item2)} 
+                    // sx={{backgroundColor: 'gray', textAlign: 'center', borderRadius: '5px', padding: '5px'}}
+                    >Download
+                  </ListItemButton>
               </ListItem>
             </Card>
           )

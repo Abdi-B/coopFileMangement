@@ -8,7 +8,8 @@ const  {
     getFiles,
     postAnnouncement,
     getAnnouncements,
-    getAnnouncement
+    getAnnouncement,
+    Download
 } = require('./../fileControllers');
 
 const { createUser } = require('./../controllers/userControllers');
@@ -54,6 +55,9 @@ router.get('/:item/:item2', getFiles);
 
 //admin
 // router.get('/admin')
+
+// Download
+router.get('/download/:item/:item2/:filename', Download)
 
 
 module.exports = router;
