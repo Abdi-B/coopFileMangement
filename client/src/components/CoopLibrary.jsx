@@ -95,7 +95,7 @@ const CoopLibrary = () => {
                 
             })
             .then((res) => {
-                console.log(res.data.books)
+                // console.log(res.data.books)
             setBooks(res.data.books);
             })
             .catch((err) => console.log(err));

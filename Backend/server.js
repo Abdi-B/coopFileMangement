@@ -76,7 +76,7 @@ app.all('*', (req, res, next) => {
 });
 
 
-app.use(globalErrorHandler);
+app.use(globalErrorHandler); 
 
 // app.use((error, req, res, next)=>{
 //     error.statusCode = error.StatusCode || 500;
@@ -104,9 +104,6 @@ mongoose.connect(process.env.MONGO_URI1 )
 // const server = app.listen(process.env.PORT, () => {
 //     console.log('Server has started on the port', process.env.PORT);
 // });
-
-
-
 
 // process.on('unhandledRejection', (err) => {
 //   console.log(err.name, err.message)

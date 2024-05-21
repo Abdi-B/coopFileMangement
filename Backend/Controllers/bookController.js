@@ -33,7 +33,7 @@ const {category, author, title } = req.body
     if (!fs.existsSync(uploadPath)) {
       try {
           fs.mkdirSync(uploadPath, { recursive: true });
-          console.log('Directory created:', uploadPath);
+          // console.log('Directory created:', uploadPath);
       } catch (err) {
           console.error('Error creating directory:', err);
           return res.status(500).send('Error creating directory.');
@@ -42,7 +42,7 @@ const {category, author, title } = req.body
     // Use the mv() method to place the file in the category folder
     file.mv(path.join(uploadPath, file.name), async (err) => {
       if (err) {
-          console.error('Error moving file:', err);
+          // console.error('Error moving file:', err);
           return res.status(500).send('Error moving file:',err);
       }
     const book = await Books.create({category,name,  author, title, size})
