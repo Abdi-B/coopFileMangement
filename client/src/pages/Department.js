@@ -60,14 +60,12 @@ const useStyles = makeStyles({
   },
   
   downloadButton: {
-    backgroundColor: 'gray',
-    textAlign: 'center',
-    borderRadius: '5px',
-    padding: '5px',
-    // transition: 'background-color 0.3s ease',
-    '&:hover': {
-      backgroundColor: 'blue', // Change to the desired hover color
-    },
+    // backgroundColor: "gray", 
+    // borderRadius: 3,
+    // "&:hover": {
+    //   backgroundColor: "red",
+    //   color: 'Blue'
+    //   }
   }
 })
 
@@ -149,7 +147,20 @@ const downloadFile = (item, item2, Item2) => {
                 <ListItemText primary={Item2} className={classes.list2} />
                 <ListItemButton className={classes.downloadButton} 
                     onClick={() => downloadFile(item, item2, Item2)} 
-                    // sx={{backgroundColor: 'gray', textAlign: 'center', borderRadius: '5px', padding: '5px'}}
+                    sx={{
+                      backgroundColor: '',
+                      borderRadius: 3,
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      padding: '5px',
+                      transition: 'background-color 0.3s ease, transform 0.3s ease',
+                      
+                      "&:hover": {
+                        backgroundColor: '#89CDF9 ',
+                        transform: 'scale(1.1) ', 
+                      },
+                    }}
                     >Download
                   </ListItemButton>
               </ListItem>
