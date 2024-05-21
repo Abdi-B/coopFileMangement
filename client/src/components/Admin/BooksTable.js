@@ -1,24 +1,21 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import {  useEffect, useState} from "react";
+import { Box, Card, Stack, Typography } from '@mui/material';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
+  { field: 'category', headerName: 'Category', width: 170 },
+  { field: 'title', headerName: 'Title', width: 200 },
+  { field: 'author', headerName: 'Author', width: 150 },
+  { field: 'invitedBy', headerName: 'Invited By', width: 150 },
   {
-    field: 'age',
-    headerName: 'Age',
+    field: 'size',
+    headerName: 'size in kb',
     type: 'number',
     width: 90,
   },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
-  },
+
 ];
 
 const rows = [
@@ -34,19 +31,32 @@ const rows = [
 ];
 
 export default function BooksTable() {
+
+  const [books, setBooks] = useState([])
+
+  useEffect(() => {
+   
+
+  }, [])
+  
   return (
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-      />
-    </div>
+    <Stack style={{ height: 400, width: '100%',display: 'flex', justifyContent: 'center',
+       alignItems: 'center', backgroundColor: '', margin: 20}}>
+        <Typography variant='h6' > Books Table</Typography>
+      <Card sx={{width: '65%'}}>
+          <DataGrid
+          // sx={{backgroundColor: 'green'}}
+            rows={rows}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 5 },
+              },
+            }}
+            pageSizeOptions={[5, 10]}
+            checkboxSelection
+          />
+      </Card>
+    </Stack>
   );
 }

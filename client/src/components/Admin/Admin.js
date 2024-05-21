@@ -8,10 +8,11 @@ import BooksTable from './BooksTable'
 const Admin = () => {
   return (
     <Stack style={{marginTop: 110, marginBottom: 15, display: 'flex', flexDirection: 'column', width: '100%', height: "100%", backgroundColor: 'whitesmoke'}}>
+        <BooksTable />
         <Upload_book style={{width: '100%'}} />
         <UploadFile style={{width: '100%'}}/>
         <CreateAnnouncement  />
-        <BooksTable />
+        
 
     </Stack>
   )}
