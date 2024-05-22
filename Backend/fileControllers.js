@@ -109,7 +109,7 @@ const getDepartments  = async  (req,res) => {
 
 const getDepartments1  = asyncErrorHandler( async(req,res) => {
       const department = await FileManagement .find().sort({ createdAt: -1 });
-      console.log(department)
+      // console.log(department)
 
       res.status(200).json({
 

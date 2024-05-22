@@ -55,7 +55,10 @@ router.post('/posts', validate.validatePost , postAnnouncement);
 
 //GET all Department
 // router.get('/', protect, restrict('user', 'user2'), getDepartments); // to add role on restrict
-router.get('/', getDepartments1);
+router.get('/', getDepartments);
+
+// from DB
+router.get('/new', getDepartments1)
 
 //GET all Sub-department
 router.get('/:row', getSubDepartment);

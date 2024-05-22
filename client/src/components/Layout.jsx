@@ -8,6 +8,7 @@ import Navbar from './Navbar';
 import Announcement from './Announcement';
 import AppContext from '../context/AppContext';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import DrawerList1 from './DrawerList2';
 
 const useStyles = makeStyles((theme) => ({
   page: {
@@ -70,6 +71,7 @@ function Layout({ children }) {
         {children}
       </Box>
       {nameContext && <DrawerList className={classes.drawer} />}
+      {/* {nameContext && <DrawerList1 className={classes.drawer} />} */}
       { nameContext && <Announcement /> }
     </Stack>
   );
