@@ -33,7 +33,7 @@ const createFile = async (req, res) => {
       
 
     const  uploadPath = path.join(__dirname, `/Department/${department}/${subDepartment}`);
-    console.log(uploadPath)
+    // console.log(uploadPath)
 
     // // Create the category directory if it doesn't exist
     if (!fs.existsSync(uploadPath)) {
@@ -69,7 +69,6 @@ const createFile = async (req, res) => {
 }
   
   }
-
 
 const getDepartments  = async  (req,res) => {
 
@@ -108,6 +107,16 @@ const getDepartments  = async  (req,res) => {
      });
 }
 
+const getDepartments1  = asyncErrorHandler( async(req,res) => {
+      const department = await FileManagement .find().sort({ createdAt: -1 });
+      console.log(department)
+
+      res.status(200).json({
+
+        status: 'success',
+          department
+      })
+})
 //Get Sub Department
 const getSubDepartment = async (req, res) => {
     const subDepartment = req.params.row
@@ -230,11 +239,11 @@ const postAnnouncement = async (req, res) => {
 }
 
 
-const Download = (req, res) => { 
+const Download = asyncErrorHandler(async (req, res) => { 
   const { item, item2, filename } = req.params;
   // console.log(item, item2, filename)
 
-  const filePath = path.join(__dirname, 'Department', item, item2, filename); // Adjust the path according to your file structure
+  const filePath =  path.join(__dirname, 'Department', item, item2, filename); // Adjust the path according to your file structure
 
   // console.log(filePath)
 
@@ -245,8 +254,9 @@ const Download = (req, res) => {
     }
     
   });
+ });
 
- }
+
 
 
 module.exports = {
@@ -257,7 +267,8 @@ module.exports = {
     getAnnouncement,
     getAnnouncements,
     postAnnouncement,
-    Download
+    Download,
+    getDepartments1
 
 };
   

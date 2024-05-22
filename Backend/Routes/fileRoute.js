@@ -9,10 +9,14 @@ const  {
     postAnnouncement,
     getAnnouncements,
     getAnnouncement,
-    Download
+    Download,
+    getDepartments1
+    
 } = require('./../fileControllers');
 
 const { createUser } = require('./../controllers/userControllers');
+
+const {AdminFiles } = require('./../controllers/admin')
 
 // Validation
 const validate = require('../Validation/validate');
@@ -25,7 +29,14 @@ const router = express.Router();
 // router.use(protect); 
 
 // Create File
-router.route('/createFile').post( createFile)
+router.route('/createFile').post( createFile);
+
+// Admin  Get Files
+
+// router.get('/getAdminFiles', AdminFiles)
+router.route('/getAdminFiles').get(AdminFiles);
+
+
 
 // Get Announcement
 // router.get('/getPost',protect, getAnnouncement); 
@@ -38,14 +49,13 @@ router.get('/getPost', getAnnouncement)
 router.get('/getPosts', getAnnouncements);
 
 
-
 // Post Announcement
 router.post('/posts', validate.validatePost , postAnnouncement);
 
 
 //GET all Department
 // router.get('/', protect, restrict('user', 'user2'), getDepartments); // to add role on restrict
-router.get('/', getDepartments);
+router.get('/', getDepartments1);
 
 //GET all Sub-department
 router.get('/:row', getSubDepartment);
@@ -58,6 +68,7 @@ router.get('/:item/:item2', getFiles);
 
 // Download
 router.get('/download/:item/:item2/:filename', Download)
+
 
 
 module.exports = router;

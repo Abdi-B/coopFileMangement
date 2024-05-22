@@ -10,6 +10,7 @@ const columns = [
   { field: 'author', headerName: 'Author', width: 150 },
   { field: 'invitedBy', headerName: 'Invited By', width: 150 },
   { field: 'size', headerName: 'Size in kb', type: 'number', width: 90 },
+  { field: 'createdAt', headerName: 'Uploaded At', width: 150 },
 ];
 
 export default function BooksTable() {
@@ -32,6 +33,7 @@ export default function BooksTable() {
     author: book.author,
     invitedBy: book.invitedBy || '', // Provide a default value if invitedBy is missing
     size: (book.size)/1000,
+    createdAt: book.createdAt.substring(0, 10)
   }));
 
   return (
@@ -46,19 +48,19 @@ export default function BooksTable() {
         }}
     >
       <Typography variant='h6'>Books Table</Typography>
-      <Card sx={{ width: '65%' }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
-            },
-          }}
-          pageSizeOptions={[5, 10]}
-          checkboxSelection
-        />
-      </Card>
+        <Card sx={{ width: '65%' }}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 5 },
+              },
+            }}
+            pageSizeOptions={[5, 10]}
+            checkboxSelection
+          />
+        </Card>
     </Stack>
   );
 }

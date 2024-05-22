@@ -44,7 +44,7 @@ app.use(xss());
 app.use(bodyParser.json()); 
 app.use(express.urlencoded({ extended: true }));
 // app.use(cors());
-app.use(express.static('./Department'));
+// app.use(express.static('./Department'));
 app.use(fileUpload());
 
 const fileRoutes = require('./Routes/fileRoute');

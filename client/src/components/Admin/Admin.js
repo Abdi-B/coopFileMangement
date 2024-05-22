@@ -4,10 +4,12 @@ import UploadFile from '../../pages/UploadFile'
 import { Stack } from '@mui/material'
 import CreateAnnouncement from '../../pages/CreateAnnouncement'
 import BooksTable from './BooksTable'
+import FilesTable from './FilesTable'
 
 const Admin = () => {
   return (
     <Stack style={{marginTop: 110, marginBottom: 15, display: 'flex', flexDirection: 'column', width: '100%', height: "100%", backgroundColor: 'whitesmoke'}}>
+        <FilesTable />
         <BooksTable />
         <Upload_book style={{width: '100%'}} />
         <UploadFile style={{width: '100%'}}/>
