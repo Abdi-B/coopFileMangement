@@ -152,6 +152,22 @@ const getSubDepartment = async (req, res) => {
   
 }
 
+const getSubDepartment2 = asyncErrorHandler(async (req, res) => {
+
+  const department = req.params.row
+  // console.log(department)
+
+  const subDepartment = await  FileManagement.find({department}).sort({ createdAt: -1 });
+  // console.log(subDepartment)
+
+  res.status(200).json({
+    status: 'success',
+    subDepartment 
+  })
+
+
+})
+
 const getFiles =  async (req, res) => {
     const item = req.params.item;
     const item2 = req.params.item2;
@@ -268,7 +284,8 @@ module.exports = {
     getAnnouncements,
     postAnnouncement,
     Download,
-    getDepartments1
+    getDepartments1,
+    getSubDepartment2
 
 };
   

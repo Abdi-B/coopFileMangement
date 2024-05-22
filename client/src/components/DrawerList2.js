@@ -1,180 +1,123 @@
-import {React, useEffect,useState} from 'react'
-import { ThemeProvider, makeStyles } from '@material-ui/styles'
-import { Container, Drawer,Toolbar, List, ListItem, ListItemText, Typography,Box, ListItemButton, Stack, Collapse, AppBar, createTheme } from '@mui/material'
-
-import Home from './Home'
+import React, { useEffect, useState } from 'react';
+import { makeStyles } from '@material-ui/styles';
+import { Container, Drawer, List, ListItem, ListItemText, Typography, ListItemButton, createTheme, Stack, Collapse } from '@mui/material';
 import axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import { useAuthContext } from '../hooks/useAuthContext';
-import Department from '../pages/Department';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';  
+import { useTheme } from '@mui/material/styles';
 
 const drawerHeight = '82vh';
 
 const theme = createTheme();
-const useStyles = makeStyles((theme) => ({
-// const useStyles = makeStyles({
-
-    root: {
-        display: 'flex',
-    },
-    drawer: {
-        width: '30%',
-        // marginTop: '70px',
-    },
-    // drawerPaper: {
-    //     // flexShrink: 1,
-    //     width: '27%',
-    //     height: drawerHeight,
-    //     marginTop: '105px',
-    //     paddingTop: '15px',
-    // },
-    // drawerPaper: ({ isNotPC }) => ({
-        
-    //     width: isNotPC ? ('40%') : ('30%'),
-    //     height: drawerHeight,
-    //     marginTop: '105px',
-    //     paddingTop: '15px',
-        
-        
-    // }),
-    drawContainer: {
-        overflowY: 'auto',
-        height: drawerHeight,
-        // marginTop: 105,
-    },
-    active: {
-        background: 'blue',
-        color: 'white',
-        // fontWeight: 'bold',
-        transition: '0.05s'
-    },
-    notActive: {
-        background: 'gray'
-    },
- 
-}));
+const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+  },
+  drawer: {
+    width: '30%',
+  },
+  drawContainer: {
+    overflowY: 'auto',
+    height: drawerHeight,
+  },
+  listItemButton: {
+    background: '#E9EEF3',
+    width: '90%',
+    borderRadius: 3,
+    transition: '0.05s',
+    '&.Mui-selected': {
+      backgroundColor: '#5DADE2',
+    }
+  }
+});
 
 function DrawerList1() {
-
-    const {token} = useAuthContext();
-    // console.log("token in drawer", token)
-
-    const theme = useTheme();
-    const isNotPC = useMediaQuery(theme.breakpoints.down('md'));
-    console.log("isNotPC in drawer list " + isNotPC)
-
-
-    // const classes = useStyles({isNotPC});
-    const classes = useStyles();
-    const location = useLocation();
-
-    const [col, setcol] = useState(-1);
-
-    const [file, setFile] = useState([]);
-    const [detail, setDetail] = useState([]);
-
-    useEffect(  () => {
-
-        const token2 = localStorage.getItem('token');
-
-         axios.get("http://localhost:3001/read/new", {
-                headers: {
-                    'Authorization' : `Bearer ${token}`
-                }
-            })
-            .then((res) => {
-                console.log("res.data.department is : " + res.data.department)
-                if(res.data.department) {
-                    setFile(res.data.department);
-                    
-                } else {
-                    setFile(null)
-                }
-            })
-            .catch((err) => console.error("Error in drawer",err));
-    }, [token]);
-    
-    const  handleClick = async (item, index) => {
-        // console.log(item.name, index)
-
-        await axios({
-            url: `http://localhost:3001/read/${item.name}`,
-            method: "get",
-            headers: {
-                'Authorization' : `Bearer ${token}`
-            }
-        })
-            .then((res) => {
-                // console.log(res.data.directoriesInfo)
-                if(res.data.directoriesInfo) {
-                    setDetail(res.data.directoriesInfo);
-                }
-                else {
-                    setDetail(null)
-                }
-                // console.log(detail)
-            })
-            .catch((err) => console.log(err));
+  const { token } = useAuthContext();
+  const theme = useTheme();
+  const isNotPC = useMediaQuery(theme.breakpoints.down('md'));
+  const classes = useStyles();
+  const location = useLocation();
+  const [file, setFile] = useState([]);
+  const [subFile, setSubFile] = useState([]);
+  const [col, setcol] = useState(-1);
 
 
-         setcol(col === index ? -1 : index);
-
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/read/new", {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        // console.log("res.data.department:", response.data.department);
+        setFile(response.data.department || []);
+      } catch (error) {
+        console.error("Error in drawer", error);
+      }
     };
-    const handleClick2 =  (item,item2, index) => {
-        console.log(item,item2, index)
 
+    fetchData();
+  }, [token]);
+
+  const handleClick = (department, index) => {
+    console.log(department);
+
+    // Fetch subdepartments for the selected department
+    const fetchSubDepartments = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/read/subdepartments/${department}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        console.log("response.data.subDepartment " + response.data.subDepartment)
+        setSubFile(response.data.subDepartment)
+        // setSubDepartments(response.data.subDepartments || []);
+        // setSelectedDepartment(department); // Set selected department
+      } catch (error) {
+        console.error("Error fetching subdepartments", error);
+      }
     };
-    const normalizeString = (str) => {
-        return encodeURIComponent(str.trim().toLowerCase());
+
+    fetchSubDepartments();
+
+    setcol(col === index ? -1 : index);
   };
 
+   // Get unique categories
+   const uniqueDepartment = [...new Set(file.map(book => book.department))];
+   const uniqueSubDepartment = [...new Set(subFile.map(book => book.subDepartment))];
+//    console.log("uniqueSubDepartment " + uniqueSubDepartment)
 
-    // const isNotPCMedia = {
-    //     width: isNotPC ? '40%' : '30%'
-    // }
-
-    
   return (
-        <Container  className={classes.root}  >
-
-            <Navbar />
-
-            <Drawer 
-            // sx={{ width: isNotPC ? '40%' : '30%' }}
-            className={classes.drawer}
-            variant = 'permanent'
-            anchor='left'
-            // classes={{paper: classes.drawerPaper}}
-            sx={{
-                // width: isNotPC ? '40%' : '30%',
-                '& .MuiDrawer-paper': {
-                    width: isNotPC ? '45%' : '27%',
-                    height: drawerHeight,
-                    marginTop: '105px',
-                    paddingTop: '15px',
-                }
-            }}
-            > 
-
-            <Container className={classes.drawContainer}>
-                <Typography variant='h6' >
-                    List of Department
-                </Typography>
-                <List >
-
-                {/* {file !== null && file.map((item, index) => {
-                    const itemName = (item.name);
-                    // console.log("itemName " + itemName);
-                    // console.log(location.pathname)
-                    // const pathName = normalizeString(decodeURIComponent(location.pathname));
-                    const pathName = decodeURIComponent(location.pathname);
-                    // console.log("pathName " + pathName)
-
-                    const isSelected = pathName.includes(itemName);
-                    // console.log("isSelected " + isSelected)
+    <Container className={classes.root}>
+      <Navbar />
+      <Drawer
+        className={classes.drawer}
+        variant='permanent'
+        anchor='left'
+        sx={{
+          '& .MuiDrawer-paper': {
+            width: isNotPC ? '45%' : '27%',
+            height: drawerHeight,
+            marginTop: '105px',
+            paddingTop: '15px',
+          }
+        }}
+      >
+        <Container className={classes.drawContainer}>
+          <Typography variant='h6'>
+            List of Department
+          </Typography>
+          <List>
+            {uniqueDepartment.map((department, index) => {
+            //   const itemName = Array.isArray(item.department) && item.department.length > 0 ? item.department[0] : item.department;
+            const itemName = department
+            const pathName = decodeURIComponent(location.pathname);
+              const isSelected = pathName.includes(itemName);
 
               return (
                 <ListItem
@@ -182,48 +125,50 @@ function DrawerList1() {
                   key={index}
                 >
                   <ListItemButton
-                    sx={{
-                      background: '#E9EEF3',
-                      width: '90%',
-                      borderRadius: 3,
-                      transition: '0.05s',
-                      '&.Mui-selected': {
-                        backgroundColor: '#5DADE2 ',
-                        // color: 'white',
-                      }
-                    }}
+                    className={classes.listItemButton}
                     selected={isSelected}
-                    onClick={(e) => handleClick(item, index)}
+                    onClick={() => handleClick(department, index)}
+                    sx={{
+                        background: '#E9EEF3',
+                        width: '90%',
+                        borderRadius: 3,
+                        transition: '0.05s',
+                        '&.Mui-selected': {
+                          backgroundColor: '#5DADE2 ',
+                          // color: 'white',
+                        }
+                      }}
                   >
-                    <ListItemText primary={item.name} />
+                    <ListItemText primary={department} />
                   </ListItemButton>
 
                   <Stack>
                     <Collapse in={col === index} timeout="auto" unmountOnExit>
                       <List>
-                        {detail !== null && detail.map((item2, index) => (
+                        {uniqueSubDepartment !== null && uniqueSubDepartment.map((subDepartment, index) => (
                           <ListItem
                             key={index}
                             button
                             component={Link}
-                            to={`/one/${item.name}/${item2.name}`}
+                            to={`/one/${department}/${subDepartment}`}
                             sx={{ background: '', width: '100%', ml: 3 }}
                           >
-                            <ListItemText primary={item2.name} sx={{ background: '', borderRadius: '5px', padding: '3px' }} />
+                            <ListItemText primary={subDepartment} sx={{ background: '', borderRadius: '5px', padding: '3px' }} />
                           </ListItem>
                         ))}
                       </List>
                     </Collapse>
                   </Stack>
+
+
                 </ListItem>
               );
-            })} */}
-                </List>
-            </Container>
-            </Drawer>
-            
+            })}
+          </List>
         </Container>
-  )
+      </Drawer>
+    </Container>
+  );
 }
 
-export default DrawerList1
+export default DrawerList1;

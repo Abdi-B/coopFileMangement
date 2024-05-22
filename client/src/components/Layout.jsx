@@ -70,8 +70,8 @@ function Layout({ children }) {
       <Box className={classes.layout}>
         {children}
       </Box>
-      {nameContext && <DrawerList className={classes.drawer} />}
-      {/* {nameContext && <DrawerList1 className={classes.drawer} />} */}
+      {/* {nameContext && <DrawerList className={classes.drawer} />} */}
+      {nameContext && <DrawerList1 className={classes.drawer} />}
       { nameContext && <Announcement /> }
     </Stack>
   );

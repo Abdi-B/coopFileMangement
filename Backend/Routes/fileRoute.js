@@ -10,7 +10,8 @@ const  {
     getAnnouncements,
     getAnnouncement,
     Download,
-    getDepartments1
+    getDepartments1,
+    getSubDepartment2
     
 } = require('./../fileControllers');
 
@@ -62,6 +63,9 @@ router.get('/new', getDepartments1)
 
 //GET all Sub-department
 router.get('/:row', getSubDepartment);
+
+//GET all Sub-department 2
+router.get('/subdepartments/:row', getSubDepartment2);
 
 //GET all Files
 router.get('/:item/:item2', getFiles);

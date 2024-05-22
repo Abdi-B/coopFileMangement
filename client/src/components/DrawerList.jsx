@@ -86,6 +86,7 @@ function DrawerList() {
                 }
             })
             .then((res) => {
+              console.log("res.data.directoriesInfo is : " + res.data.directoriesInfo)
                 if(res.data.directoriesInfo) {
                     setFile(res.data.directoriesInfo);
                 } else {
