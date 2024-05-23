@@ -79,6 +79,27 @@ function Navbar2() {
         </IconButton>
         <Typography variant='h7' component='div' sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>COOP Files sharing</Typography>
 
+            <Stack direction='row' spacing={2} sx={{display: {xs: 'none', md: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: ''  }}}>
+            
+              <Button color='primary' component={Link} to="one/Banking%20Operations/One" 
+                  onClick={() => {
+                  context.SetNameContext(true);  
+              }}>Home</Button>
+              <Button color='inherit' component={Link} to="/coopLibrary" onClick={() => {
+                context.SetNameContext(false);
+                // color='primary'
+              }}>Coop Library</Button>
+              <Button color='inherit'>Service</Button>
+              <Button color='inherit' component={Link} to='/announcements' onClick={() => {
+                // context.SetNameContext(false);
+              }}>Announcement</Button>
+              {/* <Button color='primary'>Contact Us</Button> */}
+              { !!token && ( <Button color='inherit' component={Link} to='/admin' onClick={() => {
+                context.SetNameContext(false);
+              }} >Admin</Button>)}
+              { !!token &&  ( <Button color='inherit' onClick={handleLogout}>Logout</Button> )}
+            
+            </Stack>
         <Stack direction='row' spacing={2} sx={{ display: { xs: 'none', md: 'flex', justifyContent: 'center', alignItems: 'center' } }}>
           {menuItems.map((item, index) => {
             if (item.auth && !token) return null;

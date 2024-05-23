@@ -1,5 +1,5 @@
-import {React, useContext, } from 'react'
-import { AppBar,Toolbar, IconButton,Typography,Stack } from '@mui/material'
+import {React, useContext, useState } from 'react'
+import { AppBar,Toolbar, IconButton,Typography,Stack, Menu, MenuList, MenuItem } from '@mui/material'
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import CardMedia from '@mui/material/CardMedia';
@@ -19,6 +19,8 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import PeopleIcon from '@mui/icons-material/People';
 import MenuIcon from '@mui/icons-material/Menu';
+import CoopLibrary from './CoopLibrary';
+import Announcement from './Announcement';
 
 const useStyles = makeStyles({
   appBar1: {
@@ -44,15 +46,41 @@ function Navbar() {
 
   const context = useContext(AppContext);
   const {token } = useAuthContext();
+  const classes = useStyles();
 
   const { logout} = useLogout();
-
-
   const handleLogout = () => {
     logout()
   };
 
-    const classes = useStyles();
+  // const [anchorNav, setAnchorNav] = useState<null | HTMLElement>(null)
+  // const openMenu = (event: MouseEvent<HTMLElement>) => {
+  //     setAnchorNav(event.currentTarget)
+  // }
+
+  // const closeMenu = () => {
+  //   setAnchorNav(null)
+  // }
+
+  const [anchorNav, setAnchorNav] = useState(null);
+
+  const openMenu = (event) => {
+    setAnchorNav(event.currentTarget);
+  };
+
+  const closeMenu = () => {
+    setAnchorNav(null);
+  };
+
+  const menuItems = [
+    { text: 'Home', path: 'one/Banking%20Operations/One' },
+    { text: 'Coop Library', path: '/coopLibrary' },
+    { text: 'Service', path: '/service' },
+    { text: 'Announcement', path: '/announcements' },
+    { text: 'Admin', path: '/admin', auth: true },
+    { text: 'Logout', action: handleLogout, auth: true }
+  ];
+    
   return (
     <AppBar position='fixed' className={classes.appBar1} 
       sx={{backgroundColor: '#6495ED',display: 'flex', justifyContent: "center",  alignItems: ''}}>
@@ -74,35 +102,58 @@ function Navbar() {
                   alt="logo"
                 />
             </Box> */}
-
-            <Stack direction='row' spacing={2} sx={{display: {xs: 'none', md: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: ''  }}}>
+            <Stack direction='row' spacing={2} sx={{ display: { xs: 'none', md: 'flex', justifyContent: 'center', alignItems: 'center' } }}>
+                {menuItems.map((item, index) => {
+                  if (item.auth && !token) return null;
+                  return (
+                    <Button
+                      key={index}
+                      color='inherit'
+                      component={item.path ? Link : 'button'}
+                      to={item.path}
+                      onClick={item.action || null}
+                    >
+                      {item.text}
+                    </Button>
+                  );
+                })}
+        </Stack>
             
-              <Button color='primary' component={Link} to="one/Banking%20Operations/One" 
-                  onClick={() => {
-                  context.SetNameContext(true);  
-              }}>Home</Button>
-              <Button color='inherit' component={Link} to="/coopLibrary" onClick={() => {
-                context.SetNameContext(false);
-                // color='primary'
-              }}>Coop Library</Button>
-              <Button color='inherit'>Service</Button>
-              <Button color='inherit' component={Link} to='/announcements' onClick={() => {
-                // context.SetNameContext(false);
-              }}>Announcement</Button>
-              {/* <Button color='primary'>Contact Us</Button> */}
-              { !!token && ( <Button color='inherit' component={Link} to='/admin' onClick={() => {
-                context.SetNameContext(false);
-              }} >Admin</Button>)}
-              { !!token &&  ( <Button color='inherit' onClick={handleLogout}>Logout</Button> )}
-            
-            </Stack>
             <Box sx={{display: {xs: 'flex', md: 'none',  }, justifyContent: '', alignItems: 'center'}}>
-              <IconButton size='large' edge='start' color='inherit' aria-label= 'menu'>
+              <IconButton 
+                  onClick={openMenu}
+                  size='large' edge='start' color='inherit' aria-label= 'menu'>
                 <MenuIcon />
               </IconButton>
-              <Typography variant='h7' component='div' sx={{flexGrow: 1, display: {xs: 'flex', md: 'none', }}}>COOP Files sharing</Typography>
+              <Menu
+                anchorEl={anchorNav}
+                open={Boolean(anchorNav)}
+                onClose={closeMenu}
+                sx={{ display: { xs: 'block', md: 'none' }, backgroundColor: '' , marginTop: 2}}
+              >
+                {menuItems.map((item, index) => {
+                  if (item.auth && !token) return null;
+                  return (
+
+                    <MenuItem
+                      key={index}
+                      component={item.path ? Link : 'button'}
+                      to={item.path}
+                      onClick={() => {
+                        closeMenu();
+                        if (item.action) item.action();
+                      }}
+                      sx={{backgroundColor: '', margin: 1, width: 200,borderRadius: '5px', ":hover": {backgroundColor: '#6495ED', transition: '0.01s', }}}
+                    >
+                      {item.text}
+                    </MenuItem>
+                  );
+                })}
+          </Menu>
 
             </Box>
+            <Typography variant='h7' component='div' sx={{flexGrow: 1, display: {xs: 'flex', md: 'none', }}}>COOP Files sharing</Typography>
+
         </Toolbar>
     </AppBar>
   )
