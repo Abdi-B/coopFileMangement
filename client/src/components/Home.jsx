@@ -32,13 +32,10 @@ function Home()  {
     const [detail, setDetail] = useState([]);
 
     useEffect(() => {
-
         axios
             .get("http://localhost:3001/read")
             .then((res) => {
                 setFile(res.data.files);
-                
-
             })
             .catch((err) => console.log(err));
     }, []);

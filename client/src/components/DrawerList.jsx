@@ -112,7 +112,7 @@ function DrawerList() {
                     setDetail(res.data.directoriesInfo);
                 }
                 else {
-                    setDetail(null)
+                    setDetail(null);
                 }
                 // console.log(detail)
             })
