@@ -67,8 +67,8 @@ function Layout({ children }) {
 
   return (
     <Stack className={classes.page}>
-      {/* {<Navbar />} */}
-      <Navbar2 />
+      {<Navbar />}
+      {/* <Navbar2 /> */}
       <Box className={classes.layout}>
         {children}
       </Box>

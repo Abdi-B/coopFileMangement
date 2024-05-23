@@ -25,6 +25,7 @@ function Navbar2() {
   const { token } = useAuthContext();
   const { logout } = useLogout();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [anchorNav, setAnchorNav] = useState<null | HTMLElement>(null)
 
   const handleLogout = () => {
     logout();
