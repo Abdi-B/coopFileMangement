@@ -1,14 +1,14 @@
-import React, { useState, useRef  } from 'react';
+import React, { useState, useRef, useEffect  } from 'react';
 import { Stack, FormControl, InputLabel, Select, MenuItem, Button, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 
-const books = [
-    { title: "aa", category: "Tech", author: "Abdi", invitedByK: "Chali" },
-    { title: "bb", category: "Tech", author: "Abdi", invitedByK: "Chali" },
-    { title: "cc", category: "Tech", author: "Abdi", invitedByK: "Chali" },
-    { title: "dd", category: "Tech", author: "Abdi", invitedByK: "Chali" },
-    { title: "ee", category: "Tech", author: "Abdi", invitedByK: "Chali" },
-];
+// const books = [
+//     { title: "aa", category: "Tech", author: "Abdi", invitedByK: "Chali" },
+//     { title: "bb", category: "Tech", author: "Abdi", invitedByK: "Chali" },
+//     { title: "cc", category: "Tech", author: "Abdi", invitedByK: "Chali" },
+//     { title: "dd", category: "Tech", author: "Abdi", invitedByK: "Chali" },
+//     { title: "ee", category: "Tech", author: "Abdi", invitedByK: "Chali" },
+// ];
 
 const UploadFile = () => {
   const [selectedOption1, setSelectedOption1] = useState('');
@@ -17,6 +17,16 @@ const UploadFile = () => {
   const [customDepartment, setCustomDepartment] = useState('');
   const [customSubDepartment, setCustomSubDepartment] = useState('');
   const [books, setBooks] = useState([])
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/read/getAdminFiles')
+      .then((res) => {
+        console.log("res.data.allFiles " + res.data.allFiles);
+        setBooks(res.data.allFiles);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const fileInputRef = useRef(null);
 
@@ -44,7 +54,7 @@ const UploadFile = () => {
     console.log('Selected Option:', department, "and", subDepartment, " file is ", file);
     // Add your logic here for handling the selected option
 
-          const formData = new FormData();
+        const formData = new FormData();
          formData.append('file', file);
          formData.append('department', department);
          formData.append('subDepartment', subDepartment);
@@ -55,7 +65,6 @@ const UploadFile = () => {
         'Content-Type': 'multipart/form-data'
       }
     });
-    
     console.log('File uploaded successfully:', response.data);
     // Reset the form fields
     setFile(null);
@@ -73,8 +82,9 @@ const UploadFile = () => {
       console.error('Error uploading file:', error.response);
     
   };
-}
-  const selectDepartment = (books, dep, selectedOption, handleChange, customInput, handleCustomInputChange) => (
+};
+
+const selectDepartment = (books, dep, selectedOption, handleChange, customInput, handleCustomInputChange) => (
     <FormControl sx={{ m: 1, width: '60%' }}>
       <InputLabel id={`select-label-${dep}`}>Select {dep}</InputLabel>
       <Select
@@ -105,7 +115,7 @@ const UploadFile = () => {
         />
       )}
     </FormControl>
-  );
+);
 
   return (
     <Stack gap={2} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '', marginTop: 10 }}>
@@ -125,5 +135,4 @@ const UploadFile = () => {
     </Stack>
   );
 };
-
 export default UploadFile;
