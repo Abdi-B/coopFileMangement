@@ -91,17 +91,19 @@ function Navbar() {
             </IconButton>
             <Typography variant='h7' component='div' sx={{flexGrow: 1, display: {xs: 'none', md: 'flex', }}}>COOP Files sharing</Typography>
 
+            
             {/* <Box  edge='center'  variant="rounded"
-                sx={{ width: 150, height: 90, backgroundColor:'white', marginTop: '7px', borderRadius: '5px'}}> */}
-                {/* <CatchingPokemon></CatchingPokemon> */}
-                {/* <Paper elevation={0} /> */}
-                {/* <CardMedia 
+                    sx={{ width: 150, height: 90, backgroundColor:'white', marginTop: '7px', borderRadius: '5px'}}> */}
+                    {/* <CatchingPokemon></CatchingPokemon> */}
+                    {/* <Paper elevation={0} /> */}
+                    {/* <CardMedia 
+                    
+                      component="img"
+                      image={logo}
+                      alt="logo"
+                    />
+                </Box> */}
                 
-                  component="img"
-                  image={logo}
-                  alt="logo"
-                />
-            </Box> */}
             <Stack direction='row' spacing={2} sx={{ display: { xs: 'none', md: 'flex', justifyContent: 'center', alignItems: 'center' } }}>
                 {menuItems.map((item, index) => {
                   if (item.auth && !token) return null;
@@ -117,42 +119,45 @@ function Navbar() {
                     </Button>
                   );
                 })}
-        </Stack>
+            </Stack>
             
             <Box sx={{display: {xs: 'flex', md: 'none',  }, justifyContent: '', alignItems: 'center'}}>
-              <IconButton 
-                  onClick={openMenu}
-                  size='large' edge='start' color='inherit' aria-label= 'menu'>
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                anchorEl={anchorNav}
-                open={Boolean(anchorNav)}
-                onClose={closeMenu}
-                sx={{ display: { xs: 'block', md: 'none' }, backgroundColor: '' , marginTop: 2}}
-              >
-                {menuItems.map((item, index) => {
-                  if (item.auth && !token) return null;
-                  return (
+                <IconButton 
+                    onClick={openMenu}
+                    size='large' edge='start' color='inherit' aria-label= 'menu'>
+                  <MenuIcon />
+                </IconButton>
+                <Menu
+                  anchorEl={anchorNav}
+                  open={Boolean(anchorNav)}
+                  onClose={closeMenu}
+                  sx={{ display: { xs: 'block', md: 'none' }, backgroundColor: '' , marginTop: 2}}
+                >
+                  {menuItems.map((item, index) => {
+                    if (item.auth && !token) return null;
+                    return (
 
-                    <MenuItem
-                      key={index}
-                      component={item.path ? Link : 'button'}
-                      to={item.path}
-                      onClick={() => {
-                        closeMenu();
-                        if (item.action) item.action();
-                      }}
-                      sx={{backgroundColor: '', margin: 1, width: 200,borderRadius: '5px', ":hover": {backgroundColor: '#6495ED', transition: '0.01s', }}}
-                    >
-                      {item.text}
-                    </MenuItem>
-                  );
-                })}
-          </Menu>
+                      <MenuItem
+                        key={index}
+                        component={item.path ? Link : 'button'}
+                        to={item.path}
+                        onClick={() => {
+                          closeMenu();
+                          if (item.action) item.action();
+                        }}
+                        sx={{backgroundColor: '', margin: 1, width: 200,borderRadius: '5px', ":hover": {backgroundColor: '#6495ED', transition: '0.01s', }}}
+                      >
+                        {item.text}
+                      </MenuItem>
+                    );
+                  })}
+                </Menu>
 
             </Box>
-            <Typography variant='h7' component='div' sx={{flexGrow: 1, display: {xs: 'flex', md: 'none', }}}>COOP Files sharing</Typography>
+            <Typography variant='h7' component='div' sx={{flexGrow: 1, display: {xs: 'flex', md: 'none', }}}>
+              COOP Files sharing
+
+            </Typography>
 
         </Toolbar>
     </AppBar>

@@ -59,14 +59,7 @@ const useStyles = makeStyles({
     // background: 'purple',
   },
   
-  downloadButton: {
-    // backgroundColor: "gray", 
-    // borderRadius: 3,
-    // "&:hover": {
-    //   backgroundColor: "red",
-    //   color: 'Blue'
-    //   }
-  }
+
 })
 
 
@@ -145,7 +138,7 @@ const downloadFile = (item, item2, Item2) => {
             <Card key={index} className={classes.list1} elevation={1}>
               <ListItem className={classes.lists} >
                 <ListItemText primary={Item2} className={classes.list2} />
-                <ListItemButton className={classes.downloadButton} 
+                <ListItemButton  
                     onClick={() => downloadFile(item, item2, Item2)} 
                     sx={{
                       backgroundColor: '',
@@ -153,13 +146,13 @@ const downloadFile = (item, item2, Item2) => {
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      padding: '5px',
+                      padding: '10px 5px',
                       transition: 'background-color 0.3s ease, transform 0.3s ease',
-                      
-                      "&:hover": {
-                        backgroundColor: '#89CDF9 ',
-                        transform: 'scale(1.1) ', 
-                      },
+                      ":hover": {
+                        backgroundColor: "#6495ED",
+                        color: 'whitesmoke'
+                    }
+
                     }}
                     >Download
                   </ListItemButton>

@@ -50,13 +50,12 @@ const UploadFile = () => {
          formData.append('subDepartment', subDepartment);
 
   try {
-
     const response = await axios.post(`http://localhost:3001/read/createFile`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     });
-
+    
     console.log('File uploaded successfully:', response.data);
     // Reset the form fields
     setFile(null);
