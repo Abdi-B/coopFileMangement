@@ -45,6 +45,7 @@ function Announcement() {
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  
 
   useEffect(() => {
     axios
@@ -85,17 +86,19 @@ function Announcement() {
           </Typography>
           {latestPost.content && (
             <Typography gutterBottom variant="body2" color="text.secondary" align='justify'>
-              {showFullContent ? latestPost.content : `${latestPost.content.slice(0, 200)}...`}
+              <span className={classes.contentText}>
+              {showFullContent ? latestPost.content : latestPost.content.length < 200 ? latestPost.content : `${latestPost.content.slice(0, 200)}...`}
+              </span>
+              {latestPost.content.length > 200 && (
+                <Button size="small" className={classes.seeMoreButton} onClick={handleToggleContent}>
+                  {showFullContent ? 'See Less' : '...See More'}
+                </Button>
+              )}
             </Typography>
           )}
+          
         </CardContent>
-        <CardActions>
-          {latestPost.content && latestPost.content.length > 200 && (
-            <Button size="small" onClick={handleToggleContent}>
-              {showFullContent ? 'See Less' : 'See More'}
-            </Button>
-          )}
-        </CardActions>
+
       </Card>
     </Container>
   );

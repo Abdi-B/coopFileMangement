@@ -51,6 +51,8 @@ export default function AllAnnouncement() {
             
     }, [token]);
 
+    // const isTablet = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <Box className={classes.box1}>
         <Container className={classes.container}>
