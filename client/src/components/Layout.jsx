@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/styles';
 import { useTheme } from '@mui/material/styles';  // Use useTheme from @mui/material/styles
 
 import React, { useContext } from 'react';
-import { Box, Stack } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import DrawerList from './DrawerList';
 import Navbar from './Navbar';
 import Announcement from './Announcement';
@@ -68,11 +68,10 @@ function Layout({ children }) {
   return (
     <Stack className={classes.page}>
       {<Navbar />}
-      {/* <Navbar2 /> */}
+      
       <Box className={classes.layout}>
         {children}
       </Box>
-      {/* {nameContext && <DrawerList className={classes.drawer} />} */}
       {nameContext && <DrawerList1 className={classes.drawer} />}
       { nameContext && <Announcement /> }
     </Stack>

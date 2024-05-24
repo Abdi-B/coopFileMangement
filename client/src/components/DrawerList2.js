@@ -30,7 +30,13 @@ const useStyles = makeStyles({
     '&.Mui-selected': {
       backgroundColor: '#5DADE2',
     }
-  }
+  },
+  listItemText: {
+    fontWeight: theme.typography.fontWeightMedium,
+  },
+  subListItemText: {
+    fontWeight: theme.typography.fontWeightRegular,
+  },
 });
 
 function DrawerList1() {
@@ -94,7 +100,7 @@ function DrawerList1() {
 
   return (
     <Container className={classes.root}>
-      <Navbar />
+ 
       <Drawer
         className={classes.drawer}
         variant='permanent'
@@ -107,8 +113,11 @@ function DrawerList1() {
             paddingTop: '15px',
           }
         }}
-      >
+      > 
+
+        
         <Container className={classes.drawContainer}>
+
           <Typography variant='h6'>
             List of Department
           </Typography>
@@ -129,6 +138,7 @@ function DrawerList1() {
                     selected={isSelected}
                     onClick={() => handleClick(department, index)}
                     sx={{
+                      transition: 'none',
                         background: '#E9EEF3',
                         width: '90%',
                         borderRadius: 3,
@@ -148,7 +158,8 @@ function DrawerList1() {
                         
                       }}
                   >
-                    <ListItemText primary={department} />
+                    <ListItemText primary={department} classes={{ primary: classes.listItemText }} />
+
                   </ListItemButton>
 
                   <Stack>
@@ -160,9 +171,11 @@ function DrawerList1() {
                             button
                             component={Link}
                             to={`/one/${department}/${subDepartment}`}
-                            sx={{ background: '', width: '100%', ml: 3 }}
+                            sx={{  ml: 3,mb:0.4, borderRadius: '5px' , backgroundColor: '#E9EEF3'}}
                           >
-                            <ListItemText primary={subDepartment} sx={{ background: '', borderRadius: '5px', padding: '3px' }} />
+                            <ListItemText primary={subDepartment} classes={{ primary: classes.subListItemText }} />
+
+                            {/* <ListItemText primary={subDepartment} sx={{ background: '', borderRadius: '5px',  }} /> */}
                           </ListItem>
                         ))}
                       </List>
