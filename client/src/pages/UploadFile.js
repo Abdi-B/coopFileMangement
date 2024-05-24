@@ -14,7 +14,7 @@ const UploadFile = () => {
     axios
       .get('http://localhost:3001/read/getAdminFiles')
       .then((res) => {
-        console.log("res.data.allFiles", JSON.stringify(res.data.allFiles, null, 2));
+        // console.log("res.data.allFiles", JSON.stringify(res.data.allFiles, null, 2));
         setBooks(res.data.allFiles);
       })
       .catch((err) => console.log(err));
