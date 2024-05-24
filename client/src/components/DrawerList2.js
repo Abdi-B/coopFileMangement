@@ -136,7 +136,16 @@ function DrawerList1() {
                         '&.Mui-selected': {
                           backgroundColor: '#5DADE2 ',
                           // color: 'white',
+                          ":hover" : {
+                        backgroundColor: '#5DADE2',
+                        opacity: '0.5'
+                      }
+                        },
+                        ":hover" : {
+                          backgroundColor: '#5DADE2',
+                          opacity: '0.5'
                         }
+                        
                       }}
                   >
                     <ListItemText primary={department} />

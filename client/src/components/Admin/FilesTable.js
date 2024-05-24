@@ -20,7 +20,7 @@ export default function FilesTable() {
     axios
       .get('http://localhost:3001/read/getAdminFiles')
       .then((res) => {
-        console.log(res.data.allFiles);
+        // console.log(res.data.allFiles);
         setFiles(res.data.allFiles);
       })
       .catch((err) => console.log(err));

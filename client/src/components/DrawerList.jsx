@@ -189,7 +189,8 @@ function DrawerList() {
                       '&.Mui-selected': {
                         backgroundColor: '#5DADE2 ',
                         // color: 'white',
-                      }
+                      },
+                      
                     }}
                     selected={isSelected}
                     onClick={(e) => handleClick(item, index)}

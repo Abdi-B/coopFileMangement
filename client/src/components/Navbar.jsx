@@ -73,7 +73,7 @@ function Navbar() {
   };
 
   const menuItems = [
-    { text: 'Home', path: 'one/Banking%20Operations/One' },
+    { text: 'Home', path: 'one/Payment%20Switch/IST%20Switch' },
     { text: 'Coop Library', path: '/coopLibrary' },
     { text: 'Service', path: '/service' },
     { text: 'Announcement', path: '/announcements' },
@@ -91,7 +91,7 @@ function Navbar() {
             </IconButton>
             <Typography variant='h7' component='div' sx={{flexGrow: 1, display: {xs: 'none', md: 'flex', }}}>COOP Files sharing</Typography>
 
-            
+        
             {/* <Box  edge='center'  variant="rounded"
                     sx={{ width: 150, height: 90, backgroundColor:'white', marginTop: '7px', borderRadius: '5px'}}> */}
                     {/* <CatchingPokemon></CatchingPokemon> */}
