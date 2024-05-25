@@ -68,8 +68,8 @@ function DrawerList1() {
     fetchData();
   }, [token]);
 
-  
-  const handleClick = (department, index) => {
+
+  const handleClick = async (department, index) => {
     console.log(department);
 
     // Fetch subdepartments for the selected department
@@ -89,7 +89,7 @@ function DrawerList1() {
       }
     };
 
-    fetchSubDepartments();
+    await fetchSubDepartments();
 
     setcol(col === index ? -1 : index);
   };
@@ -131,7 +131,7 @@ function DrawerList1() {
 
               return (
                 <ListItem
-                  sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start', width: '100%' }}
+                  sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start', width: '100%', backgroundColor: '' }}
                   key={index}
                 >
                   <ListItemButton
@@ -141,7 +141,7 @@ function DrawerList1() {
                     sx={{
                       transition: 'none',
                         background: '#E9EEF3',
-                        width: '90%',
+                        width: '100%',
                         borderRadius: 3,
                         transition: '0.05s',
                         '&.Mui-selected': {
@@ -163,16 +163,16 @@ function DrawerList1() {
 
                   </ListItemButton>
 
-                  <Stack>
+                  <Stack sx={{width: '92%', backgroundColor: ''}}>
                     <Collapse in={col === index} timeout="auto" unmountOnExit>
-                      <List>
+                      <List sx={{width: '100%', backgroundColor: ''}}>
                         {uniqueSubDepartment !== null && uniqueSubDepartment.map((subDepartment, index) => (
                           <ListItem
                             key={index}
                             button
                             component={Link}
                             to={`/one/${department}/${subDepartment}`}
-                            sx={{  ml: 3,mb:0.4, borderRadius: '5px' , backgroundColor: '#E9EEF3'}}
+                            sx={{  ml: 3,mb:0.4, borderRadius: '5px' , backgroundColor: '#E9EEF3', borderRadius: '5px',}}
                           >
                             <ListItemText primary={subDepartment} classes={{ primary: classes.subListItemText }} />
 

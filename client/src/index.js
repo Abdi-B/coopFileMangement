@@ -7,31 +7,31 @@ import { createTheme, ThemeProvider} from "@mui/material";
 import {AuthContextProvider} from './context/AuthContext'
 // import { AppContextProvider } from './context/AppContext';
 
-const theme = createTheme();
+// const theme = createTheme();
 
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: "#419BF5"
-//     },
-//     secondary: {
-//       main: "#ECF3F5"
-//     },
-//     third: {
-//       main: "#3D8AC7"
-//     },
-//   },
-//   Typography: {
-//     fontFamily: "Quicksand",
-//     fontWeightLight: 300,
-//     fontWeightRegular: 400,
-//     fontWeightMedium: 500,
-//     fontWeightSemiBold: 600,
-//     fontWeightBold: 700,
-//   }
-//  }
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#419BF5"
+    },
+    secondary: {
+      main: "#ECF3F5"
+    },
+    third: {
+      main: "#3D8AC7"
+    },
+  },
+  Typography: {
+    fontFamily: "Quicksand",
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
+    fontWeightSemiBold: 600,
+    fontWeightBold: 700,
+  }
+ }
 
-// )
+)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
