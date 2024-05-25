@@ -68,6 +68,7 @@ function DrawerList1() {
     fetchData();
   }, [token]);
 
+  
   const handleClick = (department, index) => {
     console.log(department);
 
