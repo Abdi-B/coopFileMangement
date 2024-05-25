@@ -32,7 +32,6 @@ const useStyles = makeStyles({
     },
 });
 
-
 const CoopLibrary = () => {
     const classes = useStyles();
     const context = useContext(AppContext);
