@@ -172,7 +172,7 @@ function DrawerList1() {
                             button
                             component={Link}
                             to={`/one/${department}/${subDepartment}`}
-                            sx={{  ml: 3,mb:0.4, borderRadius: '5px' , backgroundColor: '#E9EEF3', borderRadius: '5px',}}
+                            sx={{  ml: 3,mb:0.2, borderRadius: '5px' , backgroundColor: '#E9EEF3', borderRadius: 3}}
                           >
                             <ListItemText primary={subDepartment} classes={{ primary: classes.subListItemText }} />
 
