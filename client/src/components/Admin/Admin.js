@@ -16,9 +16,6 @@ const Admin = () => {
         <Upload_book style={{width: '100%'}} />
         <UploadFile style={{width: '100%'}}/>
         <CreateAnnouncement  />
-
-        
-
     </Stack>
   )}
 
