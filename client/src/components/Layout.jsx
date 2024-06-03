@@ -11,6 +11,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import DrawerList1 from "./DrawerList2";
 import Navbar2 from "./Navbar2";
 
+
 const useStyles = makeStyles((theme) => ({
   page: {
     width: "100%",
@@ -28,13 +29,11 @@ const useStyles = makeStyles((theme) => ({
     //   backgroundColor: 'lightcoral', // PC
     // },
   },
-
   layout: {
     width: "100%",
     display: "flex",
     flexGrow: 1,
   },
-
   drawer: {
     // [theme.breakpoints.up('md')]: {
     //   backgroundColor: 'lightcoral', // PC
@@ -42,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     // display: 'none',
     // backgroundColor: "gray",
   },
-  
+
   announcement: {
     // display: 'none',
     backgroundColor: "gray",
