@@ -11,7 +11,6 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import DrawerList1 from "./DrawerList2";
 import Navbar2 from "./Navbar2";
 
-
 const useStyles = makeStyles((theme) => ({
   page: {
     width: "100%",
@@ -55,7 +54,7 @@ function Layout({ children }) {
   const theme = useTheme();
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  console.log("isMobile " + isMobile);
+  // console.log("isMobile " + isMobile);
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const isPC = useMediaQuery(theme.breakpoints.up("md"));
   const aboveMobile = useMediaQuery(theme.breakpoints.up("sm"));
@@ -76,6 +75,5 @@ function Layout({ children }) {
     </Stack>
   );
 }
-
 
 export default Layout;
