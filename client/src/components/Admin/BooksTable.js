@@ -26,6 +26,7 @@ export default function BooksTable() {
       .catch((err) => console.log(err));
   }, []);
 
+  
   const rows = books.map((book, index) => ({
     id: index + 1, // Ensure unique IDs starting from 1
     category: book.category,
