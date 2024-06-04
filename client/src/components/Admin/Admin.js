@@ -7,7 +7,6 @@ import BooksTable from './BooksTable'
 import FilesTable from './FilesTable'
 import AnnouncementTable from './AnnouncementTable'
 
-
 const Admin = () => {
   return (
     <Stack style={{marginTop: 110, marginBottom: 15, display: 'flex', flexDirection: 'column', width: '100%', height: "100%", backgroundColor: 'whitesmoke'}}>
