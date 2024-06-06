@@ -17,6 +17,7 @@ const validate = require('../Validation/validate');
 router.route('/user')
     .post(createUser)
 
+    
 // Login 
 
 router.route('/login').post(login);
