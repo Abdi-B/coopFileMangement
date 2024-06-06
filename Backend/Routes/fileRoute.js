@@ -24,7 +24,6 @@ const validate = require('../Validation/validate');
 const {protect , restrict} = require('./../controllers/userControllers');
 
 
-
 const router = express.Router();
 
 // router.use(protect); 
