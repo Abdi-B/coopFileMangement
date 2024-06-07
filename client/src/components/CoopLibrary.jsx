@@ -61,7 +61,6 @@ const CoopLibrary = () => {
         setSelectedCategory(event.target.value);
     };
 
-
     return (
         <Box className={classes.box1}>
             <Stack className={classes.box2}>
