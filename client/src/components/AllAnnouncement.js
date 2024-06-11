@@ -46,6 +46,8 @@ export default function AllAnnouncement() {
   const classes = useStyles();
   const [AllPost, setAllPost] = useState([]);
 
+
+  
   useEffect(() => {
     context.SetNameContext(false);
     axios
