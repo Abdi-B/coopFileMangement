@@ -82,6 +82,7 @@ function Navbar() {
   ];
     
   
+  
   return (
     <AppBar position='fixed' className={classes.appBar1} 
       sx={{backgroundColor: '#6495ED',display: 'flex', justifyContent: "center",  alignItems: ''}}>
