@@ -48,11 +48,9 @@ function App() {
   const [navbar, SetNavbar] = useState(true);
 
   return (
- 
           <AppContext.Provider value={{ nameContext, SetNameContext, navbar, SetNavbar }} >
         
         <Router>
-    
               <Layout >
                  <Routes >
 
