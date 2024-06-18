@@ -83,7 +83,6 @@ app.use(globalErrorHandler);
 // });
 
 // DB connection
-
 mongoose.connect(process.env.MONGO_URI1).then(() => {
   app.listen(process.env.PORT, () => {
     console.log(
