@@ -9,7 +9,6 @@ const {createBook, getBooks, uploadFile, uploadBook, deleteBook} = require('./..
 router.post('/createBook', uploadBook);
 
 
-
 // createBooks
 // router.route('/createBook').post(uploadFile, saveData);
 
