@@ -11,7 +11,6 @@ const fileUpload = require("express-fileupload");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-
 // process.on('uncaughtException', (err) => {
 //     console.log(err.name, err.message)
 //       console.log('uncaughtException occurred! shutting down...')
