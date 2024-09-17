@@ -61,6 +61,7 @@ app.use("/auth", authRoutes);
 app.use("/user", userRoute);
 app.use("/book", bookRoute);
 
+
 // Invalid route --for all mean it include get, post, patch, delete and etc and it should be after routes
 app.all("*", (req, res, next) => {
   const err = new customError(
@@ -79,7 +80,6 @@ app.use(globalErrorHandler);
 //         status: error.status,
 //         message: error.message
 //     });
-
 // });
 
 // DB connection
@@ -96,7 +96,6 @@ mongoose.connect(process.env.MONGO_URI1).then(() => {
 // const server = app.listen(process.env.PORT, () => {
 //     console.log('Server has started on the port', process.env.PORT);
 // });
-
 
 // process.on('unhandledRejection', (err) => {
 //   console.log(err.name, err.message)

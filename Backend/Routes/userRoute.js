@@ -8,6 +8,7 @@ const {
   updateMe,
   deleteMe,
   getAllUsers,
+  verifyToken,
 } = require("./../controllers/userControllers");
 
 router.use(protect);
@@ -22,5 +23,7 @@ router.route("/updatePassword").patch(protect, updatePassword);
 router.route("/updateMe").patch(protect, updateMe);
 
 router.route("/deleteMe").delete(protect, deleteMe);
+
+router.route("/protected").get(verifyToken)
 
 module.exports = router;
